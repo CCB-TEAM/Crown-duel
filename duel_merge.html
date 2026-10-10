@@ -4,8 +4,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="皇冠对决">
 <meta name="theme-color" content="#0a0f11">
 <title>皇冠对决</title>
@@ -30,11 +28,9 @@ button{font:inherit;color:inherit;cursor:pointer}
 .btn{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:9px 16px;font-size:13px;font-weight:600;transition:.15s}
 .btn:hover{background:var(--panel2);border-color:#52636b}
 .btn.primary{background:var(--red);border-color:var(--red);color:#fff}
-.btn.primary:hover{background:#e8735e}
 .btn.gold{background:linear-gradient(180deg,#e0b370,#b98a45);border-color:#e8c88c;color:#2a1c06}
 .btn.big{padding:12px 28px;font-size:16px;letter-spacing:.2em}
 .btn:disabled{opacity:.4;cursor:not-allowed}
-.btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 #menu{position:absolute;inset:0;display:flex;gap:26px;padding:20px 30px;z-index:10;background:radial-gradient(ellipse at 20% 0,rgba(212,164,93,.12),transparent 55%)}
 .m-left{width:250px;flex:none;display:flex;flex-direction:column;justify-content:space-between;min-height:0}
 .eyebrow{font-size:10px;letter-spacing:.24em;color:var(--gold);font-weight:700}
@@ -61,10 +57,9 @@ button{font:inherit;color:inherit;cursor:pointer}
 .vs b{color:var(--red);font-family:var(--serif);font-size:14px;margin-left:4px}
 #oppGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .opp-option{border:1px solid var(--line);border-radius:8px;background:var(--panel2);padding:10px 6px;font:700 13px var(--serif);text-align:center;transition:.15s;cursor:pointer;color:var(--text)}
-.opp-option:hover{border-color:#617179}
-.opp-option.on{border-color:var(--gold);background:linear-gradient(180deg,#2c261b,#1b1810);color:#f0d091;box-shadow:0 0 0 1px var(--gold)}
-.opp-option.random{grid-column:1/-1;background:linear-gradient(180deg,#1e2630,#161c24)}
-.opp-option.random.on{border-color:var(--blue);background:linear-gradient(180deg,#1a3a4a,#0f2430);color:#a8d8f0;box-shadow:0 0 0 1px var(--blue)}
+.opp-option.on{border-color:var(--gold);background:linear-gradient(180deg,#2c261b,#1b1810);color:#f0d091}
+.opp-option.random{grid-column:1/-1}
+.opp-option.random.on{border-color:var(--blue);background:linear-gradient(180deg,#1a3a4a,#0f2430);color:#a8d8f0}
 #game{position:absolute;inset:0;display:grid;grid-template-columns:98px 1fr 88px}
 #sideL{display:flex;flex-direction:column;justify-content:space-between;padding:10px 4px 10px 10px;z-index:3}
 .hero{display:flex;flex-direction:column;align-items:center;gap:5px;--hc:var(--gold)}
@@ -74,8 +69,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .hn{font:700 13px var(--serif);max-width:90px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .cry{display:flex;flex-wrap:wrap;justify-content:center;gap:2px;width:64px}
 .cry i{width:11px;height:13px;clip-path:polygon(50% 0,100% 35%,50% 100%,0 35%);background:#79b9d6}
-.cry i.off{background:#27383f}
-.cry i.dis{background:#182329}
+.cry i.off{background:#27383f}.cry i.dis{background:#182329}
 .entx{font:700 11px var(--serif);color:#9dd2e6}
 .money{width:70px;font-size:10px;color:#e8c66b;text-align:center}
 .money b{font-family:var(--serif);font-size:12px}
@@ -83,36 +77,29 @@ button{font:inherit;color:inherit;cursor:pointer}
 .money .mb i{display:block;height:100%;background:#e8c66b;transition:width .3s}
 .mini{font-size:9.5px;color:var(--muted)}
 #eHero.tgt .portrait{border-color:var(--red);animation:tgtPulse 1s ease-in-out infinite;cursor:crosshair}
-#eHero.hot .portrait{transform:scale(1.12);box-shadow:0 0 0 4px rgba(217,99,77,.55),0 0 26px rgba(217,99,77,.6)}
-.portrait.hit{animation:hitA .4s}
 #table{display:flex;flex-direction:column;padding:4px 4px 0;min-width:0;position:relative}
 #eHand{height:16px;display:flex;justify-content:center;overflow:hidden;flex:none}
-.eb{width:24px;height:34px;margin-left:-6px;margin-top:-14px;flex:none;border:1px solid #596d73;border-radius:4px;background:repeating-linear-gradient(135deg,#2c4145 0 3px,#1c2d31 3px 6px);transition:width .25s,opacity .2s}
-.eb.enter{animation:ebIn .4s ease-out}
-.eb.dying{width:0;margin-left:0;opacity:0}
-@keyframes ebIn{from{transform:translateY(-30px);opacity:0}}
+.eb{width:24px;height:34px;margin-left:-6px;margin-top:-14px;flex:none;border:1px solid #596d73;border-radius:4px;background:repeating-linear-gradient(135deg,#2c4145 0 3px,#1c2d31 3px 6px)}
 #boards{flex:1;min-height:0;display:flex;flex-direction:column;gap:6px;position:relative}
-.lane{flex:1;min-height:0;position:relative;border-radius:10px;border:1px solid #3a5448;background:linear-gradient(180deg,rgba(26,46,38,.6),rgba(16,30,24,.6));transition:.15s}
+.lane{flex:1;min-height:0;position:relative;border-radius:10px;border:1px solid #3a5448;background:linear-gradient(180deg,rgba(26,46,38,.6),rgba(16,30,24,.6))}
 #eBoard{border-color:#5c4339;background:linear-gradient(180deg,rgba(44,28,25,.62),rgba(28,19,17,.62))}
 .lane-tag{position:absolute;left:9px;top:4px;font-size:9px;letter-spacing:.22em;color:#5f7a6d;pointer-events:none}
 #eBoard .lane-tag{color:#85695d}
-.lane.drop{border-color:#82c98d;box-shadow:inset 0 0 26px rgba(130,201,141,.22);border-style:dashed}
-.lane.drop.ready{background:linear-gradient(180deg,rgba(60,110,76,.6),rgba(30,70,46,.6));box-shadow:inset 0 0 36px rgba(130,201,141,.45)}
-.lane.drop.bad{border-color:var(--red);box-shadow:inset 0 0 26px rgba(217,99,77,.3)}
-.lane.tm{border-color:#a75e4d}
-.lane.rm{border-color:#8a6bc4;box-shadow:inset 0 0 26px rgba(138,107,196,.28);border-style:dashed}
+.lane.drop{border-color:#82c98d;border-style:dashed;box-shadow:inset 0 0 26px rgba(130,201,141,.22)}
+.lane.drop.ready{background:linear-gradient(180deg,rgba(60,110,76,.6),rgba(30,70,46,.6))}
+.lane.rm{border-color:#8a6bc4;border-style:dashed}
 .row{position:absolute;inset:0;display:flex;justify-content:center;align-items:center;gap:8px;padding:0 10px}
 #hintBar{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:6;pointer-events:none;padding:3px 14px;border-radius:12px;background:rgba(10,15,17,.88);border:1px solid #3a4c50;font-size:11px;color:#c7d0d0;white-space:nowrap;transition:opacity .2s}
 #hintBar b{color:var(--gold);font-weight:600}
-#dropText{position:absolute;left:0;right:0;bottom:6px;text-align:center;font:700 13px var(--serif);letter-spacing:.3em;color:#a6e8b4;pointer-events:none;opacity:0;transition:.15s}
+#dropText{position:absolute;left:0;right:0;bottom:6px;text-align:center;font:700 13px var(--serif);letter-spacing:.3em;color:#a6e8b4;opacity:0;transition:.15s}
 .lane.drop #dropText{opacity:.9}
 .card{position:relative;width:9.6em;height:13.4em;font-size:10px;border-radius:.8em;border:.15em solid #56686d;background:linear-gradient(165deg,#2b3a3f,#182226);color:var(--text);padding:.6em .6em .5em;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 .3em .8em rgba(0,0,0,.5);text-align:center}
 .card.unit{border-color:#4e8979}
 .card.spell{border-color:#5f87a0;background:linear-gradient(165deg,#263a49,#172229)}
 .card .cost{position:absolute;left:.35em;top:.35em;width:2.3em;height:2.3em;border-radius:50%;display:grid;place-items:center;font:700 1.45em/1 var(--serif);background:radial-gradient(circle at 35% 30%,#4a8aa6,#1f4a5e);border:.12em solid #8cc5d8;color:#e3f6fb;z-index:2}
 .card.unit .cost{background:radial-gradient(circle at 35% 30%,#4f9a73,#21493a);border-color:#9bd6ae}
-.card.unit .art{height:3.1em;display:grid;place-items:center;font:700 2.2em/1 var(--serif);color:var(--gold);border-bottom:.08em solid rgba(255,255,255,.1);margin-bottom:.3em}
-.card.spell .art{height:3.1em;display:grid;place-items:center;font:700 2.2em/1 var(--serif);color:#92cbe0;border-bottom:.08em solid rgba(255,255,255,.1);margin-bottom:.3em}
+.card .art{height:3.1em;display:grid;place-items:center;font:700 2.2em/1 var(--serif);color:var(--gold);border-bottom:.08em solid rgba(255,255,255,.1);margin-bottom:.3em}
+.card.spell .art{color:#92cbe0}
 .card .nm{font:700 1.08em/1.2 var(--serif);min-height:2.4em;display:flex;align-items:center;justify-content:center;margin-bottom:.2em}
 .card .tx{flex:1;min-height:0;font-size:.86em;line-height:1.32;color:#aebcbe;overflow:hidden}
 .card .cst{display:flex;justify-content:space-between;align-items:center;margin-top:.2em}
@@ -123,36 +110,28 @@ button{font:inherit;color:inherit;cursor:pointer}
 .card.big{font-size:17px;height:auto;min-height:13.4em}
 .card.big .tx{overflow:visible;flex:none;margin-bottom:.5em}
 .card.cant{filter:saturate(.45) brightness(.8)}
-.card.cant .cost{background:radial-gradient(circle at 35% 30%,#7a5050,#4a2626);border-color:#c88}
-.card.costup .cost{background:radial-gradient(circle at 35% 30%,#a85070,#5e1f3a);border-color:#e88;animation:costUpPulse 1.6s ease-in-out infinite}
-@keyframes costUpPulse{0%,100%{filter:brightness(1)}50%{filter:brightness(1.4)}}
+.card.costup .cost{background:radial-gradient(circle at 35% 30%,#a85070,#5e1f3a);border-color:#e88}
 .card.core{border-color:var(--purple);box-shadow:0 0 12px rgba(138,107,196,.35)}
 .card.core .nm{color:#d4b8ff}
 .kw-mini{position:absolute;right:.35em;top:.35em;display:flex;gap:.18em;z-index:3;pointer-events:none}
-.kw-mini i{font-style:normal;height:1.5em;padding:0 .4em;border-radius:.35em;display:grid;place-items:center;font:700 .82em/1 var(--serif);background:rgba(12,18,20,.9);border:.09em solid var(--gold);color:var(--gold);letter-spacing:.02em}
+.kw-mini i{font-style:normal;height:1.5em;padding:0 .4em;border-radius:.35em;display:grid;place-items:center;font:700 .82em/1 var(--serif);background:rgba(12,18,20,.9);border:.09em solid var(--gold);color:var(--gold)}
 .kw-mini i.charge{border-color:#e8a24c;color:#f0b660;background:rgba(70,42,12,.88)}
 .kw-mini i.taunt{border-color:#d4a45d;color:#e8c66b;background:rgba(60,45,20,.9)}
 .kw-mini i.pierce{border-color:#63b9ac;color:#8fe0d2;background:rgba(16,50,46,.9)}
 .kw-mini i.rebel{border-color:#8a6bc4;color:#b39ce8;background:rgba(40,26,62,.9)}
 .kw-mini i.core{border-color:#a98fd9;color:#d4b8ff;background:rgba(40,26,62,.92)}
-.hslot{position:relative;flex:none;width:96px;height:134px;margin-bottom:6px;transform:translate(var(--dx,0px),var(--dy,0px));transition:transform .18s,width .25s,opacity .2s;pointer-events:auto;z-index:1;cursor:grab}
+.hslot{position:relative;flex:none;width:96px;height:134px;margin-bottom:6px;transform:translate(var(--dx,0px),var(--dy,0px));transition:transform .18s;pointer-events:auto;z-index:1;cursor:grab}
 .hslot+.hslot{margin-left:var(--ov,8px)}
-.hslot .card{transform-origin:50% 100%;transform:rotate(var(--rot,0deg)) translateY(var(--ty,0px));transition:transform .18s,filter .18s}
+.hslot .card{transform-origin:50% 100%;transform:rotate(var(--rot,0deg)) translateY(var(--ty,0px));transition:transform .18s}
 .hslot.sel{z-index:60}
 .hslot.sel .card{transform:translateY(-34px) scale(1.12);border-color:var(--gold);box-shadow:0 0 0 .2em rgba(212,164,93,.45),0 .6em 1.4em rgba(0,0,0,.6)}
-.hslot.dragging{z-index:80;transition:none;cursor:grabbing}
+.hslot.dragging{z-index:80;transition:none}
 .hslot.dragging .card{transform:scale(1.1);transition:none}
-.hslot.enter .card{animation:drawIn .45s ease-out}
-.hslot.dying{width:0;margin-left:0!important;opacity:0;pointer-events:none}
-@media (hover:hover){.hslot:hover{z-index:50}.hslot:hover .card{transform:translateY(-30px) scale(1.12)}.hslot.dragging:hover .card{transform:scale(1.1)}}
-@keyframes drawIn{from{transform:translate(280px,-90px) rotate(35deg) scale(.4);opacity:0}}
+.hslot.dying{width:0;opacity:0;pointer-events:none}
 #hand{position:relative;z-index:20;height:140px;flex:none;display:flex;justify-content:center;align-items:flex-end;pointer-events:none}
 .uslot{position:relative;flex:none;width:80px;height:100px;z-index:1}
-.uslot.enter{animation:slotIn .35s ease-out}
 .uslot.enter .unit{animation:pop .45s cubic-bezier(.2,1.5,.4,1)}
-.uslot.dying{width:0!important;margin:0 -4px!important;opacity:0;transition:width .38s,opacity .3s,margin .38s;pointer-events:none}
-.uslot.dying .unit{transform:scale(.55) rotate(10deg);transition:transform .35s}
-@keyframes slotIn{from{width:0;opacity:0}to{width:80px;opacity:1}}
+.uslot.dying{width:0!important;margin:0 -4px!important;opacity:0;pointer-events:none}
 @keyframes pop{0%{transform:scale(.3);opacity:0}100%{transform:scale(1);opacity:1}}
 .unit{position:relative;width:8em;height:10em;font-size:10px;border-radius:.8em;border:.16em solid #4e8979;background:linear-gradient(165deg,#2a3c3a,#172220);box-shadow:0 .3em .8em rgba(0,0,0,.5);display:flex;flex-direction:column;align-items:center;padding:.5em .4em 1.4em;text-align:center;transition:box-shadow .15s,filter .15s,transform .15s}
 .enemy .unit{border-color:#a2705f;background:linear-gradient(165deg,#3d2b27,#1f1513)}
@@ -163,58 +142,54 @@ button{font:inherit;color:inherit;cursor:pointer}
 .enemy .unit .uart{color:#e0a590}
 .unit .unm{font:700 .95em/1.2 var(--serif);margin-top:.1em;max-height:2.5em;overflow:hidden}
 .unit .strk{position:absolute;right:.3em;top:.3em;font-size:.8em;padding:.1em .4em;border-radius:.4em;background:#a8402f;color:#fff;font-weight:700}
-.unit .zz{position:absolute;right:.2em;top:.2em;font:700 1.1em var(--serif);color:#9fd1e0;animation:zz 1.6s ease-in-out infinite}
-.unit .stun{position:absolute;left:.2em;bottom:.6em;font:700 .9em var(--serif);color:#b39ce8;animation:stunB 1.4s ease-in-out infinite}
-@keyframes stunB{50%{opacity:.4}}
-@keyframes zz{50%{transform:translateY(-.3em);opacity:.5}}
+.unit .zz{position:absolute;right:.2em;top:.2em;font:700 1.1em var(--serif);color:#9fd1e0}
+.unit .stun{position:absolute;left:.2em;bottom:.6em;font:700 .9em var(--serif);color:#b39ce8}
 .unit .ust{position:absolute;left:0;right:0;bottom:-.5em;display:flex;justify-content:space-between;padding:0 .1em}
 .unit .ust b{width:2.2em;height:2.2em;font-size:1em}
 .uslot.ready .unit{box-shadow:0 0 0 .22em var(--green),0 0 1.4em rgba(130,201,141,.75);cursor:grab}
 .uslot.sel .unit{box-shadow:0 0 0 .25em var(--gold),0 0 1.6em rgba(212,164,93,.8);transform:translateY(-.5em)}
 .uslot.tired .unit{filter:saturate(.55) brightness(.85)}
 .uslot.stunned .unit{filter:saturate(.7) brightness(.9);border-color:#8a6bc4}
-.uslot.tgt .unit{box-shadow:0 0 0 .22em var(--red),0 0 1.4em rgba(217,99,77,.7);animation:tgtPulse 1s ease-in-out infinite;cursor:crosshair}
-.uslot.rebel .unit{box-shadow:0 0 0 .22em #8a6bc4,0 0 1.4em rgba(138,107,196,.7);animation:rebelPulse 1.2s ease-in-out infinite;cursor:crosshair}
-.uslot.hot .unit{transform:scale(1.12);box-shadow:0 0 0 .3em #ff8a70,0 0 2em rgba(255,120,90,.9)}
+.uslot.tgt .unit{box-shadow:0 0 0 .22em var(--red),0 0 1.4em rgba(217,99,77,.7);cursor:crosshair}
+.uslot.rebel .unit{box-shadow:0 0 0 .22em #8a6bc4,0 0 1.4em rgba(138,107,196,.7);cursor:crosshair}
+/* 选择模式：可选中金色光晕 + 粒子 */
+.uslot.choose .unit{box-shadow:0 0 0 .28em var(--gold),0 0 1.8em rgba(212,164,93,.85);cursor:pointer;animation:choosePulse 1.2s ease-in-out infinite}
+.uslot.choose .unit::before{content:"";position:absolute;inset:-8px;border-radius:1em;background:radial-gradient(circle at 50% 50%,rgba(212,164,93,.35),transparent 70%);animation:chooseGlow 1.6s ease-in-out infinite;pointer-events:none}
+@keyframes choosePulse{0%,100%{filter:brightness(1)}50%{filter:brightness(1.25)}}
+@keyframes chooseGlow{0%,100%{opacity:.5}50%{opacity:1}}
+/* 选中状态：白色高亮 + 粒子 */
+.uslot.picked .unit{box-shadow:0 0 0 .28em #fff,0 0 2em rgba(255,255,255,.9);cursor:pointer}
+.uslot.picked .unit::after{content:"";position:absolute;inset:-6px;border-radius:1em;background:radial-gradient(circle at 50% 50%,rgba(255,255,255,.5),transparent 65%);animation:pickParticle 1s ease-out infinite;pointer-events:none}
+@keyframes pickParticle{0%{transform:scale(.9);opacity:.9}100%{transform:scale(1.15);opacity:0}}
 .uslot.hit .unit{animation:hitA .4s}
-@keyframes hitA{0%{filter:brightness(2.4) saturate(.3);transform:translateX(-3px)}30%{transform:translateX(4px)}60%{transform:translateX(-2px)}100%{filter:none;transform:none}}
-@keyframes tgtPulse{0%,100%{filter:brightness(1)}50%{filter:brightness(1.35)}}
-@keyframes rebelPulse{0%,100%{box-shadow:0 0 0 .22em #8a6bc4,0 0 1.2em rgba(138,107,196,.55)}50%{box-shadow:0 0 0 .3em #b39ce8,0 0 1.8em rgba(138,107,196,.9)}}
+@keyframes hitA{0%{filter:brightness(2.4) saturate(.3)}30%{transform:translateX(4px)}60%{transform:translateX(-2px)}100%{filter:none}}
 #sideR{display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:10px 10px 10px 4px;z-index:3}
-#btnMenu{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--panel);font-size:16px;line-height:1}
+#btnMenu{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--panel);font-size:16px}
 #turnInfo{text-align:center;font-size:10px;color:var(--muted);letter-spacing:.1em;line-height:1.6}
-#turnInfo b{display:block;font:700 15px var(--serif);color:var(--text);letter-spacing:.05em}
-#endBtn{width:74px;height:74px;border-radius:50%;border:3px solid #e8c88c;background:radial-gradient(circle at 35% 30%,#e8b765,#a97b2f);color:#2a1c06;font:700 15px/1.25 var(--serif);box-shadow:0 4px 14px rgba(0,0,0,.5);transition:.15s}
-#endBtn:active{transform:scale(.94)}
+#turnInfo b{display:block;font:700 15px var(--serif);color:var(--text)}
+#endBtn{width:74px;height:74px;border-radius:50%;border:3px solid #e8c88c;background:radial-gradient(circle at 35% 30%,#e8b765,#a97b2f);color:#2a1c06;font:700 15px/1.25 var(--serif);box-shadow:0 4px 14px rgba(0,0,0,.5)}
 #endBtn:disabled{filter:grayscale(.8) brightness(.6);cursor:not-allowed}
-#endBtn.pulse{background:radial-gradient(circle at 35% 30%,#8fe0a0,#3f9a55);border-color:#c9f3d2;animation:endPulse 1.2s ease-in-out infinite}
-@keyframes endPulse{0%,100%{box-shadow:0 4px 14px rgba(0,0,0,.5),0 0 0 0 rgba(130,201,141,.6)}50%{box-shadow:0 4px 14px rgba(0,0,0,.5),0 0 0 10px rgba(130,201,141,0)}}
-#piles{font-size:10px;color:var(--muted);text-align:center;line-height:1.7}
+#endBtn.pulse{background:radial-gradient(circle at 35% 30%,#8fe0a0,#3f9a55);border-color:#c9f3d2}
+#piles{font-size:10px;color:var(--muted);text-align:center}
 #piles b{color:var(--text);font-family:var(--serif)}
 #fx,#aim{position:absolute;inset:0;pointer-events:none;z-index:50}
 #aim{z-index:55;width:100%;height:100%}
 .float{position:absolute;transform:translate(-50%,-50%);font:700 26px var(--serif);text-shadow:0 2px 6px #000,0 0 12px #000;animation:floatUp 1s ease-out forwards;white-space:nowrap}
-.float.dmg{color:#ff7a62}.float.heal{color:#8ee69c}.float.gold{color:#f0c96b;font-size:20px}.float.armor{color:#b9c6cc;font-size:20px}
-.float.immune{color:#63b9ac;font-size:18px}
-.float.stun{color:#b39ce8;font-size:18px}
-.float.core{color:#d4b8ff;font-size:22px}
+.float.dmg{color:#ff7a62}.float.heal{color:#8ee69c}.float.gold{color:#f0c96b;font-size:20px}.float.armor{color:#b9c6cc;font-size:20px}.float.immune{color:#63b9ac;font-size:18px}
 @keyframes floatUp{0%{transform:translate(-50%,-10%) scale(.5);opacity:0}15%{opacity:1;transform:translate(-50%,-50%) scale(1.25)}100%{transform:translate(-50%,-190%) scale(1);opacity:0}}
 .ring{position:absolute;width:20px;height:20px;margin:-10px 0 0 -10px;border-radius:50%;border:3px solid var(--rc,#fff);animation:ring .5s ease-out forwards}
 @keyframes ring{to{transform:scale(5);opacity:0}}
-#preview{position:absolute;top:42%;transform:translateY(-50%);z-index:60;pointer-events:none;animation:pvIn .15s ease-out}
-@keyframes pvIn{from{opacity:0;transform:translateY(-46%)}}
-#reveal{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:65;pointer-events:none;text-align:center;animation:rvIn .35s cubic-bezier(.2,1.3,.4,1)}
-#reveal .rl{font:700 13px var(--serif);letter-spacing:.3em;color:var(--gold);margin-bottom:6px;text-shadow:0 2px 6px #000}
+#preview{position:absolute;top:42%;transform:translateY(-50%);z-index:60;pointer-events:none}
+#reveal{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:65;pointer-events:none;text-align:center}
+#reveal .rl{font:700 13px var(--serif);letter-spacing:.3em;color:var(--gold);margin-bottom:6px}
 #reveal .card{margin:auto;box-shadow:0 0 40px rgba(212,164,93,.45),0 8px 30px rgba(0,0,0,.7)}
-@keyframes rvIn{from{transform:translate(-50%,-50%) scale(.4);opacity:0}}
 #banner{position:absolute;left:0;right:0;top:50%;margin-top:-36px;height:72px;display:grid;place-items:center;background:linear-gradient(90deg,transparent,rgba(10,15,17,.9) 20%,rgba(10,15,17,.9) 80%,transparent);font:700 32px var(--serif);letter-spacing:.3em;color:#f0d18e;z-index:70;pointer-events:none;opacity:0}
 #banner.enemy{color:#ee9482}
 #banner.show{animation:bnr 1.05s ease}
-@keyframes bnr{0%{opacity:0;transform:translateX(-70px)}20%{opacity:1;transform:none}80%{opacity:1}100%{opacity:0;transform:translateX(70px)}}
+@keyframes bnr{0%{opacity:0;transform:translateX(-70px)}20%{opacity:1}80%{opacity:1}100%{opacity:0;transform:translateX(70px)}}
 #toast{position:absolute;left:50%;top:10px;transform:translateX(-50%);z-index:75;padding:7px 18px;border-radius:16px;background:rgba(10,15,17,.92);border:1px solid #6b3e35;color:#f0b0a0;font-size:12.5px;pointer-events:none;opacity:0;transition:opacity .2s;white-space:nowrap}
 #toast.on{opacity:1}
 #toast.info{border-color:#3d6b60;color:#bfe6dc}
-#toast.core{border-color:#8a6bc4;color:#d4b8ff;font-weight:700}
 .modal{position:absolute;inset:0;z-index:90;display:flex;align-items:center;justify-content:center;background:rgba(5,8,9,.82);padding:14px}
 .panel{width:min(420px,100%);max-height:100%;overflow:auto;border:1px solid var(--line);border-radius:12px;background:var(--panel);padding:16px 18px;display:flex;flex-direction:column;gap:9px}
 .panel h2{font:700 20px var(--serif);margin:0;color:#f0d18e}
@@ -228,133 +203,141 @@ button{font:inherit;color:inherit;cursor:pointer}
 #logPanel{position:absolute;top:0;right:0;bottom:0;width:260px;z-index:85;background:rgba(14,20,23,.96);border-left:1px solid var(--line);padding:12px;display:flex;flex-direction:column;gap:8px;transform:translateX(0);transition:transform .2s}
 #logPanel[hidden]{display:flex!important;transform:translateX(105%);pointer-events:none}
 #logPanel header{display:flex;justify-content:space-between;align-items:center;font:700 14px var(--serif)}
-#logList{flex:1;overflow:auto;display:flex;flex-direction:column;gap:6px;touch-action:pan-y}
+#logList{flex:1;overflow:auto;display:flex;flex-direction:column;gap:6px}
 .log-item{border-left:2px solid #3a4c50;padding-left:8px;color:#b0bcbc;font-size:11px;line-height:1.4}
 .log-item b{color:var(--gold);font-weight:600}
 #choice{flex-direction:column;gap:20px;z-index:92;background:rgba(5,8,9,.88)}
-.choice-wrap{display:flex;flex-direction:column;align-items:center;gap:20px;animation:choiceIn .28s cubic-bezier(.2,1.3,.4,1)}
-@keyframes choiceIn{from{transform:scale(.85);opacity:0}}
-.choice-wrap h2{font:700 22px var(--serif);color:#f0d18e;margin:0;letter-spacing:.12em;text-shadow:0 2px 12px rgba(212,164,93,.4)}
-.choice-cards{display:flex;gap:20px;justify-content:center;padding:4px}
+.choice-wrap{display:flex;flex-direction:column;align-items:center;gap:20px}
+.choice-wrap h2{font:700 22px var(--serif);color:#f0d18e;margin:0;letter-spacing:.12em}
+.choice-cards{display:flex;gap:20px;justify-content:center;padding:4px;flex-wrap:wrap}
 .choice-cards>button{border:none;background:none;padding:0;cursor:pointer;transition:.18s;border-radius:1em}
-.choice-cards>button:hover,.choice-cards>button:focus-visible{transform:translateY(-12px) scale(1.06);filter:drop-shadow(0 0 22px rgba(212,164,93,.55));outline:none}
+.choice-cards>button:hover{transform:translateY(-12px) scale(1.06)}
 .choice-cards>button .card{box-shadow:0 10px 34px rgba(0,0,0,.7)}
-.choice-hint{font-size:11px;color:var(--muted);margin:0;letter-spacing:.1em}
-@keyframes cometBurst{0%{transform:scale(1);opacity:1;border-width:4px}100%{transform:scale(18);opacity:0;border-width:1px}}
-@keyframes cometDamage{0%{transform:translate(-50%,-50%) scale(.3);opacity:0}15%{transform:translate(-50%,-50%) scale(1.5);opacity:1}35%{transform:translate(-50%,-50%) scale(1)}100%{transform:translate(-50%,-180%) scale(1);opacity:0}}
+.choice-hint{font-size:11px;color:var(--muted);margin:0}
+/* 选择栏（底部） */
+#chooseBar{position:absolute;left:0;right:0;bottom:78px;z-index:80;display:flex;justify-content:center;pointer-events:none}
+#chooseBar .inner{display:flex;align-items:center;gap:12px;background:rgba(10,15,17,.95);border:1px solid var(--gold);border-radius:12px;padding:10px 18px;box-shadow:0 4px 24px rgba(212,164,93,.35);pointer-events:auto}
+#chooseBar .hint{color:#f0d18e;font:700 13px var(--serif);letter-spacing:.1em}
+#chooseBar .count{color:#fff;font:700 14px var(--serif)}
+#chooseBar .count b{color:var(--gold)}
+#chooseBar .btn{padding:6px 14px;font-size:12px}
+#chooseBar .btn.confirm{background:linear-gradient(180deg,#e0b370,#b98a45);border-color:#e8c88c;color:#2a1c06}
+#chooseBar .btn.confirm:disabled{opacity:.4}
+#chooseBar .btn.cancel{background:transparent}
 </style>
 </head>
 <body>
 <div id="rotate"><div class="phone"></div><h2>请旋转屏幕</h2><p>皇冠对决需要横屏游玩，旋转后自动继续</p></div>
 <div id="viewport"><div id="fit"><div id="stage">
 
-  <section id="menu">
-    <div class="m-left">
-      <div>
-        <div class="eyebrow">TACTICAL CARD DUEL</div>
-        <h1>皇冠对决</h1>
-        <p class="sub">选择你的卡牌师，打一场快节奏单挑。<br>拖拽出牌，拖向目标攻击，长按查看牌面。</p>
-      </div>
-      <div class="m-actions">
-        <button class="btn gold big" id="startBtn">开始对战</button>
-        <button class="btn" id="menuRules">玩法说明</button>
-        <p class="m-tip" id="iosTip" hidden><b>iPhone / iPad：</b>Safari 不支持网页全屏。点分享按钮 → 添加到主屏幕，再从桌面图标打开，即可全屏横屏游玩。</p>
-      </div>
+<section id="menu">
+  <div class="m-left">
+    <div>
+      <div class="eyebrow">TACTICAL CARD DUEL</div>
+      <h1>皇冠对决</h1>
+      <p class="sub">选择你的卡牌师，打一场快节奏单挑。<br>拖拽出牌，拖向目标攻击，长按查看牌面。</p>
     </div>
-    <div class="m-right">
-      <div class="m-label">选择卡牌师 · 点击右侧按钮选对手 · 先后手随机</div>
-      <div class="heroes" id="heroGrid"></div>
-      <div class="detail"><div><div class="dn" id="dName"></div><div class="ds" id="dSub"></div></div><button class="vs" id="dVs" type="button"></button></div>
+    <div class="m-actions">
+      <button class="btn gold big" id="startBtn">开始对战</button>
+      <button class="btn" id="menuRules">玩法说明</button>
     </div>
-  </section>
+  </div>
+  <div class="m-right">
+    <div class="m-label">选择卡牌师 · 点击右侧按钮选对手 · 先后手随机</div>
+    <div class="heroes" id="heroGrid"></div>
+    <div class="detail"><div><div class="dn" id="dName"></div><div class="ds" id="dSub"></div></div><button class="vs" id="dVs" type="button"></button></div>
+  </div>
+</section>
 
-  <section id="game" hidden>
-    <aside id="sideL">
-      <div class="hero" id="eHero" data-target="hero">
-        <div class="portrait" id="eAv"><span id="eAvT"></span><b class="hpb" id="eHp"></b><b class="arm" id="eArm" hidden></b></div>
-        <div class="hn" id="eName"></div>
-        <div class="cry" id="eCry"></div><div class="entx" id="eEn"></div>
-        <div class="money" id="eMoney" hidden></div>
-        <div class="mini" id="eCnt"></div>
-      </div>
-      <div class="hero" id="pHero">
-        <div class="money" id="pMoney" hidden></div>
-        <div class="cry" id="pCry"></div><div class="entx" id="pEn"></div>
-        <div class="hn" id="pName"></div>
-        <div class="portrait" id="pAv"><span id="pAvT"></span><b class="hpb" id="pHp"></b><b class="arm" id="pArm" hidden></b></div>
-      </div>
-    </aside>
-    <div id="table">
-      <div id="eHand"></div>
-      <div id="boards">
-        <div class="lane" id="eBoard"><span class="lane-tag">对手战场</span><div class="row" id="eRow"></div></div>
-        <div id="hintBar"></div>
-        <div class="lane" id="pBoard"><span class="lane-tag">你的战场</span><div class="row" id="pRow"></div><div id="dropText">松手出牌</div></div>
-      </div>
-      <div id="hand"></div>
+<section id="game" hidden>
+  <aside id="sideL">
+    <div class="hero" id="eHero" data-target="hero">
+      <div class="portrait" id="eAv"><span id="eAvT"></span><b class="hpb" id="eHp"></b><b class="arm" id="eArm" hidden></b></div>
+      <div class="hn" id="eName"></div>
+      <div class="cry" id="eCry"></div><div class="entx" id="eEn"></div>
+      <div class="money" id="eMoney" hidden></div>
+      <div class="mini" id="eCnt"></div>
     </div>
-    <aside id="sideR">
-      <button id="btnMenu" aria-label="菜单">☰</button>
-      <div id="turnInfo"><b id="roundTxt">第 1 回合</b><span id="turnTxt">你的回合</span></div>
-      <button id="endBtn">结束<br>回合</button>
-      <div id="piles">牌库<br><b id="pDeck">40</b></div>
-    </aside>
-  </section>
-
-  <div id="fx"></div>
-  <svg id="aim" hidden><defs><marker id="ah" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0L10,5L0,10z" fill="#ff7a62"/></marker></defs><path id="aimPath" fill="none" stroke="#ff7a62" stroke-width="5" stroke-linecap="round" stroke-dasharray="2 9" marker-end="url(#ah)"/></svg>
-  <div id="preview" hidden></div>
-  <div id="reveal" hidden></div>
-  <div id="banner"></div>
-  <div id="toast"></div>
-
-  <div id="logPanel" hidden><header><span>战斗记录</span><button class="btn" id="logClose" style="padding:4px 10px">关闭</button></header><div id="logList"></div></div>
-
-  <div class="modal" id="pause" hidden><div class="panel">
-    <h2>暂停</h2>
-    <div class="grid2">
-      <button class="btn primary" id="pResume">继续对局</button>
-      <button class="btn" id="pLog">战斗记录</button>
-      <button class="btn" id="pSound">音效：开</button>
-      <button class="btn" id="pFull">进入全屏</button>
-      <button class="btn" id="pRules">玩法说明</button>
-      <button class="btn" id="pRestart">重新开始</button>
+    <div class="hero" id="pHero">
+      <div class="money" id="pMoney" hidden></div>
+      <div class="cry" id="pCry"></div><div class="entx" id="pEn"></div>
+      <div class="hn" id="pName"></div>
+      <div class="portrait" id="pAv"><span id="pAvT"></span><b class="hpb" id="pHp"></b><b class="arm" id="pArm" hidden></b></div>
     </div>
-    <button class="btn" id="pMenu">换卡牌师 / 返回菜单</button>
-  </div></div>
+  </aside>
+  <div id="table">
+    <div id="eHand"></div>
+    <div id="boards">
+      <div class="lane" id="eBoard"><span class="lane-tag">对手战场</span><div class="row" id="eRow"></div></div>
+      <div id="hintBar"></div>
+      <div class="lane" id="pBoard"><span class="lane-tag">你的战场</span><div class="row" id="pRow"></div><div id="dropText">松手出牌</div></div>
+    </div>
+    <div id="hand"></div>
+  </div>
+  <aside id="sideR">
+    <button id="btnMenu" aria-label="菜单">☰</button>
+    <div id="turnInfo"><b id="roundTxt">第 1 回合</b><span id="turnTxt">你的回合</span></div>
+    <button id="endBtn">结束<br>回合</button>
+    <div id="piles">牌库<br><b id="pDeck">40</b></div>
+  </aside>
+</section>
 
-  <div class="modal" id="rules" hidden><div class="panel">
-    <h2>玩法说明</h2>
-    <p><b>出牌：</b>把手牌向上拖到战场后松手；或点一下选中，再点一下（或点你的战场）出牌。</p>
-    <p><b>攻击：</b>按住带绿框的己方单位，拖向敌方单位或英雄头像；也可以先点单位，再点目标。点对手战场空白处同样攻击英雄。</p>
-    <p><b>费用：</b>双方从 0 费开始。第一个回合 1 费，之后每回合 +1（最高 10，最低 0）。谁先手都一样。</p>
-    <p><b>起手：</b>先手方 4 张手牌，第一回合不抽牌。后手方 5 张手牌，回合开始正常抽牌。</p>
-    <p><b>对手选择：</b>在菜单点击右下角的对手按钮，可以指定对手卡牌师或选择"随机"。先后手由系统随机决定。</p>
-    <p><b>三选一：</b>核弹的【皇冠凝视】会展示牌库顶三张牌，让你亲自选一张加入手牌；未选的两张洗回牌库顶。</p>
-    <p><b>策反：</b>字母的策动类卡牌会夺取敌方单位。手动策动时，点击敌方单位即可将其策反；如果是冲锋单位，策反后当回合就能攻击。</p>
-    <p><b>战术规避：</b>打出后，本回合内对手无法攻击你的英雄。英雄头像旁会显示免疫状态。</p>
-    <p><b>彗星观察者：</b>在场时，每当友方抽一张牌（包括滤抽、三选一、检索加入手牌），恢复 2 点生命。</p>
-    <p><b>彗星冲击（核心）：</b>4 费法术。当你的血量 + 护甲 ≥ 40 时，触发专属彗星特效并对敌方英雄直接造成 40 点伤害，立即终结对局。你是施法者时从右侧飞向敌方英雄；对手施放时会砸向你的英雄。</p>
-    <p><b>星轨攀升：</b>3 费法术。我方费用上限 +1，同时敌方费用上限 -1，最低 0。</p>
-    <p><b>标记：</b>盾＝嘲讽，必须先攻击；冲＝冲锋，上场就能攻击；穿＝无视嘲讽。手牌右上角会显示徽章；刚上场的单位显示 Zz，下回合才能攻击。</p>
-    <p><b>胜负：</b>英雄生命归零即败。牌库抽空后受疲劳伤害。猪瘟鱼偷满 25 元后打出【逃跑】直接获胜。</p>
-    <button class="btn primary" id="rulesClose">明白了</button>
-  </div></div>
+<div id="chooseBar" hidden><div class="inner">
+  <span class="hint" id="chooseHint">选择目标</span>
+  <span class="count" id="chooseCount"></span>
+  <button class="btn confirm" id="chooseConfirm">确定</button>
+  <button class="btn cancel" id="chooseCancel">取消</button>
+</div></div>
 
-  <div class="modal" id="oppPick" hidden><div class="panel">
-    <h2>选择对手</h2>
-    <p style="font-size:11px;color:var(--muted)">指定一位卡牌师作为对手，或选择"随机匹配"。先后手由系统随机决定。</p>
-    <div id="oppGrid"></div>
-    <button class="btn" id="oppClose">取消</button>
-  </div></div>
+<div id="fx"></div>
+<svg id="aim" hidden><defs><marker id="ah" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0L10,5L0,10z" fill="#ff7a62"/></marker></defs><path id="aimPath" fill="none" stroke="#ff7a62" stroke-width="5" stroke-linecap="round" stroke-dasharray="2 9" marker-end="url(#ah)"/></svg>
+<div id="preview" hidden></div>
+<div id="reveal" hidden></div>
+<div id="banner"></div>
+<div id="toast"></div>
 
-  <div class="modal" id="choice" hidden><div class="choice-wrap">
-    <h2 id="choiceTitle">选择一张牌</h2>
-    <div class="choice-cards" id="choiceCards"></div>
-    <p class="choice-hint">其余卡牌将洗回牌库顶</p>
-  </div></div>
+<div id="logPanel" hidden><header><span>战斗记录</span><button class="btn" id="logClose" style="padding:4px 10px">关闭</button></header><div id="logList"></div></div>
 
-  <div class="modal" id="result" hidden><h2 id="resTitle"></h2><p id="resText"></p><div class="acts"><button class="btn primary big" id="resAgain">再来一局</button><button class="btn big" id="resMenu">换卡牌师</button></div></div>
+<div class="modal" id="pause" hidden><div class="panel">
+  <h2>暂停</h2>
+  <div class="grid2">
+    <button class="btn primary" id="pResume">继续对局</button>
+    <button class="btn" id="pLog">战斗记录</button>
+    <button class="btn" id="pSound">音效：开</button>
+    <button class="btn" id="pFull">进入全屏</button>
+    <button class="btn" id="pRules">玩法说明</button>
+    <button class="btn" id="pRestart">重新开始</button>
+  </div>
+  <button class="btn" id="pMenu">换卡牌师 / 返回菜单</button>
+</div></div>
+
+<div class="modal" id="rules" hidden><div class="panel">
+  <h2>玩法说明</h2>
+  <p><b>出牌：</b>把手牌向上拖到战场后松手；或点一下选中，再点一下出牌。</p>
+  <p><b>攻击：</b>拖动带绿框的己方单位到目标上；或先点单位，再点目标。</p>
+  <p><b>选择制：</b>像乌克兰红军、狙击手、迫击炮、喀秋莎这类的部署效果，现在都由你在战场高亮的目标中亲自选择，底部有"确定"按钮。喀秋莎最多选 3 个（可少选）。</p>
+  <p><b>彗星观察者：</b>在场时，每当友方抽一张牌或加一张牌入手（含卡牌效果），恢复 2 点生命。</p>
+  <p><b>彗星冲击：</b>4 费法术。当你的血量 + 护甲 ≥ 40 时，触发彗星特效，对敌方英雄造成 40 点伤害。你施放时从右侧飞向敌方英雄；对手施放时砸向你的英雄。</p>
+  <p><b>饱和炮击：</b>3 费法术。对敌方全部单位与英雄造成火炮数量 × 2 点伤害。</p>
+  <p><b>下水：</b>新增"小炮组"（部署抽牌的小炮）和"炮台复制"（部署复制一个小炮）。</p>
+  <p><b>费用：</b>双方从 0 费开始。第一回合 1 费，之后每回合 +1（最高 10，最低 0）。</p>
+  <p><b>起手：</b>先手方 4 张手牌，第一回合不抽牌。后手方 5 张手牌，正常抽牌。</p>
+  <button class="btn primary" id="rulesClose">明白了</button>
+</div></div>
+
+<div class="modal" id="oppPick" hidden><div class="panel">
+  <h2>选择对手</h2>
+  <div id="oppGrid"></div>
+  <button class="btn" id="oppClose">取消</button>
+</div></div>
+
+<div class="modal" id="choice" hidden><div class="choice-wrap">
+  <h2 id="choiceTitle">选择一张牌</h2>
+  <div class="choice-cards" id="choiceCards"></div>
+  <p class="choice-hint" id="choiceHint">其余卡牌将洗回牌库顶</p>
+</div></div>
+
+<div class="modal" id="result" hidden><h2 id="resTitle"></h2><p id="resText"></p><div class="acts"><button class="btn primary big" id="resAgain">再来一局</button><button class="btn big" id="resMenu">换卡牌师</button></div></div>
 
 </div></div></div>
 
@@ -362,223 +345,219 @@ button{font:inherit;color:inherit;cursor:pointer}
 "use strict";
 const $=s=>document.querySelector(s);
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
-const GUNS=["cannon","battery","gunner","commander"];
-const MAX_BOARD=6,MAX_HAND=10,ESCAPE_TARGET=25,PIG_UPKEEP=1;
+const GUNS=["cannon","battery","gunner","commander","smallcannon","smallgun","emplacement","howitzer"];
+const MAX_BOARD=6,MAX_HAND=10,ESCAPE_TARGET=25;
 const MEMBER_IDS=["alwei","qixing","susu_leader","huiliyi","baimao","xiashui","yuchun","taojin"];
 
-const PROFILES = {
-  苏苏:{faction:"彗星国 · 架子班",style:"苏维埃体系 · 铺场爆发",hp:32,cards:[
-    {id:"red",name:"俄罗斯布尔什维克红军",cost:2,kind:"unit",art:"★",atk:2,hp:3,text:"冲锋。",charge:true,n:4},
-    {id:"latvian",name:"拉脱维亚布尔什维克红军",cost:1,kind:"unit",art:"★",atk:5,hp:5,text:"冲锋。攻击后生命值 -1。",charge:true,effect:"selfDamage1",n:1},
-    {id:"ukr",name:"乌克兰红军",cost:3,kind:"unit",art:"✦",atk:4,hp:3,text:"部署：对随机一个敌方单位造成 4 点伤害。",effect:"randomDamage4",n:2},
-    {id:"blr",name:"白俄罗斯卫队",cost:4,kind:"unit",art:"◆",atk:5,hp:5,text:"嘲讽。稳固的共和国防线。",taunt:true,n:2},
-    {id:"commissar",name:"苏维埃政委",cost:2,kind:"unit",art:"☭",atk:2,hp:3,text:"部署：抽一张牌。",effect:"draw",n:2},
-    {id:"veteran",name:"红军老兵",cost:5,kind:"unit",art:"▣",atk:6,hp:6,text:"嘲讽。打过三场内战的老兵。",taunt:true,n:1},
-    {id:"marshal",name:"炮兵总司令",cost:5,kind:"unit",art:"✚",atk:5,hp:5,text:"部署：敌方英雄受 3 点伤害。",effect:"hero3",n:1},
-    {id:"kazakh",name:"哈萨克布尔什维克红军",cost:5,kind:"unit",art:"☭",atk:1,hp:8,text:"嘲讽。部署：所有俄罗斯布尔什维克红军 +2/+2。",taunt:true,effect:"buffRed",n:1},
-    {id:"tank",name:"红军坦克",cost:4,kind:"unit",art:"▦",atk:4,hp:5,text:"嘲讽。",taunt:true,n:1},
-    {id:"redguard",name:"赤卫队",cost:1,kind:"unit",art:"⚑",atk:2,hp:1,text:"冲锋。",charge:true,n:2},
-    {id:"advisor",name:"政委顾问",cost:3,kind:"unit",art:"◇",atk:3,hp:4,text:"部署：抽一张牌。",effect:"draw",n:1},
-    {id:"katyusha",name:"喀秋莎火箭炮",cost:4,kind:"unit",art:"✣",atk:4,hp:4,text:"部署：随机三个敌方单位各受 2 点伤害。",effect:"randomThree2",n:1},
-    {id:"armoredtrain",name:"装甲列车",cost:6,kind:"unit",art:"▦",atk:7,hp:7,text:"嘲讽。",taunt:true,n:1},
-    {id:"sniper",name:"红军狙击手",cost:2,kind:"unit",art:"◉",atk:2,hp:2,text:"部署：随机一个敌方单位受 2 点伤害。",effect:"randomDamage2",n:2},
-    {id:"mobilize",name:"红色动员令",cost:1,kind:"spell",art:"☭",text:"召唤一个俄罗斯布尔什维克红军。",effect:"summonRed1",n:2},
-    {id:"october",name:"十月革命",cost:3,kind:"spell",art:"☭",text:"召唤两个俄罗斯布尔什维克红军。",effect:"summonRed2",n:3},
-    {id:"plan",name:"五年计划",cost:2,kind:"spell",art:"⇪",text:"跳费：费用上限永久 +1，抽一张牌。",effect:"ramp",n:2},
-    {id:"war",name:"战时共产主义",cost:2,kind:"spell",art:"▣",text:"获得 3 点护甲并抽一张牌。",effect:"armor3draw",n:2},
-    {id:"forward",name:"为了革命的胜利前进",cost:3,kind:"spell",art:"→",text:"你的全部单位 +2/+2。",effect:"buffAll2",n:2},
-    {id:"artillery",name:"全亚洲炮兵总司令",cost:7,kind:"spell",art:"✣",text:"敌方全场与英雄受 5 点伤害。",effect:"aoe5",n:1},
-    {id:"peoplearmy",name:"人民军",cost:8,kind:"spell",art:"☭",text:"将你的手牌和场面填满俄罗斯布尔什维克红军（保留原有卡牌）。",effect:"fillRed",n:1},
-    {id:"reddawn",name:"赤色黎明",cost:4,kind:"spell",art:"✹",text:"敌方全场受 2 点伤害，每有一个俄布则额外 +1。",effect:"redDawn",n:1},
-    {id:"comintern",name:"共产国际",cost:2,kind:"spell",art:"☭",text:"抽两张牌。",effect:"draw2",n:2},
-    {id:"passion",name:"革命热情",cost:1,kind:"spell",art:"✹",text:"给一个单位 +2/+2 并抽一张牌。",effect:"buffOneDraw",n:1},
-    {id:"winter",name:"冬将军",cost:4,kind:"spell",art:"❄",text:"敌方全体单位攻击力 -2。",effect:"winterGeneral",n:1}
-  ]},
-  字母:{faction:"鸭子系 · 联合政府",style:"新式战法 · 策动叛乱",hp:30,cards:[
-    {id:"sentry",name:"卫戍哨兵",cost:1,kind:"unit",art:"盾",atk:1,hp:3,text:"嘲讽。",taunt:true,n:2},
-    {id:"shadow",name:"影子特工",cost:2,kind:"unit",art:"◇",atk:3,hp:1,text:"冲锋。",charge:true,n:2},
-    {id:"vanguard",name:"新式先锋",cost:2,kind:"unit",art:"A",atk:3,hp:2,text:"冲锋。",charge:true,n:2},
-    {id:"outpost",name:"联合政府哨站",cost:2,kind:"unit",art:"▤",atk:2,hp:5,text:"嘲讽。部署：抽一张牌。",taunt:true,effect:"draw",n:2},
-    {id:"commando",name:"突击队员",cost:3,kind:"unit",art:"⚑",atk:4,hp:2,text:"冲锋。",charge:true,n:2},
-    {id:"duckguard",name:"鸭子联合军",cost:3,kind:"unit",art:"◇",atk:4,hp:3,text:"稳定推进。",n:3},
-    {id:"tacticsquad",name:"战术小队",cost:3,kind:"unit",art:"▤",atk:3,hp:3,text:"部署：抽一张牌。",effect:"draw",n:2},
-    {id:"armored",name:"装甲突击车",cost:4,kind:"unit",art:"▤",atk:5,hp:4,text:"冲锋。",charge:true,n:2},
-    {id:"executor",name:"文件执行官",cost:4,kind:"unit",art:"✎",atk:5,hp:5,text:"攻击英雄时 +1 伤害。",n:2},
-    {id:"over",name:"超模单位",cost:5,kind:"unit",art:"⬢",atk:7,hp:7,text:"纯粹的超模数值。",n:2},
-    {id:"guard",name:"联合政府卫队",cost:6,kind:"unit",art:"◈",atk:8,hp:8,text:"新式战法的顶点。",n:1},
-    {id:"heavytank",name:"重型坦克",cost:6,kind:"unit",art:"▦",atk:7,hp:7,text:"嘲讽。",taunt:true,n:1},
-    {id:"order",name:"精准指令",cost:1,kind:"spell",art:"⌁",text:"抽两张牌。",effect:"draw2",n:2},
-    {id:"evasion",name:"战术规避",cost:2,kind:"spell",art:"◌",text:"本回合内敌方单位无法攻击你的英雄。",effect:"evasion",n:2},
-    {id:"rebelWeakest",name:"内应接应",cost:2,kind:"spell",art:"⚡",text:"策反敌方生命值最低的单位，并抽一张牌。",effect:"rebelWeakest",n:2},
-    {id:"newwar",name:"新式战法",cost:2,kind:"spell",art:"A",text:"你的全部单位 +1/+1。",effect:"buffAll1",n:2},
-    {id:"rebelLowest",name:"煽动哗变",cost:3,kind:"spell",art:"⚡",text:"策反敌方攻击力最低的单位。",effect:"rebelLowest",n:2},
-    {id:"disruption",name:"阵型瓦解",cost:3,kind:"spell",art:"⊘",text:"敌方所有单位本回合无法攻击。敌方英雄受 2 点伤害。",effect:"disruption",n:2},
-    {id:"wargame",name:"战法推演",cost:3,kind:"spell",art:"⌘",text:"抽一张牌并获得 3 点护甲。",effect:"armor3draw",n:1},
-    {id:"break",name:"直伤突破",cost:3,kind:"spell",art:"⚡",text:"敌方英雄受 5 点伤害。",effect:"damage5",n:1},
-    {id:"rebel",name:"策动叛乱",cost:4,kind:"spell",art:"⚡",text:"选择一个敌方单位策反，使其加入你的阵营。",effect:"rebel",n:1},
-    {id:"takeover",name:"战术接管",cost:4,kind:"spell",art:"⛓",text:"夺取敌方攻击力最高的单位。该单位本回合无法攻击。",effect:"takeover",n:1},
-    {id:"remove",name:"消除限制",cost:4,kind:"spell",art:"⊘",text:"摧毁敌方攻击力最高的单位。",effect:"remove",n:1}
-  ]},
-  七星:{faction:"彗星国 · 架子班",style:"叠血压槽 · 彗星冲击 OTK",hp:34,cards:[
-    {id:"cometWatcher",name:"彗星观察者",cost:2,kind:"unit",art:"👁",atk:1,hp:3,text:"每当友方抽一张牌，恢复 2 点生命。",effect:"drawHeal",n:3},
-    {id:"sentinel",name:"星轨哨兵",cost:2,kind:"unit",art:"盾",atk:1,hp:3,text:"嘲讽。部署：获得 2 点护甲。",taunt:true,effect:"armor2",n:2},
-    {id:"bulwark",name:"星尘壁垒",cost:3,kind:"unit",art:"▥",atk:2,hp:6,text:"嘲讽。部署：恢复 2 点生命。",taunt:true,effect:"heal2",n:1},
-    {id:"messenger",name:"彗星信使",cost:2,kind:"unit",art:"◇",atk:2,hp:3,text:"部署：抽一张牌并恢复 1 点生命。",effect:"drawHeal1",n:3},
-    {id:"stardust",name:"星尘哨兵",cost:3,kind:"unit",art:"✦",atk:3,hp:4,text:"部署：获得 2 点护甲。",effect:"armor2",n:2},
-    {id:"scholar",name:"彗星学者",cost:3,kind:"unit",art:"◇",atk:3,hp:4,text:"部署：抽一张牌。",effect:"draw",n:4},
-    {id:"orbitguard",name:"星轨卫兵",cost:4,kind:"unit",art:"▥",atk:4,hp:6,text:"嘲讽。",taunt:true,n:2},
-    {id:"gravityfield",name:"引力场",cost:5,kind:"unit",art:"◉",atk:4,hp:8,text:"嘲讽。部署：敌方费用上限 -1。",taunt:true,effect:"energyDown",n:1},
-    {id:"cometImpact",name:"彗星冲击",cost:4,kind:"spell",art:"☄",text:"若你的血量 + 护甲 ≥ 40，立即对敌方英雄造成 40 点伤害。",effect:"cometImpact",core:true,n:1},
-    {id:"cometPosition",name:"彗星定位",cost:3,kind:"spell",art:"⌖",text:"从牌库中检索【彗星冲击】加入手牌。若牌库中没有，则抽两张牌。",effect:"tutorCometImpact",n:2},
-    {id:"foresee",name:"占星术",cost:1,kind:"spell",art:"✧",text:"查看牌库顶两张牌，将其中一张置入你的手牌，其余洗回。",effect:"foresee",n:2},
-    {id:"forecast",name:"七星预报",cost:1,kind:"spell",art:"☼",text:"抽两张牌。",effect:"draw2",n:2},
-    {id:"trace",name:"彗星轨迹",cost:2,kind:"spell",art:"⌁",text:"获得 6 点护甲并抽两张牌。",effect:"traceBoost",n:2},
-    {id:"timeShield",name:"时光护盾",cost:2,kind:"spell",art:"⛨",text:"获得 5 点护甲并恢复 3 点生命。",effect:"timeShield2",n:2},
-    {id:"nebulaShield",name:"星云护盾",cost:4,kind:"spell",art:"⛨",text:"获得 10 点护甲并抽两张牌。",effect:"nebulaShield2",n:1},
-    {id:"mana",name:"法力压制",cost:2,kind:"spell",art:"-",text:"敌方英雄受 2 点伤害，其费用上限 -1（最低 0）。",effect:"manaBurn",n:3},
-    {id:"gravitywell",name:"引力井",cost:3,kind:"spell",art:"◉",text:"敌方费用上限 -1（最低 0）并抽一张牌。",effect:"energyDownDraw",n:2},
-    {id:"starClimb",name:"星轨攀升",cost:3,kind:"spell",art:"⇅",text:"跳费：我方费用上限 +1；同时敌方费用上限 -1（最低 0）。",effect:"starClimb",n:2},
-    {id:"stasis",name:"静滞领域",cost:4,kind:"spell",art:"◌",text:"敌方全体单位攻击力 -2。",effect:"enemyAtkDown",n:1},
-    {id:"timeslow",name:"时间延缓",cost:2,kind:"spell",art:"◌",text:"敌方全体单位攻击力 -1。",effect:"enemyAtkDown1",n:2},
-    {id:"gravityLock",name:"引力锁定",cost:3,kind:"spell",art:"⛓",text:"敌方所有单位本回合无法攻击。",effect:"gravityLock",n:1},
-    {id:"gravityFold",name:"引力折叠",cost:3,kind:"spell",art:"⊘",text:"敌方手牌中所有卡牌费用 +1（本局内永久）。",effect:"costRaise",n:1},
-    {id:"cometfall",name:"彗星陨落",cost:6,kind:"spell",art:"☄",text:"敌方英雄受 6 点伤害。",effect:"damage6",n:1}
-  ]},
-  核弹:{faction:"凹槽帝国",style:"禁忌召唤 · Superman 单卡压制",hp:28,cards:[
-    {id:"stealth",name:"隐秘行踪",cost:2,kind:"unit",art:"◇",atk:2,hp:5,text:"行踪隐秘迅速。",n:2},
-    {id:"barrier",name:"隐秘结界",cost:5,kind:"unit",art:"▥",atk:4,hp:9,text:"嘲讽。拖慢一切进攻。",taunt:true,n:1},
-    {id:"teaunit",name:"安静旁观",cost:3,kind:"unit",art:"○",atk:3,hp:4,text:"只是路过看看。",n:2},
-    {id:"teaboy",name:"红茶侍者",cost:2,kind:"unit",art:"◒",atk:2,hp:3,text:"部署：获得 2 点护甲。",effect:"armor2",n:2},
-    {id:"crownkeeper",name:"皇冠守护者",cost:4,kind:"unit",art:"♛",atk:4,hp:6,text:"嘲讽。部署：抽一张牌。",taunt:true,effect:"draw",n:1},
-    {id:"superman",name:"超人 SUPERMAN",cost:8,kind:"unit",art:"S",atk:10,hp:10,text:"冲锋。无视嘲讽。禁忌之卡。每回合可攻击两次。",strikes:2,charge:true,ignoreTaunt:true,n:1},
-    {id:"teamaid",name:"红茶女仆",cost:2,kind:"unit",art:"◒",atk:2,hp:4,text:"部署：恢复 2 点生命。",effect:"heal2",n:2},
-    {id:"refugee",name:"旧大陆难民",cost:1,kind:"unit",art:"◇",atk:1,hp:3,text:"嘲讽。被遗忘的人。",taunt:true,n:2},
-    {id:"spy",name:"凹槽密探",cost:3,kind:"unit",art:"◇",atk:3,hp:5,text:"部署：抽一张牌。",effect:"draw",n:2},
-    {id:"crownguard",name:"皇冠卫队",cost:5,kind:"unit",art:"▦",atk:5,hp:8,text:"嘲讽。",taunt:true,n:2},
-    {id:"forbiddenscholar",name:"禁忌学者",cost:4,kind:"unit",art:"⌬",atk:4,hp:5,text:"部署：抽一张牌。",effect:"draw",n:2},
-    {id:"forbiddenlurker",name:"禁忌潜伏者",cost:3,kind:"unit",art:"◉",atk:3,hp:4,text:"无视嘲讽。",ignoreTaunt:true,n:1},
-    {id:"revenge",name:"例行复仇",cost:3,kind:"spell",art:"☄",text:"敌方英雄受 7 点伤害。",effect:"damage7",n:2},
-    {id:"tea",name:"红茶时间",cost:2,kind:"spell",art:"◒",text:"获得 3 点护甲并抽一张牌。",effect:"armor3draw",n:2},
-    {id:"retreat",name:"停止复仇",cost:1,kind:"spell",art:"Ⅱ",text:"恢复 4 点生命。",effect:"heal4",n:2},
-    {id:"escape",name:"逃亡路线",cost:2,kind:"spell",art:"↗",text:"抽两张牌并恢复 2 点生命。",effect:"draw2heal2",n:2},
-    {id:"filter",name:"禁忌检索",cost:2,kind:"spell",art:"⌕",text:"抽一张牌。如果抽到超人，其费用减 2。",effect:"filterSuperman",n:2},
-    {id:"resonance",name:"皇冠共鸣",cost:3,kind:"spell",art:"♛",text:"从牌库中检索超人。若牌库中没有超人，则抽两张牌。",effect:"tutorSuperman",n:2},
-    {id:"gaze",name:"皇冠凝视",cost:2,kind:"spell",art:"♛",text:"查看牌库顶三张牌，选择一张加入手牌，其余洗回。",effect:"scry",n:2},
-    {id:"ritual",name:"皇冠仪式",cost:5,kind:"spell",art:"♛",text:"从牌库中召唤超人 SUPERMAN。",effect:"summonSuperman",n:1},
-    {id:"forbiddenknowledge",name:"禁忌知识",cost:3,kind:"spell",art:"⌬",text:"抽三张牌。",effect:"draw3",n:2},
-    {id:"whisper",name:"皇冠低语",cost:1,kind:"spell",art:"♛",text:"抽一张牌并恢复 2 点生命。",effect:"draw1heal2",n:2},
-    {id:"resonance2",name:"禁忌共鸣",cost:4,kind:"spell",art:"⌬",text:"抽两张牌并获得 3 点护甲。",effect:"draw2armor3",n:1}
-  ]},
-  猪瘟鱼:{faction:"凹槽帝国",style:"偷钱逃跑 · 特殊胜利",hp:30,cards:[
-    {id:"assistant",name:"会计助理",cost:1,kind:"unit",art:"◇",atk:1,hp:3,text:"部署：抽一张牌。",effect:"draw",n:2},
-    {id:"ledger",name:"财政账本",cost:2,kind:"unit",art:"▤",atk:2,hp:4,text:"部署：抽一张牌。",effect:"draw",n:2},
-    {id:"collector",name:"收米专员",cost:2,kind:"unit",art:"$",atk:2,hp:3,text:"部署：偷 3 元，敌方英雄受 1 点伤害。",effect:"steal3hero1",n:2},
-    {id:"auditor",name:"审计员",cost:2,kind:"unit",art:"▤",atk:2,hp:4,text:"部署：抽一张牌。",effect:"draw",n:2},
-    {id:"broker",name:"账房先生",cost:3,kind:"unit",art:"◇",atk:3,hp:4,text:"部署：偷 2 元。",effect:"steal2",n:2},
-    {id:"taxman",name:"税官",cost:3,kind:"unit",art:"$",atk:3,hp:5,text:"部署：偷 4 元。",effect:"steal4",n:2},
-    {id:"accountant",name:"精算主管",cost:4,kind:"unit",art:"#",atk:4,hp:5,text:"部署：获得 1 点护甲。",effect:"armor1",n:2},
-    {id:"vault",name:"金库守卫",cost:4,kind:"unit",art:"▦",atk:3,hp:7,text:"嘲讽。部署：获得 2 点护甲。",taunt:true,effect:"armor2",n:2},
-    {id:"safehouse",name:"软禁室",cost:5,kind:"unit",art:"▣",atk:5,hp:7,text:"嘲讽。拖到对手资源耗尽。",taunt:true,n:2},
-    {id:"vaultgate",name:"金库大门",cost:6,kind:"unit",art:"▣",atk:6,hp:9,text:"嘲讽。",taunt:true,n:1},
-    {id:"launderer",name:"洗钱专家",cost:3,kind:"unit",art:"$",atk:3,hp:5,text:"部署：偷 3 元并抽一张牌。",effect:"steal3draw",n:2},
-    {id:"bribelord",name:"收买要员",cost:4,kind:"unit",art:"▤",atk:4,hp:5,text:"部署：偷 2 元并获得 2 点护甲。",effect:"steal2armor2",n:1},
-    {id:"greyincome",name:"灰色收入",cost:1,kind:"spell",art:"$",text:"偷 3 元。",effect:"steal3",n:2},
-    {id:"bribe",name:"账外交易",cost:1,kind:"spell",art:"◇",text:"抽两张牌，自己受 1 点伤害，偷 2 元。",effect:"bribeDraw",n:2},
-    {id:"steal",name:"人民收米术",cost:2,kind:"spell",art:"$",text:"敌方英雄受 3 点伤害并抽一张牌，偷 5 元。",effect:"steal5draw",n:2},
-    {id:"count",name:"清点现金",cost:2,kind:"spell",art:"+",text:"恢复 3 点生命并抽一张牌，偷 3 元。",effect:"healDrawSteal",n:2},
-    {id:"taxevasion",name:"偷税漏税",cost:2,kind:"spell",art:"$",text:"敌方英雄受 2 点伤害并抽一张牌，偷 4 元。",effect:"hero2drawSteal",n:2},
-    {id:"launder",name:"洗钱",cost:2,kind:"spell",art:"◇",text:"偷 4 元。",effect:"steal4",n:2},
-    {id:"escape",name:"逃跑",cost:3,kind:"spell",art:"↗",text:"若已偷够 25 元，立即胜利；否则获得 3 点护甲，敌方英雄受 2 点伤害。",effect:"runaway",n:2},
-    {id:"transfer",name:"资金转移",cost:3,kind:"spell",art:"⇄",text:"抽两张牌并获得 2 点护甲，偷 2 元。",effect:"supplySteal",n:2},
-    {id:"funding",name:"财政拨款",cost:3,kind:"spell",art:"+",text:"恢复 5 点生命并抽一张牌。",effect:"heal5draw",n:1},
-    {id:"sanction",name:"经济制裁",cost:4,kind:"spell",art:"⚡",text:"敌方英雄受 5 点伤害。",effect:"damage5",n:1},
-    {id:"fakebooks",name:"伪造账目",cost:3,kind:"spell",art:"▤",text:"偷 4 元并抽一张牌。",effect:"steal4draw",n:1},
-    {id:"vaultfill",name:"金库充盈",cost:5,kind:"spell",art:"♛",text:"抽三张牌并获得 3 点护甲，偷 5 元。",effect:"vaultBurst",n:1}
-  ]},
-  八幡:{faction:"旧大陆卡兹帝国",style:"海盗体系 · 极速铺场",hp:30,cards:[
-    {id:"deckhand",name:"甲板水手",cost:0,kind:"unit",art:"⚓",atk:1,hp:1,text:"冲锋。",charge:true,n:2},
-    {id:"pirate",name:"小海盗",cost:1,kind:"unit",art:"⚓",atk:2,hp:1,text:"冲锋。",charge:true,n:4},
-    {id:"stalker",name:"潜行海盗",cost:1,kind:"unit",art:"◉",atk:2,hp:1,text:"无视嘲讽。",ignoreTaunt:true,n:2},
-    {id:"raider",name:"劫掠者",cost:2,kind:"unit",art:"⚑",atk:3,hp:2,text:"冲锋。",charge:true,n:3},
-    {id:"ship",name:"海盗船",cost:2,kind:"unit",art:"⌁",atk:2,hp:2,text:"部署：召唤一个小海盗。",effect:"summonPirate",n:3},
-    {id:"captain",name:"年轻船长",cost:3,kind:"unit",art:"✦",atk:4,hp:3,text:"攻击英雄时 +1 伤害。无视嘲讽。",ignoreTaunt:true,n:2},
-    {id:"mate",name:"大副",cost:3,kind:"unit",art:"✦",atk:3,hp:3,text:"冲锋。",charge:true,n:1},
-    {id:"king",name:"海盗王",cost:4,kind:"unit",art:"♛",atk:4,hp:4,text:"部署：你的全部单位 +2/+2。",effect:"buffAll2",n:1},
-    {id:"helmsman",name:"舵手",cost:1,kind:"unit",art:"◉",atk:1,hp:2,text:"部署：抽一张牌。",effect:"draw",n:2},
-    {id:"gunner",name:"火炮手",cost:2,kind:"unit",art:"✣",atk:2,hp:2,text:"无视嘲讽。部署：敌方英雄受 1 点伤害。",ignoreTaunt:true,effect:"hero1",n:2},
-    {id:"submarine",name:"海盗潜艇",cost:7,kind:"unit",art:"⛴",atk:8,hp:2,text:"冲锋。无视嘲讽。高攻低防的终结者。",charge:true,ignoreTaunt:true,n:2},
-    {id:"fullspeed",name:"全速前进",cost:0,kind:"spell",art:"→",text:"抽一张牌。",effect:"draw1",n:2},
-    {id:"rum",name:"酒馆补给",cost:1,kind:"spell",art:"●",text:"恢复 2 点生命并抽一张牌。",effect:"healDraw",n:2},
-    {id:"raid",name:"劫掠",cost:2,kind:"spell",art:"⚑",text:"按你的单位数量抽牌（最多 3 张）。",effect:"raid",n:2},
-    {id:"revengepirate",name:"复仇主义",cost:2,kind:"spell",art:"✹",text:"你的全部单位 +1 攻击并抽一张牌。",effect:"pirateBuff",n:2},
-    {id:"firebomb",name:"燃烧弹",cost:2,kind:"spell",art:"✹",text:"消灭一个己方单位，对敌方全场造成 3 点伤害。",effect:"sacAoe3",n:2},
-    {id:"fireship",name:"火船",cost:3,kind:"spell",art:"✹",text:"摧毁你所有单位，每摧毁一个就对敌方全场造成 2 点伤害。",effect:"fireShip",n:1},
-    {id:"broadside",name:"侧舷炮击",cost:3,kind:"spell",art:"✣",text:"对敌方英雄造成等于你场上单位数量的伤害。",effect:"unitDamageHero",n:1},
-    {id:"finish",name:"海盗大斩杀",cost:4,kind:"spell",art:"☠",text:"对敌方英雄造成等于你场上单位数量 ×2 的伤害。",effect:"finish",n:1},
-    {id:"boarding",name:"登船战",cost:3,kind:"spell",art:"⚑",text:"你的全部单位 +1/+1 并获得冲锋。",effect:"buffAllCharge",n:2},
-    {id:"jollyroger",name:"海盗旗",cost:2,kind:"spell",art:"☠",text:"抽两张牌。",effect:"draw2",n:1}
-  ]},
-  "045":{faction:"普鲁士国 · 架子班",style:"架子班召集 · 成员生成",hp:31,cards:[
-    {id:"apprentice",name:"架子班学徒",cost:2,kind:"unit",art:"✦",atk:2,hp:3,text:"部署：抽一张牌。",effect:"draw",n:2},
-    {id:"intel",name:"情报官",cost:2,kind:"unit",art:"◇",atk:2,hp:4,text:"部署：抽一张牌。",effect:"draw",n:2},
-    {id:"advisor",name:"高层顾问",cost:2,kind:"unit",art:"◇",atk:2,hp:4,text:"部署：抽一张牌。",effect:"draw",n:3},
-    {id:"diplomat",name:"外交官",cost:3,kind:"unit",art:"✎",atk:3,hp:5,text:"部署：获得 2 点护甲。",effect:"armor2",n:2},
-    {id:"researcher",name:"解析员",cost:4,kind:"unit",art:"⌬",atk:4,hp:6,text:"部署：抽一张牌并获得 1 点护甲。",effect:"drawArmor",n:1},
-    {id:"cardmaker",name:"卡片工匠",cost:4,kind:"unit",art:"▦",atk:4,hp:5,text:"部署：抽两张牌。",effect:"draw2",n:1},
-    {id:"blueprint",name:"蓝图制卡师",cost:5,kind:"unit",art:"▦",atk:6,hp:6,text:"嘲讽。定制卡组的技术高点。",taunt:true,n:1},
-    {id:"alwei",name:"架子班·阿伟",cost:6,kind:"unit",art:"锤",atk:6,hp:6,text:"部署：抽两张牌，你的全部单位 +1/+1。",effect:"alweiDeploy",n:1},
-    {id:"qixing",name:"架子班·七星",cost:5,kind:"unit",art:"☄",atk:5,hp:5,text:"部署：敌方费用上限 -1（最低 0）。",effect:"qixingDeploy",n:1},
-    {id:"susu_leader",name:"架子班·苏苏",cost:5,kind:"unit",art:"☭",atk:5,hp:5,text:"部署：召唤一个俄罗斯布尔什维克红军。",effect:"susuDeploy",n:1},
-    {id:"huiliyi",name:"架子班·绘梨衣",cost:4,kind:"unit",art:"✦",atk:4,hp:4,text:"部署：给一个友方单位 +3/+3。",effect:"huiliyiDeploy",n:1},
-    {id:"baimao",name:"架子班·白猫",cost:4,kind:"unit",art:"◇",atk:4,hp:4,text:"部署：本回合获得 3 点额外费用。",effect:"baimaoDeploy",n:1},
-    {id:"xiashui",name:"架子班·下水",cost:4,kind:"unit",art:"✚",atk:4,hp:4,text:"部署：敌方英雄受 3 点伤害。",effect:"xiashuiDeploy",n:1},
-    {id:"yuchun",name:"架子班·愚蠢",cost:3,kind:"unit",art:"☠",atk:3,hp:3,text:"部署：随机摧毁敌方一张手牌。",effect:"yuchunDeploy",n:1},
-    {id:"taojin",name:"架子班·淘金",cost:3,kind:"unit",art:"✦",atk:3,hp:3,text:"部署：随机造成 3 点伤害或恢复 3 点生命。",effect:"taojinDeploy",n:1},
-    {id:"namecard",name:"高层名片",cost:2,kind:"spell",art:"▧",text:"你的全部单位 +1/+1。",effect:"buffAll1",n:2},
-    {id:"develop",name:"开发他人卡组",cost:3,kind:"spell",art:"⌘",text:"抽两张牌并获得 2 点护甲。",effect:"develop",n:2},
-    {id:"adapt",name:"适应性方案",cost:4,kind:"spell",art:"↻",text:"摧毁敌方攻击力最高的单位，恢复 3 点生命。",effect:"adapt",n:2},
-    {id:"handoff",name:"关系网调度",cost:1,kind:"spell",art:"⇄",text:"抽一张牌并获得 1 点护甲。",effect:"handoff",n:2},
-    {id:"copycrown",name:"复制的皇冠",cost:5,kind:"spell",art:"♛",text:"抽三张牌并获得 3 点护甲。",effect:"crown",n:1},
-    {id:"meeting",name:"高层会议",cost:4,kind:"spell",art:"▧",text:"你的全部单位 +1/+1 并抽一张牌。",effect:"buffAll1draw",n:2},
-    {id:"upgrade",name:"卡片升级",cost:2,kind:"spell",art:"⇪",text:"给一个单位 +2/+2 并抽一张牌。",effect:"buffOneDraw",n:1},
-    {id:"network",name:"关系网",cost:2,kind:"spell",art:"⇄",text:"抽两张牌并获得 1 点护甲。",effect:"draw2armor1",n:2},
-    {id:"summoncall",name:"架子班召集令",cost:5,kind:"spell",art:"锤",text:"从牌库中召唤一个架子班成员。",effect:"summoncall",n:2},
-    {id:"namecardsummon",name:"名片召唤",cost:3,kind:"spell",art:"▧",text:"随机召唤一个架子班成员到战场。",effect:"namecardsummon",n:2},
-    {id:"highcommand",name:"高层指令",cost:4,kind:"spell",art:"♛",text:"你的全部单位 +2/+2。",effect:"highcommand",n:1}
-  ]},
-  下水:{faction:"架子班 · 鸭子系",style:"火炮体系 · 饱和式打击 ×4",hp:34,cards:[
-    {id:"cannon",name:"远程火炮",cost:1,kind:"unit",art:"✚",atk:2,hp:2,text:"无视嘲讽。部署：敌方英雄受 2 点伤害。",ignoreTaunt:true,effect:"hero2",n:3},
-    {id:"battery",name:"重炮连",cost:3,kind:"unit",art:"▥",atk:3,hp:5,text:"嘲讽。无视嘲讽。部署：你的火炮攻击力 +1。",taunt:true,ignoreTaunt:true,effect:"buffGuns1",n:2},
-    {id:"gunner",name:"炮兵班",cost:1,kind:"unit",art:"◆",atk:2,hp:3,text:"无视嘲讽。部署：若你控制其他火炮，获得 +2/+2。",ignoreTaunt:true,effect:"gunnerBoost",n:3},
-    {id:"commander",name:"火力指挥官",cost:3,kind:"unit",art:"★",atk:5,hp:5,text:"嘲讽。无视嘲讽。部署：你的火炮攻击力 +2。",taunt:true,ignoreTaunt:true,effect:"buffGuns2",n:2},
-    {id:"ammo",name:"弹药车",cost:2,kind:"unit",art:"▣",atk:2,hp:4,text:"部署：抽一张牌。",effect:"draw",n:2},
-    {id:"spotter",name:"前沿观察员",cost:1,kind:"unit",art:"◇",atk:2,hp:2,text:"冲锋。",charge:true,n:2},
-    {id:"mortar",name:"迫击炮",cost:2,kind:"unit",art:"✚",atk:2,hp:3,text:"无视嘲讽。部署：随机一个敌方单位受 2 点伤害。",ignoreTaunt:true,effect:"randomDamage2",n:2},
-    {id:"howitzer",name:"榴弹炮",cost:4,kind:"unit",art:"✣",atk:4,hp:5,text:"无视嘲讽。",ignoreTaunt:true,n:2},
-    {id:"emplacement",name:"炮兵阵地",cost:5,kind:"unit",art:"▥",atk:4,hp:9,text:"嘲讽。",taunt:true,n:2},
-    {id:"magazine",name:"弹药库",cost:3,kind:"unit",art:"▣",atk:3,hp:6,text:"嘲讽。部署：抽一张牌。",taunt:true,effect:"draw",n:2},
-    {id:"saturation",name:"饱和式打击",cost:3,kind:"spell",art:"▦",text:"敌方英雄受火炮数量 ×3 点伤害（至少 3 点）。",effect:"saturation",n:4},
-    {id:"reload",name:"快速装填",cost:1,kind:"spell",art:"↻",text:"你的火炮本回合 +3 攻击，抽一张牌。",effect:"reload",n:2},
-    {id:"supply",name:"炮弹补给",cost:2,kind:"spell",art:"+",text:"抽两张牌并获得 2 点护甲。",effect:"supply",n:2},
-    {id:"cover",name:"火力覆盖",cost:3,kind:"spell",art:"✣",text:"敌方全场与英雄受 2 点伤害。",effect:"aoe2",n:1},
-    {id:"volley",name:"齐射",cost:4,kind:"spell",art:"✣",text:"敌方全场受 4 点伤害。",effect:"aoe4",n:1},
-    {id:"prepfire",name:"炮火准备",cost:2,kind:"spell",art:"✣",text:"随机三个敌方单位各受 2 点伤害。",effect:"randomThree2",n:2},
-    {id:"recon",name:"火力侦察",cost:1,kind:"spell",art:"◇",text:"抽一张牌。",effect:"draw1",n:2},
-    {id:"support",name:"炮兵支援",cost:4,kind:"spell",art:"★",text:"你的火炮攻击力 +2 并抽一张牌。",effect:"buffGuns2draw",n:2},
-    {id:"resupply",name:"弹药补充",cost:2,kind:"spell",art:"+",text:"恢复 3 点生命并抽一张牌。",effect:"heal3draw",n:1},
-    {id:"bombardcmd",name:"轰炸指令",cost:5,kind:"spell",art:"☄",text:"敌方英雄受 6 点伤害。",effect:"damage6",n:1}
-  ]}
+const PROFILES={
+苏苏:{faction:"彗星国 · 架子班",style:"苏维埃体系 · 铺场爆发",hp:32,cards:[
+  {id:"red",name:"俄罗斯布尔什维克红军",cost:2,kind:"unit",art:"★",atk:2,hp:3,text:"冲锋。",charge:true,n:4},
+  {id:"latvian",name:"拉脱维亚布尔什维克红军",cost:1,kind:"unit",art:"★",atk:5,hp:5,text:"冲锋。攻击后生命值 -1。",charge:true,effect:"selfDamage1",n:1},
+  {id:"ukr",name:"乌克兰红军",cost:3,kind:"unit",art:"✦",atk:4,hp:3,text:"部署：选择 1 个敌方单位，造成 4 点伤害。",effect:"choose4",n:2},
+  {id:"blr",name:"白俄罗斯卫队",cost:4,kind:"unit",art:"◆",atk:5,hp:5,text:"嘲讽。",taunt:true,n:2},
+  {id:"commissar",name:"苏维埃政委",cost:2,kind:"unit",art:"☭",atk:2,hp:3,text:"部署：抽一张牌。",effect:"draw",n:2},
+  {id:"veteran",name:"红军老兵",cost:5,kind:"unit",art:"▣",atk:6,hp:6,text:"嘲讽。",taunt:true,n:1},
+  {id:"marshal",name:"炮兵总司令",cost:5,kind:"unit",art:"✚",atk:5,hp:5,text:"部署：敌方英雄受 3 点伤害。",effect:"hero3",n:1},
+  {id:"kazakh",name:"哈萨克布尔什维克红军",cost:5,kind:"unit",art:"☭",atk:1,hp:8,text:"嘲讽。部署：所有俄布 +2/+2。",taunt:true,effect:"buffRed",n:1},
+  {id:"tank",name:"红军坦克",cost:4,kind:"unit",art:"▦",atk:4,hp:5,text:"嘲讽。",taunt:true,n:1},
+  {id:"redguard",name:"赤卫队",cost:1,kind:"unit",art:"⚑",atk:2,hp:1,text:"冲锋。",charge:true,n:2},
+  {id:"advisor",name:"政委顾问",cost:3,kind:"unit",art:"◇",atk:3,hp:4,text:"部署：抽一张牌。",effect:"draw",n:1},
+  {id:"katyusha",name:"喀秋莎火箭炮",cost:4,kind:"unit",art:"✣",atk:4,hp:4,text:"部署：选择至多 3 个敌方单位，各受 2 点伤害。",effect:"choose3x2",n:1},
+  {id:"armoredtrain",name:"装甲列车",cost:6,kind:"unit",art:"▦",atk:7,hp:7,text:"嘲讽。",taunt:true,n:1},
+  {id:"sniper",name:"红军狙击手",cost:2,kind:"unit",art:"◉",atk:2,hp:2,text:"部署：选择 1 个敌方单位，造成 2 点伤害。",effect:"choose2",n:2},
+  {id:"mobilize",name:"红色动员令",cost:1,kind:"spell",art:"☭",text:"召唤一个俄布。",effect:"summonRed1",n:2},
+  {id:"october",name:"十月革命",cost:3,kind:"spell",art:"☭",text:"召唤两个俄布。",effect:"summonRed2",n:3},
+  {id:"plan",name:"五年计划",cost:2,kind:"spell",art:"⇪",text:"跳费：费用上限 +1，抽一张牌。",effect:"ramp",n:2},
+  {id:"war",name:"战时共产主义",cost:2,kind:"spell",art:"▣",text:"获得 3 点护甲并抽一张牌。",effect:"armor3draw",n:2},
+  {id:"forward",name:"为了革命的胜利前进",cost:3,kind:"spell",art:"→",text:"你的全部单位 +2/+2。",effect:"buffAll2",n:2},
+  {id:"artillery",name:"全亚洲炮兵总司令",cost:7,kind:"spell",art:"✣",text:"敌方全场与英雄受 5 点伤害。",effect:"aoe5",n:1},
+  {id:"peoplearmy",name:"人民军",cost:8,kind:"spell",art:"☭",text:"将你的手牌和场面填满俄布（保留原有卡牌）。",effect:"fillRed",n:1},
+  {id:"reddawn",name:"赤色黎明",cost:4,kind:"spell",art:"✹",text:"敌方全场受 2 点伤害，每有一个俄布则额外 +1。",effect:"redDawn",n:1},
+  {id:"comintern",name:"共产国际",cost:2,kind:"spell",art:"☭",text:"抽两张牌。",effect:"draw2",n:2},
+  {id:"passion",name:"革命热情",cost:1,kind:"spell",art:"✹",text:"给一个单位 +2/+2 并抽一张牌。",effect:"buffOneDraw",n:1},
+  {id:"winter",name:"冬将军",cost:4,kind:"spell",art:"❄",text:"敌方全体单位攻击力 -2。",effect:"enemyAtkDown",n:1}
+]},
+字母:{faction:"鸭子系 · 联合政府",style:"新式战法 · 策动叛乱",hp:30,cards:[
+  {id:"sentry",name:"卫戍哨兵",cost:1,kind:"unit",art:"盾",atk:1,hp:3,text:"嘲讽。",taunt:true,n:2},
+  {id:"shadow",name:"影子特工",cost:2,kind:"unit",art:"◇",atk:3,hp:1,text:"冲锋。",charge:true,n:2},
+  {id:"vanguard",name:"新式先锋",cost:2,kind:"unit",art:"A",atk:3,hp:2,text:"冲锋。",charge:true,n:2},
+  {id:"outpost",name:"联合政府哨站",cost:2,kind:"unit",art:"▤",atk:2,hp:5,text:"嘲讽。部署：抽一张牌。",taunt:true,effect:"draw",n:2},
+  {id:"commando",name:"突击队员",cost:3,kind:"unit",art:"⚑",atk:4,hp:2,text:"冲锋。",charge:true,n:2},
+  {id:"duckguard",name:"鸭子联合军",cost:3,kind:"unit",art:"◇",atk:4,hp:3,text:"稳定推进。",n:3},
+  {id:"tacticsquad",name:"战术小队",cost:3,kind:"unit",art:"▤",atk:3,hp:3,text:"部署：抽一张牌。",effect:"draw",n:2},
+  {id:"armored",name:"装甲突击车",cost:4,kind:"unit",art:"▤",atk:5,hp:4,text:"冲锋。",charge:true,n:2},
+  {id:"executor",name:"文件执行官",cost:4,kind:"unit",art:"✎",atk:5,hp:5,text:"攻击英雄时 +1 伤害。",n:2},
+  {id:"over",name:"超模单位",cost:5,kind:"unit",art:"⬢",atk:7,hp:7,text:"纯粹的超模数值。",n:2},
+  {id:"guard",name:"联合政府卫队",cost:6,kind:"unit",art:"◈",atk:8,hp:8,text:"新式战法的顶点。",n:1},
+  {id:"heavytank",name:"重型坦克",cost:6,kind:"unit",art:"▦",atk:7,hp:7,text:"嘲讽。",taunt:true,n:1},
+  {id:"order",name:"精准指令",cost:1,kind:"spell",art:"⌁",text:"抽两张牌。",effect:"draw2",n:2},
+  {id:"evasion",name:"战术规避",cost:2,kind:"spell",art:"◌",text:"本回合内敌方单位无法攻击你的英雄。",effect:"evasion",n:2},
+  {id:"rebelWeakest",name:"内应接应",cost:2,kind:"spell",art:"⚡",text:"策反敌方生命值最低的单位，并抽一张牌。",effect:"rebelWeakest",n:2},
+  {id:"newwar",name:"新式战法",cost:2,kind:"spell",art:"A",text:"你的全部单位 +1/+1。",effect:"buffAll1",n:2},
+  {id:"rebelLowest",name:"煽动哗变",cost:3,kind:"spell",art:"⚡",text:"策反敌方攻击力最低的单位。",effect:"rebelLowest",n:2},
+  {id:"disruption",name:"阵型瓦解",cost:3,kind:"spell",art:"⊘",text:"敌方所有单位本回合无法攻击。敌方英雄受 2 点伤害。",effect:"disruption",n:2},
+  {id:"wargame",name:"战法推演",cost:3,kind:"spell",art:"⌘",text:"抽一张牌并获得 3 点护甲。",effect:"armor3draw",n:1},
+  {id:"break",name:"直伤突破",cost:3,kind:"spell",art:"⚡",text:"敌方英雄受 5 点伤害。",effect:"damage5",n:1},
+  {id:"rebel",name:"策动叛乱",cost:4,kind:"spell",art:"⚡",text:"选择 1 个敌方单位策反。",effect:"rebel",n:1},
+  {id:"takeover",name:"战术接管",cost:4,kind:"spell",art:"⛓",text:"夺取敌方攻击力最高的单位。",effect:"takeover",n:1},
+  {id:"remove",name:"消除限制",cost:4,kind:"spell",art:"⊘",text:"摧毁敌方攻击力最高的单位。",effect:"remove",n:1}
+]},
+七星:{faction:"彗星国 · 架子班",style:"叠血压槽 · 彗星冲击 OTK",hp:34,cards:[
+  {id:"cometWatcher",name:"彗星观察者",cost:2,kind:"unit",art:"👁",atk:1,hp:3,text:"每当友方获得一张牌，恢复 2 点生命。",effect:"drawHeal",n:3},
+  {id:"sentinel",name:"星轨哨兵",cost:2,kind:"unit",art:"盾",atk:1,hp:3,text:"嘲讽。部署：获得 2 点护甲。",taunt:true,effect:"armor2",n:2},
+  {id:"bulwark",name:"星尘壁垒",cost:3,kind:"unit",art:"▥",atk:2,hp:6,text:"嘲讽。部署：恢复 2 点生命。",taunt:true,effect:"heal2",n:1},
+  {id:"messenger",name:"彗星信使",cost:2,kind:"unit",art:"◇",atk:2,hp:3,text:"部署：抽一张牌并恢复 1 点生命。",effect:"drawHeal1",n:3},
+  {id:"stardust",name:"星尘哨兵",cost:3,kind:"unit",art:"✦",atk:3,hp:4,text:"部署：获得 2 点护甲。",effect:"armor2",n:2},
+  {id:"scholar",name:"彗星学者",cost:3,kind:"unit",art:"◇",atk:3,hp:4,text:"部署：抽一张牌。",effect:"draw",n:1},
+  {id:"orbitguard",name:"星轨卫兵",cost:4,kind:"unit",art:"▥",atk:4,hp:6,text:"嘲讽。",taunt:true,n:2},
+  {id:"gravityfield",name:"引力场",cost:5,kind:"unit",art:"◉",atk:4,hp:8,text:"嘲讽。部署：敌方费用上限 -1。",taunt:true,effect:"energyDown",n:1},
+  {id:"cometImpact",name:"彗星冲击",cost:4,kind:"spell",art:"☄",text:"若血量 + 护甲 ≥ 40，对敌方英雄造成 40 点伤害。",effect:"cometImpact",core:true,n:1},
+  {id:"cometPosition",name:"彗星定位",cost:3,kind:"spell",art:"⌖",text:"从牌库检索【彗星冲击】。若无则抽两张牌。",effect:"tutorCometImpact",n:2},
+  {id:"foresee",name:"占星术",cost:1,kind:"spell",art:"✧",text:"查看牌库顶两张，选一张加入手牌。",effect:"foresee",n:2},
+  {id:"forecast",name:"七星预报",cost:1,kind:"spell",art:"☼",text:"抽两张牌。",effect:"draw2",n:2},
+  {id:"trace",name:"彗星轨迹",cost:2,kind:"spell",art:"⌁",text:"获得 6 点护甲并抽两张牌。",effect:"traceBoost",n:2},
+  {id:"timeShield",name:"时光护盾",cost:2,kind:"spell",art:"⛨",text:"获得 5 点护甲并恢复 3 点生命。",effect:"timeShield2",n:2},
+  {id:"nebulaShield",name:"星云护盾",cost:4,kind:"spell",art:"⛨",text:"获得 10 点护甲并抽两张牌。",effect:"nebulaShield2",n:1},
+  {id:"mana",name:"法力压制",cost:2,kind:"spell",art:"-",text:"敌方英雄受 2 点伤害，费用上限 -1（最低 0）。",effect:"manaBurn",n:3},
+  {id:"gravitywell",name:"引力井",cost:3,kind:"spell",art:"◉",text:"敌方费用上限 -1 并抽一张牌。",effect:"energyDownDraw",n:2},
+  {id:"starClimb",name:"星轨攀升",cost:3,kind:"spell",art:"⇅",text:"我方费用上限 +1；敌方费用上限 -1。",effect:"starClimb",n:2},
+  {id:"stasis",name:"静滞领域",cost:4,kind:"spell",art:"◌",text:"敌方全体单位攻击力 -2。",effect:"enemyAtkDown",n:1},
+  {id:"timeslow",name:"时间延缓",cost:2,kind:"spell",art:"◌",text:"敌方全体单位攻击力 -1。",effect:"enemyAtkDown1",n:2},
+  {id:"gravityLock",name:"引力锁定",cost:3,kind:"spell",art:"⛓",text:"敌方所有单位本回合无法攻击。",effect:"gravityLock",n:1},
+  {id:"gravityFold",name:"引力折叠",cost:3,kind:"spell",art:"⊘",text:"敌方手牌费用 +1（本局永久）。",effect:"costRaise",n:1},
+  {id:"cometfall",name:"彗星陨落",cost:6,kind:"spell",art:"☄",text:"敌方英雄受 6 点伤害。",effect:"damage6",n:1}
+]},
+核弹:{faction:"凹槽帝国",style:"禁忌召唤 · Superman 单卡压制",hp:28,cards:[
+  {id:"stealth",name:"隐秘行踪",cost:2,kind:"unit",art:"◇",atk:2,hp:5,text:"行踪隐秘迅速。",n:2},
+  {id:"barrier",name:"隐秘结界",cost:5,kind:"unit",art:"▥",atk:4,hp:9,text:"嘲讽。",taunt:true,n:1},
+  {id:"teaunit",name:"安静旁观",cost:3,kind:"unit",art:"○",atk:3,hp:4,text:"只是路过看看。",n:2},
+  {id:"teaboy",name:"红茶侍者",cost:2,kind:"unit",art:"◒",atk:2,hp:3,text:"部署：获得 2 点护甲。",effect:"armor2",n:2},
+  {id:"crownkeeper",name:"皇冠守护者",cost:4,kind:"unit",art:"♛",atk:4,hp:6,text:"嘲讽。部署：抽一张牌。",taunt:true,effect:"draw",n:1},
+  {id:"superman",name:"超人 SUPERMAN",cost:8,kind:"unit",art:"S",atk:10,hp:10,text:"冲锋。无视嘲讽。每回合可攻击两次。",strikes:2,charge:true,ignoreTaunt:true,n:1},
+  {id:"teamaid",name:"红茶女仆",cost:2,kind:"unit",art:"◒",atk:2,hp:4,text:"部署：恢复 2 点生命。",effect:"heal2",n:2},
+  {id:"refugee",name:"旧大陆难民",cost:1,kind:"unit",art:"◇",atk:1,hp:3,text:"嘲讽。",taunt:true,n:2},
+  {id:"spy",name:"凹槽密探",cost:3,kind:"unit",art:"◇",atk:3,hp:5,text:"部署：抽一张牌。",effect:"draw",n:2},
+  {id:"crownguard",name:"皇冠卫队",cost:5,kind:"unit",art:"▦",atk:5,hp:8,text:"嘲讽。",taunt:true,n:2},
+  {id:"forbiddenscholar",name:"禁忌学者",cost:4,kind:"unit",art:"⌬",atk:4,hp:5,text:"部署：抽一张牌。",effect:"draw",n:2},
+  {id:"forbiddenlurker",name:"禁忌潜伏者",cost:3,kind:"unit",art:"◉",atk:3,hp:4,text:"无视嘲讽。",ignoreTaunt:true,n:1},
+  {id:"revenge",name:"例行复仇",cost:3,kind:"spell",art:"☄",text:"敌方英雄受 7 点伤害。",effect:"damage7",n:2},
+  {id:"tea",name:"红茶时间",cost:2,kind:"spell",art:"◒",text:"获得 3 点护甲并抽一张牌。",effect:"armor3draw",n:2},
+  {id:"retreat",name:"停止复仇",cost:1,kind:"spell",art:"Ⅱ",text:"恢复 4 点生命。",effect:"heal4",n:2},
+  {id:"escape",name:"逃亡路线",cost:2,kind:"spell",art:"↗",text:"抽两张牌并恢复 2 点生命。",effect:"draw2heal2",n:2},
+  {id:"filter",name:"禁忌检索",cost:2,kind:"spell",art:"⌕",text:"抽一张牌。若抽到超人则费用 -2。",effect:"filterSuperman",n:2},
+  {id:"resonance",name:"皇冠共鸣",cost:3,kind:"spell",art:"♛",text:"从牌库中检索超人。若无则抽两张牌。",effect:"tutorSuperman",n:2},
+  {id:"gaze",name:"皇冠凝视",cost:2,kind:"spell",art:"♛",text:"查看牌库顶三张，选一张加入手牌。",effect:"scry",n:2},
+  {id:"ritual",name:"皇冠仪式",cost:5,kind:"spell",art:"♛",text:"从牌库中召唤超人。",effect:"summonSuperman",n:1},
+  {id:"forbiddenknowledge",name:"禁忌知识",cost:3,kind:"spell",art:"⌬",text:"抽三张牌。",effect:"draw3",n:2},
+  {id:"whisper",name:"皇冠低语",cost:1,kind:"spell",art:"♛",text:"抽一张牌并恢复 2 点生命。",effect:"draw1heal2",n:2},
+  {id:"resonance2",name:"禁忌共鸣",cost:4,kind:"spell",art:"⌬",text:"抽两张牌并获得 3 点护甲。",effect:"draw2armor3",n:1}
+]},
+猪瘟鱼:{faction:"凹槽帝国",style:"偷钱逃跑 · 特殊胜利",hp:30,cards:[
+  {id:"assistant",name:"会计助理",cost:1,kind:"unit",art:"◇",atk:1,hp:3,text:"部署：抽一张牌。",effect:"draw",n:2},
+  {id:"ledger",name:"财政账本",cost:2,kind:"unit",art:"▤",atk:2,hp:4,text:"部署：抽一张牌。",effect:"draw",n:2},
+  {id:"collector",name:"收米专员",cost:2,kind:"unit",art:"$",atk:2,hp:3,text:"部署：偷 3 元，敌方英雄受 1 点伤害。",effect:"steal3hero1",n:1},
+  {id:"auditor",name:"审计员",cost:2,kind:"unit",art:"▤",atk:2,hp:4,text:"部署：抽一张牌。",effect:"draw",n:2},
+  {id:"broker",name:"账房先生",cost:3,kind:"unit",art:"◇",atk:3,hp:4,text:"部署：偷 2 元。",effect:"steal2",n:1},
+  {id:"taxman",name:"税官",cost:3,kind:"unit",art:"$",atk:3,hp:5,text:"部署：偷 4 元。",effect:"steal4",n:2},
+  {id:"accountant",name:"精算主管",cost:4,kind:"unit",art:"#",atk:4,hp:5,text:"部署：获得 1 点护甲。",effect:"armor1",n:2},
+  {id:"vault",name:"金库守卫",cost:4,kind:"unit",art:"▦",atk:3,hp:7,text:"嘲讽。部署：获得 2 点护甲。",taunt:true,effect:"armor2",n:2},
+  {id:"safehouse",name:"软禁室",cost:5,kind:"unit",art:"▣",atk:5,hp:7,text:"嘲讽。",taunt:true,n:2},
+  {id:"vaultgate",name:"金库大门",cost:6,kind:"unit",art:"▣",atk:6,hp:9,text:"嘲讽。",taunt:true,n:1},
+  {id:"launderer",name:"洗钱专家",cost:3,kind:"unit",art:"$",atk:3,hp:5,text:"部署：偷 3 元并抽一张牌。",effect:"steal3draw",n:2},
+  {id:"bribelord",name:"收买要员",cost:4,kind:"unit",art:"▤",atk:4,hp:5,text:"部署：偷 2 元并获得 2 点护甲。",effect:"steal2armor2",n:1},
+  {id:"greyincome",name:"灰色收入",cost:1,kind:"spell",art:"$",text:"偷 3 元。",effect:"steal3",n:2},
+  {id:"bribe",name:"账外交易",cost:1,kind:"spell",art:"◇",text:"抽两张牌，自己受 1 点伤害，偷 2 元。",effect:"bribeDraw",n:2},
+  {id:"steal",name:"人民收米术",cost:2,kind:"spell",art:"$",text:"敌方英雄受 3 点伤害并抽一张牌，偷 5 元。",effect:"steal5draw",n:2},
+  {id:"count",name:"清点现金",cost:2,kind:"spell",art:"+",text:"恢复 3 点生命并抽一张牌，偷 3 元。",effect:"healDrawSteal",n:2},
+  {id:"taxevasion",name:"偷税漏税",cost:2,kind:"spell",art:"$",text:"敌方英雄受 2 点伤害并抽一张牌，偷 4 元。",effect:"hero2drawSteal",n:2},
+  {id:"launder",name:"洗钱",cost:2,kind:"spell",art:"◇",text:"偷 4 元。",effect:"steal4",n:2},
+  {id:"escape",name:"逃跑",cost:3,kind:"spell",art:"↗",text:"若已偷够 25 元，立即胜利；否则获得 3 点护甲，敌方英雄受 2 点伤害。",effect:"runaway",n:2},
+  {id:"transfer",name:"资金转移",cost:3,kind:"spell",art:"⇄",text:"抽两张牌并获得 2 点护甲，偷 2 元。",effect:"supplySteal",n:2},
+  {id:"funding",name:"财政拨款",cost:3,kind:"spell",art:"+",text:"恢复 5 点生命并抽一张牌。",effect:"heal5draw",n:1},
+  {id:"sanction",name:"经济制裁",cost:4,kind:"spell",art:"⚡",text:"敌方英雄受 5 点伤害。",effect:"damage5",n:1},
+  {id:"fakebooks",name:"伪造账目",cost:3,kind:"spell",art:"▤",text:"偷 4 元并抽一张牌。",effect:"steal4draw",n:1},
+  {id:"vaultfill",name:"金库充盈",cost:5,kind:"spell",art:"♛",text:"抽三张牌并获得 3 点护甲，偷 5 元。",effect:"vaultBurst",n:1}
+]},
+八幡:{faction:"旧大陆卡兹帝国",style:"海盗体系 · 极速铺场",hp:30,cards:[
+  {id:"deckhand",name:"甲板水手",cost:0,kind:"unit",art:"⚓",atk:1,hp:1,text:"冲锋。",charge:true,n:2},
+  {id:"pirate",name:"小海盗",cost:1,kind:"unit",art:"⚓",atk:2,hp:1,text:"冲锋。",charge:true,n:4},
+  {id:"stalker",name:"潜行海盗",cost:1,kind:"unit",art:"◉",atk:2,hp:1,text:"无视嘲讽。",ignoreTaunt:true,n:2},
+  {id:"raider",name:"劫掠者",cost:2,kind:"unit",art:"⚑",atk:3,hp:2,text:"冲锋。",charge:true,n:3},
+  {id:"ship",name:"海盗船",cost:2,kind:"unit",art:"⌁",atk:2,hp:2,text:"部署：召唤一个小海盗。",effect:"summonPirate",n:3},
+  {id:"captain",name:"年轻船长",cost:3,kind:"unit",art:"✦",atk:4,hp:3,text:"攻击英雄时 +1 伤害。无视嘲讽。",ignoreTaunt:true,n:2},
+  {id:"mate",name:"大副",cost:3,kind:"unit",art:"✦",atk:3,hp:3,text:"冲锋。",charge:true,n:1},
+  {id:"king",name:"海盗王",cost:4,kind:"unit",art:"♛",atk:4,hp:4,text:"部署：你的全部单位 +2/+2。",effect:"buffAll2",n:1},
+  {id:"helmsman",name:"舵手",cost:1,kind:"unit",art:"◉",atk:1,hp:2,text:"部署：抽一张牌。",effect:"draw",n:2},
+  {id:"gunner",name:"火炮手",cost:2,kind:"unit",art:"✣",atk:2,hp:2,text:"无视嘲讽。部署：敌方英雄受 1 点伤害。",ignoreTaunt:true,effect:"hero1",n:2},
+  {id:"submarine",name:"海盗潜艇",cost:7,kind:"unit",art:"⛴",atk:8,hp:2,text:"冲锋。无视嘲讽。",charge:true,ignoreTaunt:true,n:2},
+  {id:"fullspeed",name:"全速前进",cost:0,kind:"spell",art:"→",text:"抽一张牌。",effect:"draw1",n:2},
+  {id:"rum",name:"酒馆补给",cost:1,kind:"spell",art:"●",text:"恢复 2 点生命并抽一张牌。",effect:"healDraw",n:2},
+  {id:"raid",name:"劫掠",cost:2,kind:"spell",art:"⚑",text:"按单位数量抽牌（最多 3 张）。",effect:"raid",n:2},
+  {id:"revengepirate",name:"复仇主义",cost:2,kind:"spell",art:"✹",text:"你的全部单位 +1 攻击并抽一张牌。",effect:"pirateBuff",n:2},
+  {id:"firebomb",name:"燃烧弹",cost:2,kind:"spell",art:"✹",text:"消灭一个己方单位，对敌方全场造成 3 点伤害。",effect:"sacAoe3",n:2},
+  {id:"fireship",name:"火船",cost:3,kind:"spell",art:"✹",text:"摧毁你所有单位，每摧毁一个就对敌方全场造成 2 点伤害。",effect:"fireShip",n:1},
+  {id:"broadside",name:"侧舷炮击",cost:3,kind:"spell",art:"✣",text:"对敌方英雄造成等于场上单位数量的伤害。",effect:"unitDamageHero",n:1},
+  {id:"finish",name:"海盗大斩杀",cost:4,kind:"spell",art:"☠",text:"对敌方英雄造成等于场上单位数量 ×2 的伤害。",effect:"finish",n:1},
+  {id:"boarding",name:"登船战",cost:3,kind:"spell",art:"⚑",text:"你的全部单位 +1/+1 并获得冲锋。",effect:"buffAllCharge",n:2},
+  {id:"jollyroger",name:"海盗旗",cost:2,kind:"spell",art:"☠",text:"抽两张牌。",effect:"draw2",n:1}
+]},
+"045":{faction:"普鲁士国 · 架子班",style:"架子班召集 · 成员生成",hp:31,cards:[
+  {id:"apprentice",name:"架子班学徒",cost:2,kind:"unit",art:"✦",atk:2,hp:3,text:"部署：抽一张牌。",effect:"draw",n:3},
+  {id:"intel",name:"情报官",cost:2,kind:"unit",art:"◇",atk:2,hp:4,text:"部署：抽一张牌。",effect:"draw",n:2},
+  {id:"advisor",name:"高层顾问",cost:2,kind:"unit",art:"◇",atk:2,hp:4,text:"部署：抽一张牌。",effect:"draw",n:3},
+  {id:"diplomat",name:"外交官",cost:3,kind:"unit",art:"✎",atk:3,hp:5,text:"部署：获得 2 点护甲。",effect:"armor2",n:2},
+  {id:"researcher",name:"解析员",cost:4,kind:"unit",art:"⌬",atk:4,hp:6,text:"部署：抽一张牌并获得 1 点护甲。",effect:"drawArmor",n:1},
+  {id:"cardmaker",name:"卡片工匠",cost:4,kind:"unit",art:"▦",atk:4,hp:5,text:"部署：抽两张牌。",effect:"draw2",n:1},
+  {id:"blueprint",name:"蓝图制卡师",cost:5,kind:"unit",art:"▦",atk:6,hp:6,text:"嘲讽。",taunt:true,n:1},
+  {id:"alwei",name:"架子班·阿伟",cost:6,kind:"unit",art:"锤",atk:6,hp:6,text:"部署：抽两张牌，全部单位 +1/+1。",effect:"alweiDeploy",n:1},
+  {id:"qixing",name:"架子班·七星",cost:5,kind:"unit",art:"☄",atk:5,hp:5,text:"部署：敌方费用上限 -1。",effect:"qixingDeploy",n:1},
+  {id:"susu_leader",name:"架子班·苏苏",cost:5,kind:"unit",art:"☭",atk:5,hp:5,text:"部署：召唤一个俄布。",effect:"susuDeploy",n:1},
+  {id:"huiliyi",name:"架子班·绘梨衣",cost:4,kind:"unit",art:"✦",atk:4,hp:4,text:"部署：给一个友方单位 +3/+3。",effect:"huiliyiDeploy",n:1},
+  {id:"baimao",name:"架子班·白猫",cost:4,kind:"unit",art:"◇",atk:4,hp:4,text:"部署：本回合 +3 费用。",effect:"baimaoDeploy",n:1},
+  {id:"xiashui",name:"架子班·下水",cost:4,kind:"unit",art:"✚",atk:4,hp:4,text:"部署：敌方英雄受 3 点伤害。",effect:"xiashuiDeploy",n:1},
+  {id:"yuchun",name:"架子班·愚蠢",cost:3,kind:"unit",art:"☠",atk:3,hp:3,text:"部署：随机摧毁敌方一张手牌。",effect:"yuchunDeploy",n:1},
+  {id:"taojin",name:"架子班·淘金",cost:3,kind:"unit",art:"✦",atk:3,hp:3,text:"部署：选择造成 3 点伤害或恢复 3 点生命。",effect:"taojinDeploy",n:1},
+  {id:"namecard",name:"高层名片",cost:2,kind:"spell",art:"▧",text:"你的全部单位 +1/+1。",effect:"buffAll1",n:2},
+  {id:"develop",name:"开发他人卡组",cost:3,kind:"spell",art:"⌘",text:"抽两张牌并获得 2 点护甲。",effect:"develop",n:2},
+  {id:"adapt",name:"适应性方案",cost:4,kind:"spell",art:"↻",text:"摧毁敌方攻击力最高的单位，恢复 3 点生命。",effect:"adapt",n:2},
+  {id:"handoff",name:"关系网调度",cost:1,kind:"spell",art:"⇄",text:"抽一张牌并获得 1 点护甲。",effect:"handoff",n:2},
+  {id:"copycrown",name:"复制的皇冠",cost:5,kind:"spell",art:"♛",text:"抽三张牌并获得 3 点护甲。",effect:"crown",n:1},
+  {id:"meeting",name:"高层会议",cost:4,kind:"spell",art:"▧",text:"你的全部单位 +1/+1 并抽一张牌。",effect:"buffAll1draw",n:2},
+  {id:"upgrade",name:"卡片升级",cost:2,kind:"spell",art:"⇪",text:"给一个单位 +2/+2 并抽一张牌。",effect:"buffOneDraw",n:1},
+  {id:"network",name:"关系网",cost:2,kind:"spell",art:"⇄",text:"抽两张牌并获得 1 点护甲。",effect:"draw2armor1",n:2},
+  {id:"summoncall",name:"架子班召集令",cost:5,kind:"spell",art:"锤",text:"从牌库中召唤一个架子班成员。",effect:"summoncall",n:2},
+  {id:"namecardsummon",name:"名片召唤",cost:3,kind:"spell",art:"▧",text:"从牌库中选择一个架子班成员召唤。",effect:"namecardsummon",n:2},
+  {id:"highcommand",name:"高层指令",cost:4,kind:"spell",art:"♛",text:"你的全部单位 +2/+2。",effect:"highcommand",n:1}
+]},
+下水:{faction:"架子班 · 鸭子系",style:"火炮体系 · 饱和炮击",hp:34,cards:[
+  {id:"smallcannon",name:"小炮组",cost:1,kind:"unit",art:"✚",atk:1,hp:2,text:"部署：抽一张牌。",effect:"draw",n:3},
+  {id:"smallgun",name:"轻型炮台",cost:2,kind:"unit",art:"◆",atk:2,hp:3,text:"部署：复制一个小炮单位到你的战场。",effect:"copySmallCannon",n:2},
+  {id:"gunner",name:"炮兵班",cost:1,kind:"unit",art:"◆",atk:2,hp:3,text:"无视嘲讽。部署：若你控制其他火炮，获得 +2/+2。",ignoreTaunt:true,effect:"gunnerBoost",n:3},
+  {id:"cannon",name:"远程火炮",cost:2,kind:"unit",art:"✚",atk:2,hp:3,text:"无视嘲讽。部署：敌方英雄受 2 点伤害。",ignoreTaunt:true,effect:"hero2",n:2},
+  {id:"battery",name:"重炮连",cost:3,kind:"unit",art:"▥",atk:3,hp:5,text:"嘲讽。无视嘲讽。部署：你的火炮 +1 攻击。",taunt:true,ignoreTaunt:true,effect:"buffGuns1",n:2},
+  {id:"commander",name:"火力指挥官",cost:3,kind:"unit",art:"★",atk:5,hp:5,text:"嘲讽。无视嘲讽。部署：你的火炮 +2 攻击。",taunt:true,ignoreTaunt:true,effect:"buffGuns2",n:2},
+  {id:"ammo",name:"弹药车",cost:2,kind:"unit",art:"▣",atk:2,hp:4,text:"部署：抽一张牌。",effect:"draw",n:1},
+  {id:"spotter",name:"前沿观察员",cost:1,kind:"unit",art:"◇",atk:2,hp:2,text:"冲锋。",charge:true,n:1},
+  {id:"howitzer",name:"榴弹炮",cost:4,kind:"unit",art:"✣",atk:4,hp:5,text:"无视嘲讽。",ignoreTaunt:true,n:2},
+  {id:"emplacement",name:"炮兵阵地",cost:5,kind:"unit",art:"▥",atk:4,hp:9,text:"嘲讽。",taunt:true,n:2},
+  {id:"magazine",name:"弹药库",cost:3,kind:"unit",art:"▣",atk:3,hp:6,text:"嘲讽。部署：抽一张牌。",taunt:true,effect:"draw",n:2},
+  {id:"saturation",name:"饱和炮击",cost:3,kind:"spell",art:"▦",text:"对敌方全部单位与英雄造成火炮数量 × 2 点伤害。",effect:"saturation",n:4},
+  {id:"reload",name:"快速装填",cost:1,kind:"spell",art:"↻",text:"你的火炮本回合 +3 攻击，抽一张牌。",effect:"reload",n:2},
+  {id:"supply",name:"炮弹补给",cost:2,kind:"spell",art:"+",text:"抽两张牌并获得 2 点护甲。",effect:"supply",n:2},
+  {id:"cover",name:"火力覆盖",cost:3,kind:"spell",art:"✣",text:"敌方全场与英雄受 2 点伤害。",effect:"aoe2",n:1},
+  {id:"volley",name:"齐射",cost:4,kind:"spell",art:"✣",text:"敌方全场受 4 点伤害。",effect:"aoe4",n:1},
+  {id:"prepfire",name:"炮火准备",cost:2,kind:"spell",art:"✣",text:"选择至多 3 个敌方单位，各受 2 点伤害。",effect:"choose3x2",n:2},
+  {id:"recon",name:"火力侦察",cost:1,kind:"spell",art:"◇",text:"抽一张牌。",effect:"draw1",n:2},
+  {id:"support",name:"炮兵支援",cost:4,kind:"spell",art:"★",text:"你的火炮 +2 攻击并抽一张牌。",effect:"buffGuns2draw",n:2},
+  {id:"resupply",name:"弹药补充",cost:2,kind:"spell",art:"+",text:"恢复 3 点生命并抽一张牌。",effect:"heal3draw",n:1},
+  {id:"bombardcmd",name:"轰炸指令",cost:5,kind:"spell",art:"☄",text:"敌方英雄受 6 点伤害。",effect:"damage6",n:1}
+]}
 };
 
 const COLORS={苏苏:"#d9634d",字母:"#79b9d6",七星:"#a98fd9",核弹:"#82c98d",猪瘟鱼:"#e08aa3",八幡:"#63b9ac","045":"#d4a45d",下水:"#9db0b8"};
-const G={hero:"苏苏",enemy:"字母",round:1,turn:"none",over:false,uid:0,busy:0,session:0,logs:[],player:null,opponent:null,rebelSpell:null,pendingChoice:null,firstMover:"player"};
+const G={hero:"苏苏",enemy:"字母",round:1,turn:"none",over:false,uid:0,busy:0,session:0,logs:[],player:null,opponent:null,rebelSpell:null,pendingChoice:null,firstMover:"player",choose:null};
 const UI={scale:1,w:800,h:430,sel:null,press:null,prev:{},menuHero:"苏苏",opponentChoice:null,muted:false,noClick:false,pvT:0,toastT:0};
-try{
-  UI.menuHero=localStorage.getItem("duel.hero")||"苏苏";
-  UI.muted=localStorage.getItem("duel.muted")==="1";
-  const oc=localStorage.getItem("duel.opp");
-  if(oc&&oc!=="random")UI.opponentChoice=oc;
-}catch(e){}
+try{UI.menuHero=localStorage.getItem("duel.hero")||"苏苏";UI.muted=localStorage.getItem("duel.muted")==="1";const oc=localStorage.getItem("duel.opp");if(oc&&oc!=="random")UI.opponentChoice=oc;}catch(e){}
 if(!PROFILES[UI.menuHero])UI.menuHero="苏苏";
 if(UI.opponentChoice&&!PROFILES[UI.opponentChoice])UI.opponentChoice=null;
 
@@ -592,7 +571,7 @@ let AC=null;const lastSfx={};
 function initAudio(){try{if(!AC)AC=new(window.AudioContext||window.webkitAudioContext)();if(AC&&AC.state==="suspended")AC.resume();}catch(e){}}
 function tone(f,t,d,type,v,slide){if(!AC||UI.muted)return;const n=AC.currentTime+t,o=AC.createOscillator(),g=AC.createGain();o.type=type||"sine";o.frequency.setValueAtTime(f,n);if(slide)o.frequency.exponentialRampToValueAtTime(Math.max(30,f+slide),n+d);g.gain.setValueAtTime(v||.1,n);g.gain.exponentialRampToValueAtTime(.001,n+d);o.connect(g);g.connect(AC.destination);o.start(n);o.stop(n+d+.03);}
 function noise(t,d,v,fc){if(!AC||UI.muted)return;const n=AC.currentTime+t,len=Math.max(1,Math.floor(AC.sampleRate*d)),b=AC.createBuffer(1,len,AC.sampleRate),a=b.getChannelData(0);for(let i=0;i<len;i++)a[i]=(Math.random()*2-1)*(1-i/len);const s=AC.createBufferSource(),f=AC.createBiquadFilter(),g=AC.createGain();s.buffer=b;f.type="lowpass";f.frequency.value=fc||1200;g.gain.value=v||.15;s.connect(f);f.connect(g);g.connect(AC.destination);s.start(n);}
-const SFX={click:()=>tone(700,0,.05,"triangle",.07),select:()=>{tone(520,0,.06,"triangle",.08);tone(780,.05,.07,"triangle",.07)},draw:()=>noise(0,.09,.1,3200),play:()=>{tone(190,0,.14,"square",.09,-90);noise(0,.1,.16,900)},spell:()=>{tone(520,0,.28,"sawtooth",.06,520);tone(780,.06,.3,"sine",.07,300)},swing:()=>noise(0,.16,.08,2400),hit:()=>{noise(0,.14,.28,900);tone(120,0,.14,"square",.11,-60)},heal:()=>{tone(523,0,.12,"sine",.09);tone(784,.1,.2,"sine",.09)},die:()=>tone(220,0,.3,"sawtooth",.08,-160),turn:()=>{tone(392,0,.12,"triangle",.1);tone(587,.12,.22,"triangle",.1)},enemy:()=>{tone(300,0,.14,"triangle",.1);tone(220,.14,.22,"triangle",.1)},coin:()=>{tone(988,0,.07,"square",.05);tone(1319,.07,.14,"square",.05)},error:()=>tone(150,0,.16,"square",.09),immune:()=>{tone(660,0,.1,"sine",.08);tone(880,.08,.18,"sine",.08)},stun:()=>{tone(300,0,.12,"sine",.07);tone(240,.1,.18,"sine",.07)},core:()=>{tone(880,0,.4,"triangle",.14);tone(1320,.15,.5,"sine",.12);tone(660,.3,.6,"triangle",.1)},win:()=>[523,659,784,1047].forEach((f,i)=>tone(f,i*.13,.34,"triangle",.12)),lose:()=>[392,330,262,196].forEach((f,i)=>tone(f,i*.22,.45,"sawtooth",.08))};
+const SFX={click:()=>tone(700,0,.05,"triangle",.07),select:()=>{tone(520,0,.06,"triangle",.08);tone(780,.05,.07,"triangle",.07)},pick:()=>{tone(880,0,.06,"triangle",.09);tone(1174,.05,.08,"triangle",.08)},draw:()=>noise(0,.09,.1,3200),play:()=>{tone(190,0,.14,"square",.09,-90);noise(0,.1,.16,900)},spell:()=>{tone(520,0,.28,"sawtooth",.06,520);tone(780,.06,.3,"sine",.07,300)},swing:()=>noise(0,.16,.08,2400),hit:()=>{noise(0,.14,.28,900);tone(120,0,.14,"square",.11,-60)},heal:()=>{tone(523,0,.12,"sine",.09);tone(784,.1,.2,"sine",.09)},die:()=>tone(220,0,.3,"sawtooth",.08,-160),turn:()=>{tone(392,0,.12,"triangle",.1);tone(587,.12,.22,"triangle",.1)},enemy:()=>{tone(300,0,.14,"triangle",.1);tone(220,.14,.22,"triangle",.1)},coin:()=>{tone(988,0,.07,"square",.05);tone(1319,.07,.14,"square",.05)},error:()=>tone(150,0,.16,"square",.09),core:()=>{tone(880,0,.4,"triangle",.14);tone(1320,.15,.5,"sine",.12);tone(660,.3,.6,"triangle",.1)},satur:()=>{noise(0,.5,.3,500);noise(.15,.5,.28,800);noise(.3,.5,.25,1100);[196,262,392,523].forEach((f,i)=>tone(f,i*.1,.35,"sawtooth",.12))},win:()=>[523,659,784,1047].forEach((f,i)=>tone(f,i*.13,.34,"triangle",.12)),lose:()=>[392,330,262,196].forEach((f,i)=>tone(f,i*.22,.45,"sawtooth",.08))};
 function sfx(n){const t=performance.now();if(lastSfx[n]&&t-lastSfx[n]<70)return;lastSfx[n]=t;try{SFX[n]&&SFX[n]()}catch(e){}}
 
 function clone(c){
@@ -607,15 +586,13 @@ function side(name){const p=profile(name),d=deck(name);return{name,hp:p.hp,maxHp
 function note(text,who){G.logs.unshift({text,who:who||"系统"});G.logs=G.logs.slice(0,60);if(!$("#logPanel").hidden)renderLog();}
 function renderLog(){$("#logList").innerHTML=G.logs.map(x=>`<div class="log-item"><b>${esc(x.who)}</b> ${esc(x.text)}</div>`).join("");}
 
-/* 触发场上所有彗星观察者：每抽一张牌，每个观察者回 2 血 */
+/* ============ 观察者触发：所有“获得牌”都触发 ============ */
 function triggerDrawHeal(s,n=1){
   const healers=s.board.filter(u=>u.effect==="drawHeal"&&u.health>0);
   if(!healers.length) return;
-  const per=2;
-  healers.forEach(()=>heal(s,per*n));
-  note(`彗星观察者×${healers.length}：抽牌恢复 ${healers.length*per*n} 点生命`,s.name);
+  healers.forEach(()=>heal(s,2*n));
+  note(`彗星观察者×${healers.length}：恢复 ${healers.length*2*n} 点生命`,s.name);
 }
-/* 抽牌：每抽一张触发一次观察者 */
 function draw(s,n=1){
   for(let i=0;i<n;i++){
     if(!s.deck.length){s.fatigue++;damage(s,s.fatigue,true);continue;}
@@ -624,19 +601,17 @@ function draw(s,n=1){
     triggerDrawHeal(s,1);
   }
 }
-/* 通用加牌入手的函数：也触发观察者 */
 function addCardToHand(s,card){
   if(s.hand.length>=MAX_HAND) return false;
   s.hand.push(card);
   triggerDrawHeal(s,1);
   return true;
 }
-
 function beginTurn(s){
   s.turnsStarted++;
-  s.maxEnergy = Math.min(10, s.maxEnergy + 1);
-  s.energy = s.maxEnergy;
-  const isFirstMoverSide = (s===G.player&&G.firstMover==="player")||(s===G.opponent&&G.firstMover==="enemy");
+  s.maxEnergy=Math.min(10,s.maxEnergy+1);
+  s.energy=s.maxEnergy;
+  const isFirstMoverSide=(s===G.player&&G.firstMover==="player")||(s===G.opponent&&G.firstMover==="enemy");
   if(!(isFirstMoverSide&&s.turnsStarted===1)) draw(s,1);
 }
 function damage(s,n,fatigue=false){const blocked=Math.min(s.armor,n);s.armor-=blocked;s.hp-=(n-blocked);if(blocked&&!fatigue)note(`护甲吸收 ${blocked} 点伤害`,s.name);checkEnd();}
@@ -671,9 +646,11 @@ function rebelTakeover(fromSide,toSide,unit,label){
   if(toSide.board.length>=MAX_BOARD){fromSide.board.push(unit);note(`${label}：己方战场已满，无法策反`,toSide.name);return false;}
   unit.atkLeft=unit.charge?unit.strikes:0;unit.sr=G.round;
   toSide.board.push(unit);
-  note(`${label}：敌方 ${unit.name} 叛变加入！${unit.charge?"（冲锋生效）":"（本回合无法攻击）"}`,toSide.name);
+  note(`${label}：敌方 ${unit.name} 叛变加入！`,toSide.name);
   return true;
 }
+
+/* ============ 三选一 UI（皇冠凝视/占星术） ============ */
 function showChoice(cards,title){
   return new Promise(resolve=>{
     G.pendingChoice={resolve};
@@ -682,116 +659,232 @@ function showChoice(cards,title){
     $("#choice").hidden=false;
     const wrap=$("#choiceCards");
     const cleanup=()=>{$("#choice").hidden=true;wrap.innerHTML="";G.pendingChoice=null;};
-    [...wrap.querySelectorAll("button")].forEach(btn=>{
-      btn.onclick=()=>{sfx("select");cleanup();resolve(cards[+btn.dataset.i]);};
-    });
+    [...wrap.querySelectorAll("button")].forEach(btn=>{btn.onclick=()=>{sfx("select");cleanup();resolve(cards[+btn.dataset.i]);};});
   });
 }
-/* 皇冠凝视：三选一，加入手牌也触发观察者 */
+function showChoiceButtons(items,title){
+  return new Promise(resolve=>{
+    G.pendingChoice={resolve};
+    $("#choiceTitle").textContent=title;
+    $("#choiceCards").innerHTML=items.map((it,i)=>`<button data-i="${i}" style="border:1px solid #304047;border-radius:10px;background:#1b2529;color:#e8eee9;font:600 15px var(--serif);padding:16px 24px;cursor:pointer">${esc(it.label)}</button>`).join("");
+    $("#choice").hidden=false;
+    const wrap=$("#choiceCards");
+    const cleanup=()=>{$("#choice").hidden=true;wrap.innerHTML="";G.pendingChoice=null;};
+    [...wrap.querySelectorAll("button")].forEach(btn=>{btn.onclick=()=>{sfx("select");const v=items[+btn.dataset.i].val;cleanup();resolve(v);};});
+  });
+}
 async function scryEffect(s){
-  const top=[];
-  for(let i=0;i<3&&s.deck.length;i++) top.push(s.deck.pop());
+  const top=[];for(let i=0;i<3&&s.deck.length;i++)top.push(s.deck.pop());
   if(!top.length){s.fatigue++;damage(s,s.fatigue,true);return;}
   let chosen;
   if(s===G.player){chosen=await showChoice(top,"皇冠凝视 · 选择一张加入手牌");}
   else{chosen=top.find(x=>x.id==="superman")||top.reduce((a,b)=>(b.cost>a.cost?b:a));}
   if(!addCardToHand(s,chosen)) s.deck.unshift(chosen);
   top.filter(x=>x!==chosen).forEach(x=>s.deck.unshift(x));
-  note(`皇冠凝视：检视牌库顶，取走【${chosen.name}】`,s.name);
+  note(`皇冠凝视：取走【${chosen.name}】`,s.name);
 }
-/* 占星术：看两张选一张，也触发观察者 */
 async function foreseeEffect(s){
-  const top=[];
-  for(let i=0;i<2&&s.deck.length;i++) top.push(s.deck.pop());
+  const top=[];for(let i=0;i<2&&s.deck.length;i++)top.push(s.deck.pop());
   if(!top.length){s.fatigue++;damage(s,s.fatigue,true);return;}
   let chosen;
   if(s===G.player){chosen=await showChoice(top,"占星术 · 选择一张加入手牌");}
   else{chosen=top.find(x=>x.id==="cometImpact")||top.reduce((a,b)=>(b.cost>a.cost?b:a));}
   if(!addCardToHand(s,chosen)) s.deck.unshift(chosen);
   top.filter(x=>x!==chosen).forEach(x=>s.deck.unshift(x));
-  note(`占星术：检视牌库顶，取走【${chosen.name}】`,s.name);
+  note(`占星术：取走【${chosen.name}】`,s.name);
+}
+async function namecardsummonChoose(s,o){
+  const cands=s.deck.map((c,i)=>({c,i})).filter(x=>MEMBER_IDS.indexOf(x.c.id)>=0);
+  if(!cands.length||s.board.length>=MAX_BOARD){note("名片召唤：牌库无成员或战场已满",s.name);return;}
+  let chosen;
+  if(s===G.player){chosen=await showChoice(cands.map(x=>x.c),"名片召唤 · 选择一位架子班成员");}
+  else{chosen=cands[Math.floor(Math.random()*cands.length)].c;}
+  const idx=s.deck.findIndex(c=>c.uid===chosen.uid);
+  if(idx>=0){
+    const card=s.deck.splice(idx,1)[0];card.atkLeft=card.charge?card.strikes:0;card.sr=G.round;
+    s.board.push(card);unitDeploy(s,card,o);
+    note(`名片召唤：召唤了 ${card.name}`,s.name);
+  }
 }
 
-/* 彗星冲击特效：从右侧飞入 */
-async function cometImpactFX(targetEl){
-  const sess = G.session;
-  const t = logical(targetEl.getBoundingClientRect());
-  const dark = document.createElement("div");
-  dark.style.cssText = "position:absolute;inset:0;z-index:200;pointer-events:none;background:radial-gradient(circle at 80% 20%,rgba(138,107,196,.32),rgba(5,8,9,.86) 55%);opacity:0;transition:opacity .4s";
-  $("#fx").appendChild(dark);
-  await sleep(20);
-  dark.style.opacity = "1";
-  const startX = UI.w + 320;
-  const startY = -260;
-  const comet = document.createElement("div");
-  comet.style.cssText = `position:absolute;left:${t.x}px;top:${t.y}px;width:60px;height:60px;margin:-30px 0 0 -30px;z-index:201;pointer-events:none;transform:translate(${startX-t.x}px,${startY-t.y}px);transition:transform .55s cubic-bezier(.45,.05,.75,.95)`;
-  comet.innerHTML = `
-    <div style="position:absolute;left:50%;top:50%;width:240px;height:26px;transform-origin:0 50%;transform:translate(0,-50%) rotate(135deg);background:linear-gradient(90deg,rgba(169,143,217,0),rgba(169,143,217,.4) 30%,rgba(232,213,255,.92) 75%,#fff);filter:blur(4px);border-radius:12px"></div>
-    <div style="position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 55% 55%,#fff 0%,#f0e8ff 25%,#b39ce8 55%,rgba(138,107,196,0) 80%);filter:blur(2px);box-shadow:0 0 40px #a98fd9,0 0 80px rgba(138,107,196,.7)"></div>`;
-  $("#fx").appendChild(comet);
-  await sleep(20);
-  comet.style.transform = "translate(0,0)";
-  await sleep(560);
-  if(sess !== G.session){ dark.remove(); comet.remove(); return; }
-  comet.style.transition = "opacity .22s";
-  comet.style.opacity = "0";
-  const burst = document.createElement("div");
-  burst.style.cssText = `position:absolute;left:${t.x}px;top:${t.y}px;width:22px;height:22px;margin:-11px 0 0 -11px;border-radius:50%;border:4px solid #e8d5ff;box-shadow:0 0 50px #a98fd9,inset 0 0 25px #fff;z-index:202;pointer-events:none;animation:cometBurst .9s ease-out forwards`;
-  $("#fx").appendChild(burst);
-  const dmgTxt = document.createElement("div");
-  dmgTxt.textContent = "-40";
-  dmgTxt.style.cssText = `position:absolute;left:${t.x}px;top:${t.y}px;font:900 60px/1 var(--serif);color:#f0e8ff;text-shadow:0 0 20px #b39ce8,0 0 50px #8a6bc4,0 3px 10px #000;z-index:203;pointer-events:none;animation:cometDamage 1.3s ease-out forwards`;
-  $("#fx").appendChild(dmgTxt);
-  sfx("core");
-  shake();
-  setTimeout(()=>{ comet.remove(); burst.remove(); dmgTxt.remove(); }, 1400);
-  await sleep(420);
-  dark.style.opacity = "0";
-  setTimeout(()=>dark.remove(), 500);
+/* ============ 通用选择模式 ============ */
+function startChoose(config){
+  G.choose={
+    count:config.count||1,
+    minCount:config.minCount||0,
+    maxCount:config.maxCount||config.count||1,
+    eligible:config.eligible||[],
+    picked:[],
+    resolve:config.resolve,
+    cancel:config.cancel,
+    label:config.label||"选择目标"
+  };
+  renderChooseBar();
+}
+function renderChooseBar(){
+  if(!G.choose){$("#chooseBar").hidden=true;return;}
+  $("#chooseBar").hidden=false;
+  $("#chooseHint").textContent=G.choose.label;
+  $("#chooseCount").innerHTML=`已选 <b>${G.choose.picked.length}</b> / 最多 ${G.choose.maxCount}${G.choose.minCount>0?`（至少 ${G.choose.minCount}）`:""}`;
+  const canConfirm=G.choose.picked.length>=G.choose.minCount&&G.choose.picked.length<=G.choose.maxCount;
+  $("#chooseConfirm").disabled=!canConfirm;
+}
+function toggleChooseUnit(uid){
+  if(!G.choose) return;
+  if(!G.choose.eligible.includes(uid)) return;
+  const i=G.choose.picked.indexOf(uid);
+  if(i>=0){G.choose.picked.splice(i,1);}
+  else{
+    if(G.choose.picked.length>=G.choose.maxCount){toast(`最多选 ${G.choose.maxCount} 个`);return;}
+    G.choose.picked.push(uid);
+    sfx("pick");
+  }
+  renderChooseBar();render();
+}
+function confirmChoose(){
+  if(!G.choose) return;
+  if(G.choose.picked.length<G.choose.minCount){toast(`至少选 ${G.choose.minCount} 个`);return;}
+  const picked=G.choose.picked.map(uid=>find(G.opponent.board,uid)).filter(Boolean);
+  const cb=G.choose.resolve;
+  G.choose=null;
+  renderChooseBar();
+  if(cb) cb(picked);
+  render();
+}
+function cancelChoose(){
+  if(!G.choose) return;
+  const cb=G.choose.cancel;
+  G.choose=null;renderChooseBar();
+  if(cb) cb();
+  render();
 }
 
-/* 人民军特效 */
-async function peopleArmyFX(){
-  const sess = G.session;
-  const layer = document.createElement("div");
-  layer.style.cssText = "position:absolute;inset:0;z-index:200;pointer-events:none;display:grid;place-items:center;background:radial-gradient(circle at 50% 50%,rgba(217,99,77,.35),rgba(5,8,9,.85) 60%);opacity:0;transition:opacity .3s";
-  layer.innerHTML = `
-    <div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(217,99,77,.15) 0 2px,transparent 2px 14px);animation:armyScan 1.2s linear infinite;opacity:.7"></div>
-    <div style="position:relative;font:900 78px/1 var(--serif);color:#f0d18e;text-shadow:0 0 30px #e5533d,0 0 80px #d9634d,0 6px 20px #000;letter-spacing:.2em;animation:peopleArmyFX 1.6s ease-out forwards">人民军</div>`;
+/* ============ 效果实现 ============ */
+function effectChoose4(s,o){
+  if(!o.board.length){note("敌方场上没有单位",s.name);return;}
+  if(s===G.player){
+    startChoose({count:1,maxCount:1,minCount:1,label:"选择 1 个敌方单位造成 4 伤害",
+      eligible:o.board.map(u=>u.uid),
+      resolve:(picked)=>{if(picked[0]){picked[0].health-=4;dead(o);note(`对 ${picked[0].name} 造成 4 点伤害`,s.name);}}});
+    hint("点击高亮敌方单位，然后点确定");
+    render();
+  }else{
+    const t=[...o.board].sort((a,b)=>b.attack-a.attack)[0];
+    t.health-=4;dead(o);note(`对 ${t.name} 造成 4 点伤害`,s.name);
+  }
+}
+function effectChoose2(s,o){
+  if(!o.board.length){note("敌方场上没有单位",s.name);return;}
+  if(s===G.player){
+    startChoose({count:1,maxCount:1,minCount:1,label:"选择 1 个敌方单位造成 2 伤害",
+      eligible:o.board.map(u=>u.uid),
+      resolve:(picked)=>{if(picked[0]){picked[0].health-=2;dead(o);note(`对 ${picked[0].name} 造成 2 点伤害`,s.name);}}});
+    hint("点击高亮敌方单位，然后点确定");
+    render();
+  }else{
+    const t=[...o.board].sort((a,b)=>b.attack-a.attack)[0];
+    t.health-=2;dead(o);note(`对 ${t.name} 造成 2 点伤害`,s.name);
+  }
+}
+function effectChoose3x2(s,o){
+  if(!o.board.length){note("敌方场上没有单位",s.name);return;}
+  if(s===G.player){
+    startChoose({count:3,maxCount:3,minCount:0,label:"选择至多 3 个敌方单位，各造成 2 伤害",
+      eligible:o.board.map(u=>u.uid),
+      resolve:(picked)=>{
+        if(!picked.length){note("未选择任何目标",s.name);return;}
+        picked.forEach(u=>{if(u&&u.health>0)u.health-=2;});
+        dead(o);
+        note(`对 ${picked.map(u=>u.name).join("、")} 各造成 2 点伤害`,s.name);
+      }});
+    hint("点击高亮敌方单位（可少选），然后点确定");
+    render();
+  }else{
+    const targets=[...o.board].sort(()=>Math.random()-.5).slice(0,3);
+    targets.forEach(t=>t.health-=2);dead(o);
+    note("对 3 个敌方单位各造成 2 点伤害",s.name);
+  }
+}
+function effectSaturation(s,o){
+  const n=fireCount(s);
+  const dmg=n*2;
+  note(`饱和炮击：火炮×${n}，全场造成 ${dmg} 点伤害`,s.name);
+  // 敌方全体单位受伤
+  o.board.forEach(u=>u.health-=dmg);
+  dead(o);
+  damage(o,dmg);
+  saturationFX();
+}
+function saturationFX(){
+  const layer=document.createElement("div");
+  layer.style.cssText="position:absolute;inset:0;z-index:200;pointer-events:none;background:radial-gradient(ellipse at 50% 50%,rgba(217,99,77,.42),rgba(5,8,9,.7) 60%);opacity:0;transition:opacity .35s";
+  layer.innerHTML=`
+    <div style="position:absolute;left:50%;top:50%;width:200px;height:200px;margin:-100px 0 0 -100px;border-radius:50%;border:4px solid #ffb0a0;box-shadow:0 0 60px #d9634d,inset 0 0 40px #fff;animation:satWave 1.1s ease-out forwards"></div>
+    <div style="position:absolute;left:50%;top:50%;width:200px;height:200px;margin:-100px 0 0 -100px;border-radius:50%;border:3px solid #ffd9a8;box-shadow:0 0 40px #e5533d;animation:satWave 1.1s .15s ease-out forwards"></div>
+    <div style="position:absolute;left:50%;top:50%;width:200px;height:200px;margin:-100px 0 0 -100px;border-radius:50%;border:3px solid #f0d18e;box-shadow:0 0 40px #e5533d;animation:satWave 1.1s .3s ease-out forwards"></div>`;
   $("#fx").appendChild(layer);
-  await sleep(20);
-  layer.style.opacity = "1";
-  sfx("spell");
-  shake();
-  await sleep(1500);
-  layer.style.opacity = "0";
-  setTimeout(()=>layer.remove(), 400);
+  requestAnimationFrame(()=>{layer.style.opacity="1";});
+  sfx("satur");shake();
+  // 爆炸粒子：从中心向外飞散的红色/金色小点
+  for(let i=0;i<24;i++){
+    const d=document.createElement("div");
+    const ang=Math.random()*Math.PI*2;
+    const dist=120+Math.random()*260;
+    const size=4+Math.random()*6;
+    d.style.cssText=`position:absolute;left:50%;top:50%;width:${size}px;height:${size}px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffd9a8,#d9634d);box-shadow:0 0 12px #ff8a70;transform:translate(-50%,-50%);z-index:201;pointer-events:none;opacity:1;transition:transform .9s cubic-bezier(.15,.5,.35,1),opacity .9s`;
+    $("#fx").appendChild(d);
+    requestAnimationFrame(()=>{d.style.transform=`translate(calc(-50% + ${Math.cos(ang)*dist}px),calc(-50% + ${Math.sin(ang)*dist}px)) scale(.3)`;d.style.opacity="0";});
+    setTimeout(()=>d.remove(),1000);
+  }
+  setTimeout(()=>{layer.style.opacity="0";setTimeout(()=>layer.remove(),400);},1100);
 }
-
-/* Superman 特效 */
-async function supermanFX(){
-  const sess = G.session;
-  const layer = document.createElement("div");
-  layer.style.cssText = "position:absolute;inset:0;z-index:200;pointer-events:none;background:radial-gradient(circle at 50% 50%,rgba(138,107,196,.45),rgba(5,8,9,.88) 60%);opacity:0;transition:opacity .3s";
-  layer.innerHTML = `
-    <div style="position:absolute;left:50%;top:50%;width:520px;height:520px;margin:-260px 0 0 -260px;border-radius:50%;border:3px solid rgba(179,156,232,.65);box-shadow:0 0 80px #8a6bc4,inset 0 0 60px rgba(138,107,196,.7);animation:cometBurst 1.4s ease-out forwards"></div>
-    <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font:900 220px/1 var(--serif);color:#f0e8ff;text-shadow:0 0 40px #8a6bc4,0 0 100px #b39ce8,0 8px 24px #000;animation:cometDamage 1.5s ease-out forwards">S</div>`;
-  $("#fx").appendChild(layer);
-  await sleep(20);
-  layer.style.opacity = "1";
-  sfx("core");
-  shake();
-  await sleep(1500);
-  layer.style.opacity = "0";
-  setTimeout(()=>layer.remove(), 400);
-}
-/* 补充：人民军/Superman 使用的两个关键帧 */
-if(!document.getElementById("extraKF")){
-  const s=document.createElement("style");s.id="extraKF";
-  s.textContent="@keyframes armyScan{0%{transform:translateY(-20px)}100%{transform:translateY(20px)}}@keyframes peopleArmyFX{0%{opacity:0;transform:scale(.7)}30%{opacity:1;transform:scale(1.05)}80%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1.1)}}";
+if(!document.getElementById("satKF")){
+  const s=document.createElement("style");s.id="satKF";
+  s.textContent="@keyframes satWave{0%{transform:scale(.2);opacity:1}100%{transform:scale(6);opacity:0}}";
   document.head.appendChild(s);
 }
 
+/* ============ 彗星冲击特效：拖尾沿着起点到终点方向 ============ */
+async function cometImpactFX(targetEl){
+  const sess=G.session;
+  const t=logical(targetEl.getBoundingClientRect());
+  const dark=document.createElement("div");
+  dark.style.cssText="position:absolute;inset:0;z-index:200;pointer-events:none;background:radial-gradient(circle at 80% 20%,rgba(138,107,196,.32),rgba(5,8,9,.86) 55%);opacity:0;transition:opacity .4s";
+  $("#fx").appendChild(dark);
+  await sleep(20);dark.style.opacity="1";
+  const startX=UI.w+320;
+  const startY=-260;
+  // 从起点看向终点的角度（射线方向），尾巴应指向起点方向
+  const trailAngle=Math.atan2(startY-t.y,startX-t.x)*180/Math.PI;
+  const comet=document.createElement("div");
+  comet.style.cssText=`position:absolute;left:${t.x}px;top:${t.y}px;width:60px;height:60px;margin:-30px 0 0 -30px;z-index:201;pointer-events:none;transform:translate(${startX-t.x}px,${startY-t.y}px);transition:transform .55s cubic-bezier(.45,.05,.75,.95)`;
+  comet.innerHTML=`
+    <div style="position:absolute;left:50%;top:50%;width:240px;height:26px;transform-origin:0 50%;transform:translate(0,-50%) rotate(${trailAngle}deg);background:linear-gradient(90deg,rgba(169,143,217,0),rgba(169,143,217,.4) 30%,rgba(232,213,255,.92) 75%,#fff);filter:blur(4px);border-radius:12px"></div>
+    <div style="position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 55% 55%,#fff 0%,#f0e8ff 25%,#b39ce8 55%,rgba(138,107,196,0) 80%);filter:blur(2px);box-shadow:0 0 40px #a98fd9,0 0 80px rgba(138,107,196,.7)"></div>`;
+  $("#fx").appendChild(comet);
+  await sleep(20);
+  comet.style.transform="translate(0,0)";
+  await sleep(560);
+  if(sess!==G.session){dark.remove();comet.remove();return;}
+  comet.style.transition="opacity .22s";comet.style.opacity="0";
+  const burst=document.createElement("div");
+  burst.style.cssText=`position:absolute;left:${t.x}px;top:${t.y}px;width:22px;height:22px;margin:-11px 0 0 -11px;border-radius:50%;border:4px solid #e8d5ff;box-shadow:0 0 50px #a98fd9,inset 0 0 25px #fff;z-index:202;pointer-events:none;animation:cometBurst .9s ease-out forwards`;
+  $("#fx").appendChild(burst);
+  const dmgTxt=document.createElement("div");
+  dmgTxt.textContent="-40";
+  dmgTxt.style.cssText=`position:absolute;left:${t.x}px;top:${t.y}px;font:900 60px/1 var(--serif);color:#f0e8ff;text-shadow:0 0 20px #b39ce8,0 0 50px #8a6bc4,0 3px 10px #000;z-index:203;pointer-events:none;animation:cometDamage 1.3s ease-out forwards`;
+  $("#fx").appendChild(dmgTxt);
+  sfx("core");shake();
+  setTimeout(()=>{comet.remove();burst.remove();dmgTxt.remove();},1400);
+  await sleep(420);dark.style.opacity="0";setTimeout(()=>dark.remove(),500);
+}
+if(!document.getElementById("cometKF")){
+  const s=document.createElement("style");s.id="cometKF";
+  s.textContent="@keyframes cometBurst{0%{transform:scale(1);opacity:1;border-width:4px}100%{transform:scale(18);opacity:0;border-width:1px}}@keyframes cometDamage{0%{transform:translate(-50%,-50%) scale(.3);opacity:0}15%{transform:translate(-50%,-50%) scale(1.5);opacity:1}35%{transform:translate(-50%,-50%) scale(1)}100%{transform:translate(-50%,-180%) scale(1);opacity:0}}";
+  document.head.appendChild(s);
+}
+
+/* ============ 部署效果 ============ */
 function unitDeploy(s,c,o){
   switch(c.effect){
     case"heal2":heal(s,2);break;
@@ -806,6 +899,12 @@ function unitDeploy(s,c,o){
     case"hero3":damage(o,3);break;
     case"draw2":draw(s,2);break;
     case"summonPirate":summon(s,"pirate",1);break;
+    case"copySmallCannon":{
+      if(s.board.length<MAX_BOARD){
+        const small=profile(s.name).cards.find(x=>x.id==="smallcannon");
+        if(small){const u=clone(small);u.atkLeft=u.charge?u.strikes:0;u.sr=G.round;s.board.push(u);note(`轻型炮台复制了一个小炮组`,s.name);}
+      }
+      break;}
     case"buffAll1":s.board.forEach(u=>{u.attack+=1;u.health+=1;u.maxHealth+=1;});break;
     case"buffAll2":s.board.forEach(u=>{u.attack+=2;u.health+=2;u.maxHealth+=2;});break;
     case"buffGuns1":s.board.forEach(u=>{if(GUNS.indexOf(u.id)>=0)u.attack+=1;});break;
@@ -813,26 +912,35 @@ function unitDeploy(s,c,o){
     case"gunnerBoost":if(fireCount(s)>1){c.attack+=2;c.health+=2;c.maxHealth+=2;}break;
     case"energyDown":o.energy=Math.max(0,o.energy-1);break;
     case"selfDamage1":break;
-    case"randomDamage4":{if(o.board.length){const t=o.board[Math.floor(Math.random()*o.board.length)];t.health-=4;dead(o);note(`乌克兰红军对 ${t.name} 造成 4 点伤害`,s.name);}else note("乌克兰红军部署，但敌方场上没有单位",s.name);break;}
-    case"randomDamage2":{if(o.board.length){const t=o.board[Math.floor(Math.random()*o.board.length)];t.health-=2;dead(o);note(`对 ${t.name} 造成 2 点伤害`,s.name);}break;}
-    case"randomThree2":{const targets=[...o.board].sort(()=>Math.random()-.5).slice(0,3);targets.forEach(t=>t.health-=2);dead(o);note("随机三个敌方单位各受 2 点伤害",s.name);break;}
-    case"buffRed":s.board.forEach(u=>{if(u.id==="red"){u.attack+=2;u.health+=2;u.maxHealth+=2;}});note("哈萨克红军鼓舞了所有俄罗斯布尔什维克红军",s.name);break;
+    case"choose4":effectChoose4(s,o);break;
+    case"choose2":effectChoose2(s,o);break;
+    case"choose3x2":effectChoose3x2(s,o);break;
+    case"buffRed":s.board.forEach(u=>{if(u.id==="red"){u.attack+=2;u.health+=2;u.maxHealth+=2;}});note("哈萨克红军鼓舞了所有俄布",s.name);break;
     case"alweiDeploy":draw(s,2);s.board.forEach(u=>{u.attack+=1;u.health+=1;u.maxHealth+=1;});note("阿伟：抽两张牌，全军 +1/+1",s.name);break;
-    case"qixingDeploy":o.maxEnergy=Math.max(0,o.maxEnergy-1);o.energy=Math.min(o.energy,o.maxEnergy);note("七星：敌方费用上限 -1（最低 0）",s.name);break;
+    case"qixingDeploy":o.maxEnergy=Math.max(0,o.maxEnergy-1);o.energy=Math.min(o.energy,o.maxEnergy);note("七星：敌方费用上限 -1",s.name);break;
     case"susuDeploy":{
       if(s.board.length<MAX_BOARD){
-        const red=profile(s.name).cards.find(x=>x.id==="red")||{id:"red",name:"俄罗斯布尔什维克红军",cost:2,kind:"unit",art:"★",text:"冲锋。",charge:true,atk:2,hp:3};
+        const red=profile(s.name).cards.find(x=>x.id==="red")||{id:"red",name:"俄布",cost:2,kind:"unit",art:"★",text:"冲锋。",charge:true,atk:2,hp:3};
         const u=clone(red);u.atkLeft=u.charge?u.strikes:0;u.sr=G.round;s.board.push(u);
-        note("苏苏：召唤了一个俄罗斯布尔什维克红军",s.name);
       }break;}
     case"huiliyiDeploy":{
       const cands=s.board.filter(u=>u!==c);
       if(cands.length){const t=cands.sort((a,b)=>b.attack-a.attack)[0];t.attack+=3;t.health+=3;t.maxHealth+=3;note(`绘梨衣：${t.name} +3/+3`,s.name);}
-      else note("绘梨衣：没有其他友方单位",s.name);break;}
+      break;}
     case"baimaoDeploy":s.energy+=3;note("白猫：获得 3 点额外费用",s.name);break;
     case"xiashuiDeploy":damage(o,3);note("下水：敌方英雄受 3 点伤害",s.name);break;
-    case"yuchunDeploy":if(o.hand.length){const idx=Math.floor(Math.random()*o.hand.length);const removed=o.hand.splice(idx,1)[0];note(`愚蠢：摧毁了敌方手牌【${removed.name}】`,s.name);}else note("愚蠢：敌方手牌为空",s.name);break;
-    case"taojinDeploy":if(Math.random()<0.5){damage(o,3);note("淘金：造成 3 点伤害",s.name);}else{heal(s,3);note("淘金：恢复 3 点生命",s.name);}break;
+    case"yuchunDeploy":if(o.hand.length){const idx=Math.floor(Math.random()*o.hand.length);const removed=o.hand.splice(idx,1)[0];note(`愚蠢：摧毁了敌方手牌【${removed.name}】`,s.name);}break;
+    case"taojinDeploy":{
+      if(s===G.player){
+        showChoiceButtons([{label:"造成 3 点伤害（敌方英雄）",val:"damage"},{label:"恢复 3 点生命",val:"heal"}],"淘金 · 二选一").then(v=>{
+          if(v==="damage"){damage(o,3);note("淘金：造成 3 点伤害",s.name);}
+          else{heal(s,3);note("淘金：恢复 3 点生命",s.name);}
+          render();
+        });
+      }else{
+        if(Math.random()<0.5){damage(o,3);}else{heal(s,3);}
+      }
+      break;}
     case"steal3hero1":steal(s,3);damage(o,1);break;
     case"steal2":steal(s,2);break;
     case"steal3":steal(s,3);break;
@@ -842,90 +950,87 @@ function unitDeploy(s,c,o){
   }
 }
 
+/* ============ 法术 ============ */
 function castSpell(s,c,o){
   switch(c.effect){
     case"summonRed1":summon(s,"red",1);note("红色动员令，红军入场",s.name);break;
     case"summonRed2":summon(s,"red",2);note("十月革命，两名红军入场",s.name);break;
     case"armor3draw":s.armor+=3;draw(s,1);note("补充护甲与手牌",s.name);break;
-    case"armor4draw":s.armor+=4;draw(s,1);note("获得护甲并补牌",s.name);break;
-    case"armor6":s.armor+=6;note("时光护盾：获得 6 点护甲",s.name);break;
-    case"armor8draw":s.armor+=8;draw(s,1);note("星云护盾：获得 8 点护甲并抽一张牌",s.name);break;
-    case"traceBoost":s.armor+=6;draw(s,2);note("彗星轨迹：获得 6 点护甲并抽两张牌",s.name);break;
-    case"timeShield2":s.armor+=5;heal(s,3);note("时光护盾：获得 5 点护甲并恢复 3 点生命",s.name);break;
-    case"nebulaShield2":s.armor+=10;draw(s,2);note("星云护盾：获得 10 点护甲并抽两张牌",s.name);break;
-    case"buffAll2":s.board.forEach(u=>{u.attack+=2;u.health+=2;u.maxHealth+=2;});note("全军获得强化",s.name);break;
-    case"buffAll1":s.board.forEach(u=>{u.attack+=1;u.health+=1;u.maxHealth+=1;});note("整条战线获得强化",s.name);break;
-    case"buffAll1draw":s.board.forEach(u=>{u.attack+=1;u.health+=1;u.maxHealth+=1;});draw(s,1);note("全军获得强化并补牌",s.name);break;
-    case"buffAllCharge":s.board.forEach(u=>{u.attack+=1;u.health+=1;u.maxHealth+=1;u.atkLeft=Math.max(u.atkLeft,1);});note("全军获得强化并获得冲锋",s.name);break;
-    case"buffOneDraw":if(s.board.length){const t=[...s.board].sort((a,b)=>b.attack-a.attack)[0];t.attack+=2;t.health+=2;t.maxHealth+=2;draw(s,1);note(`${t.name} +2/+2 并抽一张牌`,s.name);}else{draw(s,1);note("场上没有单位，只抽了一张牌",s.name);}break;
-    case"ramp":s.maxEnergy=Math.min(10,s.maxEnergy+1);s.energy+=1;draw(s,1);note("五年计划完成，费用上限提升",s.name);break;
+    case"armor4draw":s.armor+=4;draw(s,1);break;
+    case"armor6":s.armor+=6;break;
+    case"armor8draw":s.armor+=8;draw(s,1);break;
+    case"traceBoost":s.armor+=6;draw(s,2);note("彗星轨迹：6 甲 + 2 抽",s.name);break;
+    case"timeShield2":s.armor+=5;heal(s,3);note("时光护盾：5 甲 + 3 血",s.name);break;
+    case"nebulaShield2":s.armor+=10;draw(s,2);note("星云护盾：10 甲 + 2 抽",s.name);break;
+    case"buffAll2":s.board.forEach(u=>{u.attack+=2;u.health+=2;u.maxHealth+=2;});note("全军 +2/+2",s.name);break;
+    case"buffAll1":s.board.forEach(u=>{u.attack+=1;u.health+=1;u.maxHealth+=1;});note("全军 +1/+1",s.name);break;
+    case"buffAll1draw":s.board.forEach(u=>{u.attack+=1;u.health+=1;u.maxHealth+=1;});draw(s,1);break;
+    case"buffAllCharge":s.board.forEach(u=>{u.attack+=1;u.health+=1;u.maxHealth+=1;u.atkLeft=Math.max(u.atkLeft,1);});note("全军 +1/+1 并获得冲锋",s.name);break;
+    case"buffOneDraw":if(s.board.length){const t=[...s.board].sort((a,b)=>b.attack-a.attack)[0];t.attack+=2;t.health+=2;t.maxHealth+=2;draw(s,1);}else{draw(s,1);}break;
+    case"ramp":s.maxEnergy=Math.min(10,s.maxEnergy+1);s.energy+=1;draw(s,1);note("五年计划完成",s.name);break;
     case"starClimb":{
-      s.maxEnergy=Math.min(10,s.maxEnergy+1);
-      s.energy=Math.min(s.energy+1,s.maxEnergy);
-      o.maxEnergy=Math.max(0,o.maxEnergy-1);
-      o.energy=Math.min(o.energy,o.maxEnergy);
-      note(`星轨攀升：我方费用上限 +1，敌方费用上限 -1（最低 0）`,s.name);
-      break;}
-    case"damage5":damage(o,5);note("命中英雄 5 点伤害",s.name);break;
-    case"damage6":damage(o,6);note("命中英雄 6 点伤害",s.name);break;
-    case"damage7":damage(o,7);note("例行复仇命中英雄",s.name);break;
-    case"damage10":damage(o,10);note("慢节奏终端开始斩杀",s.name);break;
-    case"remove":if(o.board.length){const t=[...o.board].sort((a,b)=>b.attack-a.attack)[0];removeFrom(o,t);note(`移除敌方最强单位 ${t.name}`,s.name);}break;
-    case"draw2":draw(s,2);note("补充两张手牌",s.name);break;
-    case"draw1":draw(s,1);note("抽一张牌",s.name);break;
-    case"draw3":draw(s,3);note("抽三张牌",s.name);break;
-    case"draw1heal2":draw(s,1);heal(s,2);note("抽一张牌并恢复 2 点生命",s.name);break;
-    case"draw2armor1":draw(s,2);s.armor+=1;note("抽两张牌并获得 1 点护甲",s.name);break;
-    case"draw2armor3":draw(s,2);s.armor+=3;note("抽两张牌并获得 3 点护甲",s.name);break;
-    case"draw3armor3":draw(s,3);s.armor+=3;note("抽三张牌并获得 3 点护甲",s.name);break;
-    case"heal5draw":heal(s,5);draw(s,1);note("恢复 5 点生命并抽一张牌",s.name);break;
-    case"heal3draw":heal(s,3);draw(s,1);note("恢复 3 点生命并抽一张牌",s.name);break;
-    case"hero2draw":damage(o,2);draw(s,1);note("敌方英雄受 2 点伤害并抽一张牌",s.name);break;
-    case"manaBurn":damage(o,2);o.maxEnergy=Math.max(0,o.maxEnergy-1);o.energy=Math.min(o.energy,o.maxEnergy);note("压制对手法力（最低 0）",s.name);break;
-    case"energyDownDraw":o.maxEnergy=Math.max(0,o.maxEnergy-1);o.energy=Math.min(o.energy,o.maxEnergy);draw(s,1);note("敌方费用上限 -1 并抽一张牌",s.name);break;
-    case"seal":if(o.board.length){const t=[...o.board].sort((a,b)=>b.health-a.health)[0];removeFrom(o,t);damage(o,1);note(`封锁并清除敌方单位 ${t.name}`,s.name);}break;
-    case"enemyAtkDown":o.board.forEach(u=>{u.attack=Math.max(0,u.attack-2);});note("敌方全体攻击力 -2",s.name);break;
-    case"enemyAtkDown1":o.board.forEach(u=>{u.attack=Math.max(0,u.attack-1);});note("敌方全体攻击力 -1",s.name);break;
-    case"winterGeneral":o.board.forEach(u=>{u.attack=Math.max(0,u.attack-2);});note("冬将军降临，敌方全体攻击力 -2",s.name);break;
-    case"aoe2":o.board.forEach(u=>u.health-=2);dead(o);damage(o,2);note("范围炮火覆盖牌桌",s.name);break;
-    case"aoe3":o.board.forEach(u=>u.health-=3);dead(o);damage(o,3);note("敌方全场与英雄受 3 点伤害",s.name);break;
-    case"aoe4":o.board.forEach(u=>u.health-=4);dead(o);note("齐射覆盖敌方全场",s.name);break;
-    case"aoe5":o.board.forEach(u=>u.health-=5);dead(o);damage(o,5);note("炮兵总司令覆盖整个战场",s.name);break;
-    case"heal4":heal(s,4);note("恢复 4 点生命",s.name);break;
-    case"draw2heal2":draw(s,2);heal(s,2);note("补给与休整",s.name);break;
-    case"steal":damage(o,3);draw(s,1);note("偷取资源并补牌",s.name);break;
-    case"escape":s.armor+=3;damage(o,2);note("逃跑成功并留下干扰",s.name);break;
-    case"bribe":draw(s,2);damage(s,1);note("账外交易换来额外资源",s.name);break;
-    case"healDraw":heal(s,3);draw(s,1);note("恢复生命并补牌",s.name);break;
-    case"pirateBuff":s.board.forEach(u=>u.attack+=1);draw(s,1);note("海盗全军提速",s.name);break;
-    case"raid":draw(s,Math.min(3,Math.max(1,s.board.length)));note("劫掠带来额外资源",s.name);break;
-    case"develop":draw(s,2);s.armor+=2;note("解析并改造卡组",s.name);break;
-    case"adapt":if(o.board.length){const t=[...o.board].sort((a,b)=>b.attack-a.attack)[0];removeFrom(o,t);}heal(s,3);note("适应性方案处理威胁",s.name);break;
-    case"handoff":draw(s,1);s.armor+=1;note("关系网调度完成",s.name);break;
-    case"crown":draw(s,3);s.armor+=3;note("复制的皇冠开始产出",s.name);break;
-    case"saturation":damage(o,Math.max(3,fireCount(s)*3));note("饱和式打击覆盖敌方英雄",s.name);break;
-    case"reload":s.board.forEach(u=>{if(GUNS.indexOf(u.id)>=0)u.attack+=3;});draw(s,1);note("火炮快速装填并补充一张牌",s.name);break;
-    case"buffGuns2draw":s.board.forEach(u=>{if(GUNS.indexOf(u.id)>=0)u.attack+=2;});draw(s,1);note("炮兵支援：火炮 +2 攻击并抽一张牌",s.name);break;
-    case"supply":draw(s,2);s.armor+=2;note("炮弹补给完成",s.name);break;
-    case"armor2draw":s.armor+=2;draw(s,1);note("获得 2 点护甲并抽一张牌",s.name);break;
+      s.maxEnergy=Math.min(10,s.maxEnergy+1);s.energy=Math.min(s.energy+1,s.maxEnergy);
+      o.maxEnergy=Math.max(0,o.maxEnergy-1);o.energy=Math.min(o.energy,o.maxEnergy);
+      note("星轨攀升：我方 +1，敌方 -1",s.name);break;}
+    case"damage5":damage(o,5);break;
+    case"damage6":damage(o,6);break;
+    case"damage7":damage(o,7);break;
+    case"damage10":damage(o,10);break;
+    case"remove":if(o.board.length){const t=[...o.board].sort((a,b)=>b.attack-a.attack)[0];removeFrom(o,t);note(`移除 ${t.name}`,s.name);}break;
+    case"draw2":draw(s,2);break;
+    case"draw1":draw(s,1);break;
+    case"draw3":draw(s,3);break;
+    case"draw1heal2":draw(s,1);heal(s,2);break;
+    case"draw2armor1":draw(s,2);s.armor+=1;break;
+    case"draw2armor3":draw(s,2);s.armor+=3;break;
+    case"draw3armor3":draw(s,3);s.armor+=3;break;
+    case"heal5draw":heal(s,5);draw(s,1);break;
+    case"heal3draw":heal(s,3);draw(s,1);break;
+    case"hero2draw":damage(o,2);draw(s,1);break;
+    case"manaBurn":damage(o,2);o.maxEnergy=Math.max(0,o.maxEnergy-1);o.energy=Math.min(o.energy,o.maxEnergy);break;
+    case"energyDownDraw":o.maxEnergy=Math.max(0,o.maxEnergy-1);o.energy=Math.min(o.energy,o.maxEnergy);draw(s,1);break;
+    case"seal":if(o.board.length){const t=[...o.board].sort((a,b)=>b.health-a.health)[0];removeFrom(o,t);damage(o,1);}break;
+    case"enemyAtkDown":o.board.forEach(u=>{u.attack=Math.max(0,u.attack-2);});break;
+    case"enemyAtkDown1":o.board.forEach(u=>{u.attack=Math.max(0,u.attack-1);});break;
+    case"aoe2":o.board.forEach(u=>u.health-=2);dead(o);damage(o,2);break;
+    case"aoe3":o.board.forEach(u=>u.health-=3);dead(o);damage(o,3);break;
+    case"aoe4":o.board.forEach(u=>u.health-=4);dead(o);break;
+    case"aoe5":o.board.forEach(u=>u.health-=5);dead(o);damage(o,5);break;
+    case"heal4":heal(s,4);break;
+    case"draw2heal2":draw(s,2);heal(s,2);break;
+    case"steal":damage(o,3);draw(s,1);break;
+    case"escape":s.armor+=3;damage(o,2);break;
+    case"bribe":draw(s,2);damage(s,1);break;
+    case"healDraw":heal(s,3);draw(s,1);break;
+    case"pirateBuff":s.board.forEach(u=>u.attack+=1);draw(s,1);break;
+    case"raid":draw(s,Math.min(3,Math.max(1,s.board.length)));break;
+    case"develop":draw(s,2);s.armor+=2;break;
+    case"adapt":if(o.board.length){const t=[...o.board].sort((a,b)=>b.attack-a.attack)[0];removeFrom(o,t);}heal(s,3);break;
+    case"handoff":draw(s,1);s.armor+=1;break;
+    case"crown":draw(s,3);s.armor+=3;break;
+    case"saturation":effectSaturation(s,o);break;
+    case"reload":s.board.forEach(u=>{if(GUNS.indexOf(u.id)>=0)u.attack+=3;});draw(s,1);break;
+    case"buffGuns2draw":s.board.forEach(u=>{if(GUNS.indexOf(u.id)>=0)u.attack+=2;});draw(s,1);break;
+    case"supply":draw(s,2);s.armor+=2;break;
+    case"armor2draw":s.armor+=2;draw(s,1);break;
     case"fillRed":{
       const originalCount=s.hand.length,originalNames=s.hand.map(x=>x.name).join("、")||"无";
       const tpl=profile(s.name).cards.find(x=>x.id==="red");let handAdded=0;
       while(s.hand.length<MAX_HAND&&tpl){addCardToHand(s,clone(tpl));handAdded++;}
       const before=s.board.length;
       while(s.board.length<MAX_BOARD&&tpl){const u=clone(tpl);u.atkLeft=u.charge?u.strikes:0;u.sr=G.round;s.board.push(u);}
-      note(`人民军：保留原有手牌 ${originalCount} 张【${originalNames}】，追加 ${handAdded} 张俄布；战场补充 ${s.board.length-before} 个俄布`,s.name);
+      note(`人民军：保留 ${originalCount} 张【${originalNames}】，追加 ${handAdded} 张俄布；战场补充 ${s.board.length-before} 个俄布`,s.name);
       if(s===G.player) peopleArmyFX();
       break;}
-    case"redDawn":{const redCount=s.board.filter(u=>u.id==="red").length,dmg=2+redCount;o.board.forEach(u=>u.health-=dmg);dead(o);note(`赤色黎明：每个俄布额外 +1，共造成 ${dmg} 点伤害`,s.name);break;}
-    case"sacAoe3":{if(s.board.length>0){const t=[...s.board].sort((a,b)=>a.health-b.health)[0];removeFrom(s,t);note(`献祭了 ${t.name}`,s.name);o.board.forEach(u=>u.health-=3);dead(o);note("燃烧弹对敌方全场造成 3 点伤害",s.name);}else note("没有己方单位可以献祭",s.name);break;}
-    case"fireShip":{const n=s.board.length;if(n>0){s.board=[];o.board.forEach(u=>u.health-=n*2);dead(o);note(`火船：摧毁 ${n} 个己方单位，对敌方全场造成 ${n*2} 点伤害`,s.name);}else note("火船：没有己方单位可以摧毁",s.name);break;}
-    case"unitDamageHero":{const n=s.board.length;if(n>0){damage(o,n);note(`侧舷炮击：${n} 个单位，造成 ${n} 点伤害`,s.name);}break;}
-    case"finish":{const n=s.board.length;if(n>0){damage(o,n*2);note(`海盗大斩杀：${n} 个单位，造成 ${n*2} 点伤害`,s.name);}break;}
-    case"filterSuperman":{if(s.deck.length){const d=s.deck.pop();if(d.id==="superman"){d.cost=Math.max(0,d.cost-2);note("禁忌检索：抽到超人 SUPERMAN，费用减 2！",s.name);}else note("禁忌检索：抽了一张牌",s.name);if(!addCardToHand(s,d)) s.deck.unshift(d);}else{s.fatigue++;damage(s,s.fatigue,true);}break;}
-    case"tutorSuperman":{const idx=s.deck.findIndex(x=>x.id==="superman");if(idx>=0){const card=s.deck.splice(idx,1)[0];if(addCardToHand(s,card)){note("皇冠共鸣：从牌库中检索到超人 SUPERMAN！",s.name);}else{s.deck.splice(idx,0,card);note("皇冠共鸣：手牌已满，无法检索",s.name);}}else{draw(s,2);note("皇冠共鸣：牌库中没有超人，改为抽两张牌",s.name);}break;}
-    case"tutorCometImpact":{const idx=s.deck.findIndex(x=>x.id==="cometImpact");if(idx>=0){const card=s.deck.splice(idx,1)[0];if(addCardToHand(s,card)){note("彗星定位：从牌库中检索到【彗星冲击】！",s.name);}else{s.deck.splice(idx,0,card);note("彗星定位：手牌已满",s.name);}}else{draw(s,2);note("彗星定位：牌库中没有彗星冲击，改为抽两张牌",s.name);}break;}
-    case"summonSuperman":{const idx=s.deck.findIndex(x=>x.id==="superman");if(idx>=0&&s.board.length<MAX_BOARD){const card=s.deck.splice(idx,1)[0];card.atkLeft=card.charge?card.strikes:0;card.sr=G.round;s.board.push(card);note("皇冠仪式：超人 SUPERMAN 降临战场！",s.name);if(s===G.player) supermanFX();}else note("皇冠仪式未能召唤超人（牌库中已无或战场已满）",s.name);break;}
+    case"redDawn":{const redCount=s.board.filter(u=>u.id==="red").length,dmg=2+redCount;o.board.forEach(u=>u.health-=dmg);dead(o);note(`赤色黎明：${dmg} 点`,s.name);break;}
+    case"sacAoe3":{if(s.board.length>0){const t=[...s.board].sort((a,b)=>a.health-b.health)[0];removeFrom(s,t);o.board.forEach(u=>u.health-=3);dead(o);note(`献祭 ${t.name}，全场 3 伤`,s.name);}break;}
+    case"fireShip":{const n=s.board.length;if(n>0){s.board=[];o.board.forEach(u=>u.health-=n*2);dead(o);note(`火船：全场 ${n*2} 伤`,s.name);}break;}
+    case"unitDamageHero":{const n=s.board.length;if(n>0)damage(o,n);break;}
+    case"finish":{const n=s.board.length;if(n>0)damage(o,n*2);break;}
+    case"filterSuperman":{if(s.deck.length){const d=s.deck.pop();if(d.id==="superman"){d.cost=Math.max(0,d.cost-2);note("禁忌检索：超人费用 -2！",s.name);}if(!addCardToHand(s,d)) s.deck.unshift(d);}else{s.fatigue++;damage(s,s.fatigue,true);}break;}
+    case"tutorSuperman":{const idx=s.deck.findIndex(x=>x.id==="superman");if(idx>=0){const card=s.deck.splice(idx,1)[0];if(addCardToHand(s,card)){note("皇冠共鸣：检索到超人！",s.name);}else s.deck.splice(idx,0,card);}else{draw(s,2);}break;}
+    case"tutorCometImpact":{const idx=s.deck.findIndex(x=>x.id==="cometImpact");if(idx>=0){const card=s.deck.splice(idx,1)[0];if(addCardToHand(s,card)){note("彗星定位：检索到彗星冲击！",s.name);}else s.deck.splice(idx,0,card);}else{draw(s,2);note("彗星定位：未找到，改为抽两张",s.name);}break;}
+    case"summonSuperman":{const idx=s.deck.findIndex(x=>x.id==="superman");if(idx>=0&&s.board.length<MAX_BOARD){const card=s.deck.splice(idx,1)[0];card.atkLeft=card.charge?card.strikes:0;card.sr=G.round;s.board.push(card);note("皇冠仪式：超人降临！",s.name);if(s===G.player) supermanFX();}break;}
     case"steal3":steal(s,3);break;
     case"steal4":steal(s,4);break;
     case"steal4draw":steal(s,4);draw(s,1);break;
@@ -937,64 +1042,38 @@ function castSpell(s,c,o){
     case"supplySteal":draw(s,2);s.armor+=2;steal(s,2);break;
     case"vaultBurst":draw(s,3);s.armor+=3;steal(s,5);break;
     case"runaway":
-      if(s.money>=ESCAPE_TARGET)specialWin(s,`猪瘟鱼偷够 ${s.money} 元，成功逃跑，获得特殊胜利！`);
-      else{s.armor+=3;damage(o,2);note(`逃跑：金钱不足（${s.money} / ${ESCAPE_TARGET}），改为获得 3 点护甲并造成 2 点伤害`,s.name);}
+      if(s.money>=ESCAPE_TARGET)specialWin(s,`猪瘟鱼偷够 ${s.money} 元，成功逃跑！`);
+      else{s.armor+=3;damage(o,2);note(`逃跑：金钱不足（${s.money}/${ESCAPE_TARGET}）`,s.name);}
       break;
-    case"takeover":{if(o.board.length){const t=[...o.board].sort((a,b)=>b.attack-a.attack)[0];rebelTakeover(o,s,t,"战术接管");}else note("战术接管：敌方场上没有单位",s.name);break;}
-    case"rebelLowest":{if(!o.board.length){note("煽动哗变：敌方没有单位可以策反",s.name);break;}const t=[...o.board].sort((a,b)=>a.attack-b.attack)[0];rebelTakeover(o,s,t,"煽动哗变");break;}
-    case"rebelWeakest":{if(!o.board.length){note("内应接应：敌方没有单位可以策反",s.name);break;}const t=[...o.board].sort((a,b)=>a.health-b.health)[0];rebelTakeover(o,s,t,"内应接应");draw(s,1);break;}
-    case"disruption":{o.board.forEach(u=>{u.atkLeft=0;u.sr=G.round;});damage(o,2);note("阵型瓦解：敌方全体单位本回合无法攻击，敌方英雄受 2 点伤害",s.name);break;}
-    case"evasion":{s.heroImmune=true;note("战术规避：本回合内敌方单位无法攻击你的英雄",s.name);break;}
+    case"takeover":{if(o.board.length){const t=[...o.board].sort((a,b)=>b.attack-a.attack)[0];rebelTakeover(o,s,t,"战术接管");}break;}
+    case"rebelLowest":{if(!o.board.length)break;const t=[...o.board].sort((a,b)=>a.attack-b.attack)[0];rebelTakeover(o,s,t,"煽动哗变");break;}
+    case"rebelWeakest":{if(!o.board.length)break;const t=[...o.board].sort((a,b)=>a.health-b.health)[0];rebelTakeover(o,s,t,"内应接应");draw(s,1);break;}
+    case"disruption":{o.board.forEach(u=>{u.atkLeft=0;u.sr=G.round;});damage(o,2);break;}
+    case"evasion":{s.heroImmune=true;break;}
     case"cometImpact":{
       const total=s.hp+s.armor;
       if(total>=40){
-        note(`彗星冲击命中！${s.hp}血 + ${s.armor}甲 = ${total}（满足 40）`,s.name);
-        const isPlayerCaster = (s === G.player);
-        const targetEl = isPlayerCaster ? $("#eAv") : $("#pAv");
+        note(`彗星冲击命中！${s.hp}+${s.armor}=${total}`,s.name);
+        const isPlayerCaster=(s===G.player);
+        const targetEl=isPlayerCaster?$("#eAv"):$("#pAv");
         cometImpactFX(targetEl);
-        setTimeout(()=>{
-          if(G.over) return;
-          damage(o,40);
-          checkEnd();
-          render();
-        }, 560);
+        setTimeout(()=>{if(G.over)return;damage(o,40);checkEnd();render();},560);
       }else{
-        note(`彗星冲击条件不足：${s.hp}血 + ${s.armor}甲 = ${total}（需要 40）`,s.name);
-        if(s===G.player) toast(`彗星冲击未触发：血 ${s.hp} + 甲 ${s.armor} = ${total} / 40`,true,1800);
+        note(`彗星冲击条件不足：${s.hp}+${s.armor}=${total}`,s.name);
+        if(s===G.player) toast(`彗星冲击未触发：${s.hp}+${s.armor}=${total}/40`,true,1800);
         sfx("error");
       }
       break;}
-    case"gravityLock":{
-      o.board.forEach(u=>{u.stunTurns=Math.max(u.stunTurns||0,1);u.atkLeft=0;});
-      note("引力锁定：敌方所有单位本回合无法攻击",s.name);
-      sfx("stun");
-      break;}
-    case"costRaise":{
-      if(!o.hand.length){note("引力折叠：敌方手牌为空，未生效",s.name);}
-      else{
-        o.hand.forEach(c=>{c.cost+=1;});
-        note(`引力折叠：敌方手牌 ${o.hand.length} 张费用各 +1（本局内永久）`,s.name);
-        if(s===G.player) toast(`引力折叠：敌方 ${o.hand.length} 张手牌费用 +1`,true,1800);
-      }
-      break;}
-    case"summoncall":{
-      const idx=s.deck.findIndex(x=>MEMBER_IDS.indexOf(x.id)>=0);
-      if(idx>=0&&s.board.length<MAX_BOARD){
-        const card=s.deck.splice(idx,1)[0];card.atkLeft=card.charge?card.strikes:0;card.sr=G.round;s.board.push(card);
-        unitDeploy(s,card,o);note(`架子班召集令：召唤了 ${card.name}`,s.name);
-      }else{draw(s,2);note("架子班召集令：牌库中没有成员，改为抽两张牌",s.name);}break;}
-    case"namecardsummon":{
-      const cands=s.deck.map((c,i)=>({c,i})).filter(x=>MEMBER_IDS.indexOf(x.c.id)>=0);
-      if(cands.length&&s.board.length<MAX_BOARD){
-        const pick=cands[Math.floor(Math.random()*cands.length)];
-        const card=s.deck.splice(pick.i,1)[0];card.atkLeft=card.charge?card.strikes:0;card.sr=G.round;s.board.push(card);
-        unitDeploy(s,card,o);note(`名片召唤：随机召唤了 ${card.name}`,s.name);
-      }else note("名片召唤：牌库中没有架子班成员或战场已满",s.name);break;}
-    case"highcommand":s.board.forEach(u=>{u.attack+=2;u.health+=2;u.maxHealth+=2;});note("高层指令：全部单位 +2/+2",s.name);break;
+    case"gravityLock":{o.board.forEach(u=>{u.stunTurns=Math.max(u.stunTurns||0,1);u.atkLeft=0;});sfx("stun");break;}
+    case"costRaise":{if(o.hand.length){o.hand.forEach(c=>{c.cost+=1;});note(`引力折叠：敌方 ${o.hand.length} 张手牌费用 +1`,s.name);}break;}
+    case"summoncall":{const idx=s.deck.findIndex(x=>MEMBER_IDS.indexOf(x.id)>=0);if(idx>=0&&s.board.length<MAX_BOARD){const card=s.deck.splice(idx,1)[0];card.atkLeft=card.charge?card.strikes:0;card.sr=G.round;s.board.push(card);unitDeploy(s,card,o);}else{draw(s,2);}break;}
+    case"namecardsummon":namecardsummonChoose(s,o);break;
+    case"highcommand":s.board.forEach(u=>{u.attack+=2;u.health+=2;u.maxHealth+=2;});break;
   }
   checkEnd();
 }
 
+/* ============ 出牌 ============ */
 async function play(s,id){
   if(G.over)return false;
   const c=find(s.hand,id);if(!c)return false;
@@ -1003,7 +1082,7 @@ async function play(s,id){
   if(c.effect==="rebel"&&s===G.player&&!G.rebelSpell){
     if(!G.opponent.board.length){toast("敌方没有单位可以策反");sfx("error");return false;}
     G.rebelSpell=c;UI.sel={type:"spell",uid:c.uid};UI.drag=null;
-    hint("点击敌方单位策反，点击战场空白处取消");render();
+    hint("点击敌方单位策反");render();
     $("#eBoard").classList.add("rm");
     return true;
   }
@@ -1016,22 +1095,20 @@ async function play(s,id){
   }
   else if(c.effect==="scry"){sfx("spell");await scryEffect(s);}
   else if(c.effect==="foresee"){sfx("spell");await foreseeEffect(s);}
+  else if(c.effect==="namecardsummon"){sfx("spell");await namecardsummonChoose(s,o);}
   else{sfx("spell");castSpell(s,c,o);}
   render();return true;
 }
 
+/* ============ 攻击 ============ */
 function heroBonus(u){return["executor","captain"].includes(u.id)?1:0;}
 function resolveAttack(s,unit,target){
   const o=opp(s);
-  if(!target&&o.heroImmune){
-    note(`${o.name} 的英雄被战术规避保护，攻击被挡下`,s.name);
-    unit.atkLeft--;
-    return;
-  }
+  if(!target&&o.heroImmune){note(`${o.name} 的英雄免疫`,s.name);unit.atkLeft--;return;}
   unit.atkLeft--;
-  if(!target){damage(o,unit.attack+heroBonus(unit));note(`${unit.name} 直接攻击英雄`,s.name);}
+  if(!target){damage(o,unit.attack+heroBonus(unit));note(`${unit.name} 攻击英雄`,s.name);}
   else{target.health-=unit.attack;unit.health-=target.attack;dead(o);dead(s);note(`${unit.name} 与 ${target.name} 交换火力`,s.name);}
-  if(unit.id==="latvian"&&unit.health>0){unit.health-=1;if(unit.health<=0){dead(s);note("拉脱维亚红军在战斗中消耗殆尽",s.name);}else note("拉脱维亚红军攻击后生命值 -1",s.name);}
+  if(unit.id==="latvian"&&unit.health>0){unit.health-=1;if(unit.health<=0){dead(s);}else{note("拉脱维亚红军生命 -1",s.name);}}
   checkEnd();render();
 }
 function validTargets(u){
@@ -1043,6 +1120,7 @@ function validTargets(u){
   return{hero:false,units:taunts.map(t=>t.uid)};
 }
 
+/* ============ 渲染 ============ */
 function applyCls(el){el.className=el._base+" "+(el._flags||"")+(el._enter?" enter":"")+(el._dying?" dying":"")+(el._hit?" hit":"");}
 function sync(box,items,mk,dieSfx){
   const map=new Map();
@@ -1051,7 +1129,7 @@ function sync(box,items,mk,dieSfx){
   items.forEach((it,i)=>{
     const m=mk(it,i);let el=map.get(String(it.uid));
     if(el)map.delete(String(it.uid));
-    else{el=document.createElement("div");el.dataset.uid=it.uid;el._enter=true;created++;box.appendChild(el);setTimeout(()=>{el._enter=false;applyCls(el)},520);}
+    else{el=document.createElement("div");el.dataset.uid=it.uid;el._enter=true;created++;box.appendChild(el);setTimeout(()=>{el._enter=false;applyCls(el);},520);}
     el._base=m.base;el._flags=m.flags||"";applyCls(el);
     if(el._sig!==m.html){el.innerHTML=m.html;el._sig=m.html;}
     if(m.vars)for(const k in m.vars)el.style.setProperty(k,m.vars[k]);
@@ -1059,7 +1137,7 @@ function sync(box,items,mk,dieSfx){
     if(m.hp!==undefined){
       if(el._hp!==undefined&&m.hp!==el._hp){
         const d=m.hp-el._hp;floatText(el,(d>0?"+":"")+d,d>0?"heal":"dmg");
-        if(d<0){el._hit=true;applyCls(el);setTimeout(()=>{el._hit=false;applyCls(el)},420);sfx("hit");}
+        if(d<0){el._hit=true;applyCls(el);setTimeout(()=>{el._hit=false;applyCls(el);},420);sfx("hit");}
       }
       el._hp=m.hp;
     }
@@ -1091,7 +1169,7 @@ function unitHTML(u,owner){
   const kws=(u.taunt?"<i>盾</i>":"")+(u.charge?"<i>冲</i>":"")+(u.ignoreTaunt?"<i>穿</i>":"");
   const strk=u.strikes>1?`<div class="strk">×${Math.max(0,u.atkLeft)}/${u.strikes}</div>`:"";
   const zz=(owner==="player"&&u.sr===G.round&&u.atkLeft<=0&&G.turn==="player"&&!u.stunTurns)?'<div class="zz">Zz</div>':"";
-  const stun=(u.stunTurns>0)?`<div class="stun">💫 眩晕</div>`:"";
+  const stun=(u.stunTurns>0)?`<div class="stun">💫</div>`:"";
   return`<div class="unit${u.taunt?" taunt":""}"><div class="kw">${kws}</div><div class="uart">${esc(u.art)}</div><div class="unm">${esc(u.name)}</div>${strk}${zz}${stun}<div class="ust"><b class="a">${u.attack}</b><b class="h${u.health<u.maxHealth?" dmg":""}">${u.health}</b></div></div>`;
 }
 function unitFlags(u,owner){
@@ -1103,6 +1181,10 @@ function unitFlags(u,owner){
     if(su&&su.uid===u.uid)f+=" sel";
   }else if(su&&validTargets(su).units.includes(u.uid))f+=" tgt";
   if(owner==="enemy"&&G.rebelSpell&&G.turn==="player")f+=" rebel";
+  // 选择模式高亮
+  if(owner==="enemy"&&G.choose&&G.turn==="player"&&G.choose.eligible.includes(u.uid)){
+    f+=G.choose.picked.includes(u.uid)?" picked":" choose";
+  }
   return f;
 }
 function logical(r){const sr=$("#stage").getBoundingClientRect();return{x:(r.left+r.width/2-sr.left)/UI.scale,y:(r.top+r.height/2-sr.top)/UI.scale};}
@@ -1144,20 +1226,18 @@ function heroPanel(k,s,name,isEnemy){
       heroEl.querySelector(".portrait").appendChild(tag);
       heroEl._immuneEl=tag;
     }
-  }else if(heroEl._immuneEl){
-    heroEl._immuneEl.remove();heroEl._immuneEl=null;
-  }
+  }else if(heroEl._immuneEl){heroEl._immuneEl.remove();heroEl._immuneEl=null;}
   const av=$(`#${k}Av`);
   watch(k+"hp",av,s.hp,"hp");watch(k+"ar",av,s.armor,"armor");watch(k+"mo",av,s.money,"money");
   if(isEnemy)$("#eCnt").textContent=`手牌 ${s.hand.length} · 牌库 ${s.deck.length}`;
 }
 function hasMoves(){
   const p=G.player;
-  return p.hand.some(c=>{const err=canPlay(p,c);return !err;})||p.board.some(u=>u.atkLeft>0&&!u.stunTurns);
+  return p.hand.some(c=>!canPlay(p,c))||p.board.some(u=>u.atkLeft>0&&!u.stunTurns);
 }
 function canPlay(s,c){
-  if(c.cost>s.energy)return`费用不足，需要 ${c.cost} 点费用`;
-  if(c.kind==="unit"&&s.board.length>=MAX_BOARD)return`战场已满，最多部署 ${MAX_BOARD} 个单位`;
+  if(c.cost>s.energy)return`费用不足，需要 ${c.cost}`;
+  if(c.kind==="unit"&&s.board.length>=MAX_BOARD)return`战场已满，最多 ${MAX_BOARD} 个`;
   return null;
 }
 function render(){
@@ -1186,13 +1266,13 @@ function render(){
   $("#pDeck").textContent=p.deck.length;
   const can=canAct();
   $("#endBtn").disabled=!can;
-  $("#endBtn").classList.toggle("pulse",can&&!hasMoves());
-  const pb=$("#pBoard");
   const handSel=UI.sel&&UI.sel.type==="hand"&&!UI.drag;
+  const pb=$("#pBoard");
   pb.classList.toggle("drop",!!handSel||!!(UI.drag&&UI.drag.type==="hand"));
+  renderChooseBar();
 }
 function hint(html){$("#hintBar").innerHTML=html||"";$("#hintBar").style.opacity=html?1:0;}
-function toast(msg,info,ms){const t=$("#toast");t.textContent=msg;t.className="on"+(info?" info":"");clearTimeout(UI.toastT);UI.toastT=setTimeout(()=>{t.className=""},ms||1500);}
+function toast(msg,info,ms){const t=$("#toast");t.textContent=msg;t.className="on"+(info?" info":"");clearTimeout(UI.toastT);UI.toastT=setTimeout(()=>{t.className="";},ms||1500);}
 function showPreview(card,srcEl,ms){
   const pv=$("#preview");pv.innerHTML=cardHTML(card,true,false,true);
   const x=srcEl?logical(srcEl.getBoundingClientRect()).x:UI.w/2;
@@ -1218,14 +1298,13 @@ function defaultHint(){return canAct()?"<b>拖拽</b>手牌上推出牌 · <b>�
 function selectHand(c,el){
   UI.sel={type:"hand",uid:c.uid};sfx("select");
   const err=canPlay(G.player,c);
-  hint(err?esc(err):"再点一次，或点你的战场，即可出牌");
+  hint(err?esc(err):"再点一次即可出牌");
   render();showPreview(c,el);
 }
 function selectUnit(u){
   UI.sel={type:"unit",uid:u.uid};sfx("select");hidePreview();
   const v=validTargets(u);
-  if(G.opponent.heroImmune&&!v.hero)hint("敌方英雄被<b>战术规避</b>保护，只能攻击嘲讽单位");
-  else hint(v.hero?"点击目标，或拖到目标上松手":"必须先攻击带盾的<b>嘲讽</b>单位");
+  hint(v.hero?"点击目标攻击":"必须先攻击嘲讽单位");
   render();
 }
 function shakeTaunts(){document.querySelectorAll("#eRow .uslot.taunt .unit").forEach(e=>{e.animate([{transform:"translateX(0)"},{transform:"translateX(-5px)"},{transform:"translateX(5px)"},{transform:"translateX(0)"}],{duration:260});});}
@@ -1237,7 +1316,9 @@ async function playerPlay(uid){
   if(err){toast(err);sfx("error");UI.drag=null;render();return;}
   const sess=G.session;G.busy++;
   UI.sel=null;UI.drag=null;hidePreview();hint("");
-  if(c.kind==="spell"&&c.effect!=="rebel"&&c.effect!=="fillRed"&&c.effect!=="scry"&&c.effect!=="foresee"){render();await reveal(c,"施放法术",650);if(sess!==G.session)return;}
+  if(c.kind==="spell"&&c.effect!=="rebel"&&c.effect!=="fillRed"&&c.effect!=="scry"&&c.effect!=="foresee"&&c.effect!=="namecardsummon"){
+    render();await reveal(c,"施放法术",650);if(sess!==G.session)return;
+  }
   await play(G.player,uid);
   await sleep(c.kind==="spell"?400:280);
   if(sess!==G.session)return;
@@ -1247,12 +1328,8 @@ async function playerAttack(unit,target){
   if(!canAct())return;
   const v=validTargets(unit);
   if(target?!v.units.includes(target.uid):!v.hero){
-    if(!target&&G.opponent.heroImmune){
-      toast("敌方英雄被战术规避保护！");sfx("error");
-      floatText($("#eAv"),"免疫","immune");
-    }else{
-      toast("必须先攻击嘲讽单位！");sfx("error");shakeTaunts();
-    }
+    if(!target&&G.opponent.heroImmune){toast("敌方英雄免疫");}
+    else{toast("必须先攻击嘲讽单位");sfx("error");shakeTaunts();}
     return;
   }
   UI.sel=null;UI.drag=null;hidePreview();$("#aim").hidden=true;hint("");
@@ -1279,11 +1356,7 @@ async function doAttack(s,unit,target){
   }
   if(sess!==G.session)return;
   resolveAttack(s,unit,target);
-  if(!target&&o.heroImmune){
-    floatText(tEl,"免疫","immune");sfx("immune");
-  }else{
-    ring(tEl,"#ff9a80");
-  }
+  ring(tEl,"#ff9a80");
   if(anim)await anim.finished.catch(()=>{});
   if(aEl)aEl.style.zIndex="";
   await sleep(120);
@@ -1300,12 +1373,13 @@ async function endTurn(){
   await enemyTurn(sess);
 }
 
-const BURN={damage5:5,damage6:6,damage7:7,damage10:10,aoe2:2,aoe3:3,aoe5:5,manaBurn:2,steal5draw:3,hero2drawSteal:2,hero2:2,hero1:1,hero3:3,steal3hero1:1,hero2draw:2,escape:2};
+/* ============ AI ============ */
+const BURN={damage5:5,damage6:6,damage7:7,damage10:10,aoe2:2,aoe3:3,aoe4:4,aoe5:5,manaBurn:2,steal5draw:3,hero2drawSteal:2,hero2:2,hero1:1,hero3:3,steal3hero1:1,hero2draw:2,escape:2};
 function burnOf(s,c){
   if(c.effect==="runaway")return s.money>=ESCAPE_TARGET?9999:2;
   if(c.effect==="unitDamageHero")return s.board.length;
   if(c.effect==="finish")return s.board.length*2;
-  if(c.effect==="saturation")return Math.max(3,fireCount(s)*3);
+  if(c.effect==="saturation")return fireCount(s)*2;
   if(c.effect==="cometImpact")return (s.hp+s.armor>=40)?40:0;
   return BURN[c.effect]||0;
 }
@@ -1327,10 +1401,11 @@ function aiScore(s,o,c,lethal){
     sc=c.cost*1.1+(c.attack+c.health)*.45+(c.charge?2.5:0)+(c.ignoreTaunt?1.5:0);
     if(c.taunt)sc+=(s.hp<=14||o.board.some(u=>u.attack>=4))?3:1;
     if(burn)sc+=burn*.6;
-    if(/^randomDamage|^randomThree/.test(e))sc+=enN?3:-1;
+    if(/^choose|^random/.test(e))sc+=enN?3:-1;
     if(/^buff/.test(e))sc+=myN*1.2;
     if(/^energyDown/.test(e))sc+=1.5;
     if(e==="drawHeal")sc+=4;
+    if(e==="copySmallCannon")sc+=fireCount(s)*1.5;
     if(lethal&&burn>0)sc+=300;
   }else{
     sc=c.cost*.8+1;
@@ -1338,7 +1413,7 @@ function aiScore(s,o,c,lethal){
     if(lethal&&burn>0)sc+=500;
     if(e==="runaway")return s.money>=ESCAPE_TARGET?20000:-8;
     if(e==="cometImpact")return (s.hp+s.armor>=40)?99999:1;
-    if(/^(aoe|randomThree|redDawn)/.test(e))sc+=enN?enN*3:-100;
+    if(/^(aoe|choose3x2|redDawn)/.test(e))sc+=enN?enN*3:-100;
     else if(e==="sacAoe3")sc+=(enN&&myN)?enN*3-2:-100;
     else if(e==="fireShip")sc+=(enN&&myN)?enN*2.5-2:-100;
     else if(/^(enemyAtkDown|winterGeneral)/.test(e))sc+=enN?o.board.reduce((a,u)=>a+Math.min(u.attack,2),0)*1.3:-100;
@@ -1348,11 +1423,11 @@ function aiScore(s,o,c,lethal){
     else if(/^(buffAll|pirateBuff)/.test(e))sc+=myN?myN*2.4:-100;
     else if(/^(buffGuns|reload)/.test(e))sc+=fireCount(s)?fireCount(s)*2.5:-100;
     else if(/^buffOne/.test(e))sc+=myN?3:-100;
-    else if(/^(summon|fillRed)/.test(e)&&e!=="summonSuperman")sc+=myN>=MAX_BOARD?-100:(e==="fillRed"?8:3);
+    else if(/^(summon|fillRed|namecardsummon)/.test(e)&&e!=="summonSuperman")sc+=myN>=MAX_BOARD?-100:(e==="fillRed"?8:3);
     else if(e==="ramp"||e==="starClimb")sc+=s.maxEnergy<7?3:-2;
     else if(/^(manaBurn|energyDownDraw)/.test(e))sc+=2;
     else if(e==="costRaise")sc+=o.hand.length>=3?4:-100;
-    else if(/^(unitDamageHero|finish)/.test(e))sc+=myN?0:-100;
+    else if(/^(unitDamageHero|finish|saturation)/.test(e))sc+=fireCount(s)?fireCount(s)*2.5:0;
     else if(/^(filterSuperman|tutorSuperman|scry|tutorCometImpact|foresee)/.test(e))sc+=4;
     else if(e==="summonSuperman")sc+=(s.deck.some(x=>x.id==="superman")&&myN<MAX_BOARD)?14:-100;
     if(/draw|develop|crown|handoff|supply|raid|vaultBurst|traceBoost|nebulaShield2/.test(e))sc+=s.hand.length>=9?-4:2.5;
@@ -1404,7 +1479,7 @@ async function enemyTurn(sess){
   const s=G.opponent,p=G.player;
   beginTurn(s);
   s.board.forEach(u=>{
-    if(u.stunTurns>0){u.atkLeft=0;u.stunTurns--;note(`${u.name} 被眩晕，无法攻击`,s.name);}
+    if(u.stunTurns>0){u.atkLeft=0;u.stunTurns--;note(`${u.name} 被眩晕`,s.name);}
     else{u.atkLeft=u.strikes;}
   });
   render();sfx("enemy");
@@ -1429,7 +1504,7 @@ async function enemyTurn(sess){
   G.round++;G.turn="player";
   beginTurn(p);
   p.board.forEach(u=>{
-    if(u.stunTurns>0){u.atkLeft=0;u.stunTurns--;note(`${u.name} 被眩晕，无法攻击`,p.name);}
+    if(u.stunTurns>0){u.atkLeft=0;u.stunTurns--;note(`${u.name} 被眩晕`,p.name);}
     else{u.atkLeft=u.strikes;}
   });
   p.heroImmune=false;
@@ -1440,6 +1515,7 @@ async function enemyTurn(sess){
   G.busy--;hint(defaultHint());render();
 }
 
+/* ============ 输入 ============ */
 function targetAt(x,y){
   const el=document.elementFromPoint(x,y);if(!el)return null;
   const us=el.closest(".uslot");
@@ -1461,6 +1537,7 @@ function aimTo(srcEl,x,y){
 function onDown(e){
   if(e.button>0||UI.press)return;
   if(G.pendingChoice)return;
+  if(G.choose)return;
   const hs=e.target.closest(".hslot"),us=e.target.closest(".uslot");
   if(!hs&&!us)return;
   if(us&&us.classList.contains("dying"))return;
@@ -1509,7 +1586,7 @@ function endPress(){
   const pr=UI.press;if(!pr)return null;
   clearTimeout(pr.timer);UI.press=null;
   window.removeEventListener("pointermove",onMove);window.removeEventListener("pointerup",onUp);window.removeEventListener("pointercancel",onCancel);
-  UI.noClick=true;setTimeout(()=>{UI.noClick=false},60);
+  UI.noClick=true;setTimeout(()=>{UI.noClick=false;},60);
   return pr;
 }
 function onCancel(){
@@ -1533,15 +1610,7 @@ function onUp(e){
       UI.drag=null;
       if(u&&t){
         if(targetValid(u,t))playerAttack(u,t.kind==="hero"?null:find(G.opponent.board,t.uid));
-        else{
-          if(t.kind==="hero"&&G.opponent.heroImmune){
-            toast("敌方英雄被战术规避保护！");sfx("error");
-            floatText($("#eAv"),"免疫","immune");
-          }else{
-            toast("必须先攻击嘲讽单位！");sfx("error");shakeTaunts();
-          }
-          clearSel();
-        }
+        else{toast("必须先攻击嘲讽单位");sfx("error");shakeTaunts();clearSel();}
       }else clearSel();
     }
     return;
@@ -1557,13 +1626,16 @@ function tap(pr){
   }
   const owner=pr.owner==="player"?G.player:G.opponent;
   const u=find(owner.board,pr.uid);if(!u)return;
+  // 选择模式优先
+  if(G.choose&&pr.owner==="enemy"){
+    toggleChooseUnit(u.uid);return;
+  }
   if(pr.owner==="player"){
     if(!canAct()){showPreview(u,pr.el,1800);return;}
     if(UI.sel&&UI.sel.type==="unit"&&UI.sel.uid===u.uid){clearSel();return;}
     if(u.atkLeft>0&&!u.stunTurns){selectUnit(u);return;}
-    if(u.stunTurns){toast("这个单位被眩晕，本回合无法攻击",true);showPreview(u,pr.el,1500);return;}
-    toast(u.sr===G.round?"刚部署的单位，下回合才能攻击":"这个单位本回合已经攻击过了",true);
-    showPreview(u,pr.el,1800);return;
+    toast(u.sr===G.round?"刚部署的单位，下回合才能攻击":"本回合已攻击过",true);
+    return;
   }
   if(G.rebelSpell&&canAct()){
     const spell=G.rebelSpell;
@@ -1583,11 +1655,9 @@ function onClick(e){
   if(UI.noClick)return;
   if(G.pendingChoice)return;
   const t=e.target;
-  if(t.closest("button")||t.closest(".modal")||t.closest("#logPanel")||t.closest(".hslot")||t.closest(".uslot"))return;
+  if(t.closest("button")||t.closest(".modal")||t.closest("#logPanel")||t.closest(".hslot")||t.closest(".uslot")||t.closest("#chooseBar"))return;
   if($("#game").hidden)return;
-  if(G.rebelSpell&&canAct()){
-    if((t.closest("#eBoard")||t.closest("#eHero"))&&!t.closest(".uslot")){clearSel();return;}
-  }
+  if(G.choose)return;
   if(t.closest("#eHero")||t.closest("#eBoard")){
     if(UI.sel&&UI.sel.type==="unit"&&canAct()){const a=find(G.player.board,UI.sel.uid);if(a)playerAttack(a,null);return;}
   }
@@ -1595,16 +1665,13 @@ function onClick(e){
   if(UI.sel)clearSel();else hidePreview();
 }
 
+/* ============ 全屏/菜单 ============ */
 function isFull(){return!!(document.fullscreenElement||document.webkitFullscreenElement);}
 async function enterFullscreen(){
   const el=document.documentElement,rq=el.requestFullscreen||el.webkitRequestFullscreen;
   try{if(rq&&!isFull())await rq.call(el);}catch(e){}
   try{if(screen.orientation&&screen.orientation.lock)await screen.orientation.lock("landscape");}catch(e){}
   fitStage();
-}
-async function toggleFullscreen(){
-  if(isFull()){try{(document.exitFullscreen||document.webkitExitFullscreen).call(document);}catch(e){}}
-  else await enterFullscreen();
 }
 function updateFullBtn(){const b=$("#pFull");if(b)b.textContent=isFull()?"退出全屏":"进入全屏";}
 function fitStage(){
@@ -1621,8 +1688,8 @@ function buildMenu(){
   pickHero(UI.menuHero);
 }
 function pickHero(n){
-  UI.menuHero=n;try{localStorage.setItem("duel.hero",n)}catch(e){}
-  if(UI.opponentChoice===n){UI.opponentChoice=null;try{localStorage.removeItem("duel.opp")}catch(e){}}
+  UI.menuHero=n;try{localStorage.setItem("duel.hero",n);}catch(e){}
+  if(UI.opponentChoice===n){UI.opponentChoice=null;try{localStorage.removeItem("duel.opp");}catch(e){}}
   document.querySelectorAll(".htile").forEach(b=>b.classList.toggle("on",b.dataset.hero===n));
   const p=profile(n);
   $("#dName").textContent=n;$("#dSub").textContent=`${p.faction} · ${p.style}`;
@@ -1635,43 +1702,23 @@ function updateVsLabel(){
 function openOppPicker(){
   const cur=UI.menuHero;
   const others=Object.keys(PROFILES).filter(n=>n!==cur);
-  $("#oppGrid").innerHTML=
-    `<button class="opp-option random${!UI.opponentChoice?" on":""}" data-opp="">随机匹配</button>`+
-    others.map(n=>`<button class="opp-option${UI.opponentChoice===n?" on":""}" data-opp="${esc(n)}">${esc(n)}</button>`).join("");
-  document.querySelectorAll("#oppGrid .opp-option").forEach(b=>{
-    b.onclick=()=>{
-      const v=b.dataset.opp;
-      UI.opponentChoice=v||null;
-      try{ if(v)localStorage.setItem("duel.opp",v); else localStorage.removeItem("duel.opp"); }catch(e){}
-      updateVsLabel();
-      $("#oppPick").hidden=true;
-      sfx("select");
-    };
-  });
+  $("#oppGrid").innerHTML=`<button class="opp-option random${!UI.opponentChoice?" on":""}" data-opp="">随机匹配</button>`+others.map(n=>`<button class="opp-option${UI.opponentChoice===n?" on":""}" data-opp="${esc(n)}">${esc(n)}</button>`).join("");
+  document.querySelectorAll("#oppGrid .opp-option").forEach(b=>{b.onclick=()=>{const v=b.dataset.opp;UI.opponentChoice=v||null;try{if(v)localStorage.setItem("duel.opp",v);else localStorage.removeItem("duel.opp");}catch(e){}updateVsLabel();$("#oppPick").hidden=true;sfx("select");};});
   $("#oppPick").hidden=false;
 }
 function startGame(name){
   G.session++;G.hero=name;
-  if(UI.opponentChoice&&PROFILES[UI.opponentChoice]&&UI.opponentChoice!==name){
-    G.enemy=UI.opponentChoice;
-  }else{
-    const others=Object.keys(PROFILES).filter(n=>n!==name);
-    G.enemy=others[Math.floor(Math.random()*others.length)];
-  }
+  if(UI.opponentChoice&&PROFILES[UI.opponentChoice]&&UI.opponentChoice!==name){G.enemy=UI.opponentChoice;}
+  else{const others=Object.keys(PROFILES).filter(n=>n!==name);G.enemy=others[Math.floor(Math.random()*others.length)];}
   const playerFirst=Math.random()<0.5;
-  G.firstMover = playerFirst ? "player" : "enemy";
-  G.uid=0;G.round=1;G.over=false;G.busy=0;G.logs=[];G.resultShown=false;G.rebelSpell=null;G.pendingChoice=null;
+  G.firstMover=playerFirst?"player":"enemy";
+  G.uid=0;G.round=1;G.over=false;G.busy=0;G.logs=[];G.resultShown=false;G.rebelSpell=null;G.pendingChoice=null;G.choose=null;
   G.turn=playerFirst?"player":"enemy";
   UI.sel=null;UI.drag=null;UI.prev={};UI.press=null;
   G.player=side(name);G.opponent=side(G.enemy);
-  if(playerFirst){
-    draw(G.player,4);
-    draw(G.opponent,5);
-  }else{
-    draw(G.player,5);
-    draw(G.opponent,4);
-  }
-  ["#hand","#eHand","#pRow","#eRow","#fx"].forEach(s=>{$(s).innerHTML=""});
+  if(playerFirst){draw(G.player,4);draw(G.opponent,5);}
+  else{draw(G.player,5);draw(G.opponent,4);}
+  ["#hand","#eHand","#pRow","#eRow","#fx"].forEach(s=>{$(s).innerHTML="";});
   $("#eHero").style.setProperty("--hc",COLORS[G.enemy]||"#d9634d");$("#pHero").style.setProperty("--hc",COLORS[name]||"#d4a45d");
   const eh=$("#eHero"),ph=$("#pHero");
   if(eh._immuneEl){eh._immuneEl.remove();eh._immuneEl=null;}
@@ -1683,43 +1730,27 @@ function startGame(name){
   hint(defaultHint());
   const sess=G.session;G.busy++;
   if(playerFirst){
-    beginTurn(G.player);
-    render();
-    banner(`对局开始 · 你先行`,false,1100).then(()=>{
-      if(sess!==G.session)return;
-      G.busy--;render();
-      toast("拖拽手牌向上出牌 · 拖动绿框单位攻击 · 长按看牌",true,3200);
-    });
+    beginTurn(G.player);render();
+    banner(`对局开始 · 你先行`,false,1100).then(()=>{if(sess!==G.session)return;G.busy--;render();toast("拖拽手牌向上出牌",true,3200);});
   }else{
-    banner(`对局开始 · 对手先行`,true,1100).then(async ()=>{
-      if(sess!==G.session)return;
-      await sleep(280);
-      await enemyTurn(sess);
-    });
+    banner(`对局开始 · 对手先行`,true,1100).then(async()=>{if(sess!==G.session)return;await sleep(280);await enemyTurn(sess);});
   }
 }
 function toMenu(){
-  G.session++;G.busy=0;G.turn="none";G.over=true;G.rebelSpell=null;G.pendingChoice=null;
+  G.session++;G.busy=0;G.turn="none";G.over=true;G.rebelSpell=null;G.pendingChoice=null;G.choose=null;
   const eh=$("#eHero"),ph=$("#pHero");
   if(eh._immuneEl){eh._immuneEl.remove();eh._immuneEl=null;}
   if(ph._immuneEl){ph._immuneEl.remove();ph._immuneEl=null;}
   $("#game").hidden=true;$("#menu").hidden=false;$("#pause").hidden=true;$("#result").hidden=true;$("#logPanel").hidden=true;$("#reveal").hidden=true;$("#choice").hidden=true;$("#oppPick").hidden=true;hidePreview();
 }
 function openPause(){if($("#game").hidden)return;clearSel();$("#pSound").textContent="音效："+(UI.muted?"关":"开");updateFullBtn();$("#pause").hidden=false;}
-function setMuted(m){UI.muted=m;try{localStorage.setItem("duel.muted",m?"1":"0")}catch(e){}$("#pSound").textContent="音效："+(m?"关":"开");}
+function setMuted(m){UI.muted=m;try{localStorage.setItem("duel.muted",m?"1":"0");}catch(e){}$("#pSound").textContent="音效："+(m?"关":"开");}
 
+/* ============ 事件绑定 ============ */
 const stage=$("#stage");
 stage.addEventListener("pointerdown",onDown);
 stage.addEventListener("click",onClick);
 stage.addEventListener("contextmenu",e=>e.preventDefault());
-if(matchMedia("(hover:hover)").matches){
-  stage.addEventListener("pointerover",e=>{
-    if(e.pointerType!=="mouse"||UI.press||UI.drag||G.pendingChoice)return;
-    const el=e.target.closest(".uslot");if(!el||el.classList.contains("dying"))return;
-    const owner=el.dataset.owner==="player"?G.player:G.opponent,u=find(owner.board,+el.dataset.uid);if(u)showPreview(u,el);
-  });
-  stage.addEventListener("pointerout",e=>{if(e.pointerType==="mouse"&&e.target.closest&&e.target.closest(".uslot")&&!(UI.sel&&UI.sel.type==="hand"))hidePreview();});
-}
 $("#heroGrid").addEventListener("click",e=>{const b=e.target.closest(".htile");if(b){pickHero(b.dataset.hero);sfx("click");}});
 $("#dVs").addEventListener("click",()=>{sfx("click");openOppPicker();});
 $("#oppClose").addEventListener("click",()=>{$("#oppPick").hidden=true;});
@@ -1733,29 +1764,34 @@ $("#pResume").addEventListener("click",()=>{$("#pause").hidden=true;});
 $("#pLog").addEventListener("click",()=>{$("#pause").hidden=true;renderLog();$("#logPanel").hidden=false;});
 $("#logClose").addEventListener("click",()=>{$("#logPanel").hidden=true;});
 $("#pSound").addEventListener("click",()=>{setMuted(!UI.muted);initAudio();sfx("click");});
-$("#pFull").addEventListener("click",async()=>{await toggleFullscreen();updateFullBtn();});
+$("#pFull").addEventListener("click",async()=>{if(isFull()){try{(document.exitFullscreen||document.webkitExitFullscreen).call(document);}catch(e){}}else await enterFullscreen();updateFullBtn();});
 $("#pRules").addEventListener("click",()=>{$("#rules").hidden=false;});
 $("#pRestart").addEventListener("click",()=>startGame(G.hero));
 $("#pMenu").addEventListener("click",toMenu);
 $("#resAgain").addEventListener("click",()=>startGame(G.hero));
 $("#resMenu").addEventListener("click",toMenu);
+$("#chooseConfirm").addEventListener("click",confirmChoose);
+$("#chooseCancel").addEventListener("click",cancelChoose);
 document.addEventListener("keydown",e=>{
   if(e.key==="Escape"){
     if(!$("#rules").hidden)$("#rules").hidden=true;
     else if(!$("#oppPick").hidden)$("#oppPick").hidden=true;
     else if(!$("#pause").hidden)$("#pause").hidden=true;
     else if(G.pendingChoice){}
+    else if(G.choose)cancelChoose();
     else if(UI.sel||G.rebelSpell)clearSel();
     else openPause();
   }
-  else if(e.key==="Enter"&&UI.sel&&UI.sel.type==="hand"&&canAct())playerPlay(UI.sel.uid);
-  else if(e.key===" "&&canAct()&&$("#pause").hidden&&$("#oppPick").hidden&&$("#rules").hidden){e.preventDefault();endTurn();}
+  else if(e.key==="Enter"){
+    if(G.choose)confirmChoose();
+    else if(UI.sel&&UI.sel.type==="hand"&&canAct())playerPlay(UI.sel.uid);
+  }
+  else if(e.key===" "&&canAct()&&$("#pause").hidden&&$("#oppPick").hidden&&$("#rules").hidden&&!G.choose){e.preventDefault();endTurn();}
 });
 addEventListener("resize",fitStage);addEventListener("orientationchange",()=>setTimeout(fitStage,150));
 document.addEventListener("fullscreenchange",()=>{fitStage();updateFullBtn();});
 document.addEventListener("webkitfullscreenchange",()=>{fitStage();updateFullBtn();});
 if(window.visualViewport)visualViewport.addEventListener("resize",fitStage);
-if(/iPhone|iPad|iPod/.test(navigator.userAgent)&&!navigator.standalone)$("#iosTip").hidden=false;
 
 buildMenu();fitStage();
 window.__duel={G,UI,startGame,render,endTurn,play,playerPlay,playerAttack,canAct};
