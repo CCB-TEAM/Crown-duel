@@ -131,7 +131,8 @@ button{font:inherit;color:inherit;cursor:pointer}
 #hand{position:relative;z-index:20;height:140px;flex:none;display:flex;justify-content:center;align-items:flex-end;pointer-events:none}
 .uslot{position:relative;flex:none;width:80px;height:100px;z-index:1}
 .uslot.enter .unit{animation:pop .45s cubic-bezier(.2,1.5,.4,1)}
-.uslot.dying{width:0!important;margin:0 -4px!important;opacity:0;pointer-events:none}
+.uslot.dying{width:0!important;margin:0 -4px!important;opacity:0;transition:width .25s ease-out,opacity .12s,margin .25s;pointer-events:none}
+.uslot.dying .unit{opacity:0;transition:opacity .12s}
 @keyframes pop{0%{transform:scale(.3);opacity:0}100%{transform:scale(1);opacity:1}}
 .unit{position:relative;width:8em;height:10em;font-size:10px;border-radius:.8em;border:.16em solid #4e8979;background:linear-gradient(165deg,#2a3c3a,#172220);box-shadow:0 .3em .8em rgba(0,0,0,.5);display:flex;flex-direction:column;align-items:center;padding:.5em .4em 1.4em;text-align:center;transition:box-shadow .15s,filter .15s,transform .15s}
 .enemy .unit{border-color:#a2705f;background:linear-gradient(165deg,#3d2b27,#1f1513)}
@@ -162,6 +163,32 @@ button{font:inherit;color:inherit;cursor:pointer}
 .uslot.picked .unit::after{content:"";position:absolute;inset:-6px;border-radius:1em;background:radial-gradient(circle at 50% 50%,rgba(255,255,255,.5),transparent 65%);animation:pickParticle 1s ease-out infinite;pointer-events:none}
 @keyframes pickParticle{0%{transform:scale(.9);opacity:.9}100%{transform:scale(1.15);opacity:0}}
 .uslot.hit .unit{animation:hitA .4s}
+/* 拖拽攻击：指向的目标亮红，其余变暗 */
+.uslot.dim .unit{filter:brightness(.38) saturate(.25);transition:filter .15s}
+.uslot.hot .unit{box-shadow:0 0 0 .28em #ff5a3d,0 0 1.6em rgba(255,120,90,.9)!important;transform:scale(1.08)}
+#eHero.dim .portrait{filter:brightness(.38) saturate(.25);transition:filter .15s}
+#eHero.hot .portrait{transform:scale(1.1);box-shadow:0 0 0 5px rgba(255,120,90,.6),0 0 26px rgba(255,120,90,.7)!important}
+
+/* Superman 落地 */
+.uslot.slam .unit{animation:slam .95s cubic-bezier(.4,0,.3,1) both!important}
+@keyframes slam{
+  0%{transform:translateY(-80px) scale(1.15);opacity:0}
+  25%{transform:translateY(-80px) scale(1.15);opacity:1}
+  50%{transform:translateY(-88px) scale(1.2)}
+  68%{transform:translateY(14px) scale(1.22);filter:brightness(1.6)}
+  78%{transform:translateY(-5px) scale(1.0);filter:brightness(1.2)}
+  88%{transform:translateY(3px) scale(1.05)}
+  100%{transform:translateY(0) scale(1);filter:none}
+}
+@keyframes shatterFlash{0%{transform:scale(.3);opacity:1}100%{transform:scale(4);opacity:0}}
+@keyframes crownFall{
+  0%{transform:translate(-50%,-50%) scale(1.8) rotate(-15deg);opacity:0}
+  40%{transform:translate(-50%,calc(-50% + 220px)) scale(1.05) rotate(5deg);opacity:1}
+  55%{transform:translate(-50%,calc(-50% + 200px)) scale(1.15) rotate(-3deg)}
+  70%{transform:translate(-50%,calc(-50% + 210px)) scale(1.05) rotate(0)}
+  100%{transform:translate(-50%,calc(-50% + 205px)) scale(1.05) rotate(0);opacity:1}
+}
+@keyframes fadeIn{from{opacity:0;transform:translate(-50%,-50%) scale(.85)}to{opacity:1;transform:translate(-50%,-50%) scale(1)}}
 @keyframes hitA{0%{filter:brightness(2.4) saturate(.3)}30%{transform:translateX(4px)}60%{transform:translateX(-2px)}100%{filter:none}}
 #sideR{display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:10px 10px 10px 4px;z-index:3}
 #btnMenu{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--panel);font-size:16px}
@@ -172,8 +199,16 @@ button{font:inherit;color:inherit;cursor:pointer}
 #endBtn.pulse{background:radial-gradient(circle at 35% 30%,#8fe0a0,#3f9a55);border-color:#c9f3d2}
 #piles{font-size:10px;color:var(--muted);text-align:center}
 #piles b{color:var(--text);font-family:var(--serif)}
+#aim{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:55;overflow:visible;display:block}
+#aim[hidden]{display:none!important}
+#aim .aim-line{position:absolute;height:6px;transform-origin:0 50%;
+  background:repeating-linear-gradient(90deg,#ffd08a 0 10px,transparent 10px 20px);
+  border-radius:3px;box-shadow:0 0 12px rgba(255,208,138,.85)}
+#aim .aim-tri{position:absolute;width:0;height:0;
+  border-left:18px solid #ffd08a;border-top:11px solid transparent;border-bottom:11px solid transparent;
+  transform-origin:50% 50%;filter:drop-shadow(0 0 10px #ffd08a)}
 #fx,#aim{position:absolute;inset:0;pointer-events:none;z-index:50}
-#aim{z-index:55;width:100%;height:100%}
+#aim{display:block;z-index:55;width:100%;height:100%}
 .float{position:absolute;transform:translate(-50%,-50%);font:700 26px var(--serif);text-shadow:0 2px 6px #000,0 0 12px #000;animation:floatUp 1s ease-out forwards;white-space:nowrap}
 .float.dmg{color:#ff7a62}.float.heal{color:#8ee69c}.float.gold{color:#f0c96b;font-size:20px}.float.armor{color:#b9c6cc;font-size:20px}.float.immune{color:#63b9ac;font-size:18px}
 @keyframes floatUp{0%{transform:translate(-50%,-10%) scale(.5);opacity:0}15%{opacity:1;transform:translate(-50%,-50%) scale(1.25)}100%{transform:translate(-50%,-190%) scale(1);opacity:0}}
@@ -290,7 +325,10 @@ button{font:inherit;color:inherit;cursor:pointer}
 </div></div>
 
 <div id="fx"></div>
-<svg id="aim" hidden><defs><marker id="ah" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0L10,5L0,10z" fill="#ff7a62"/></marker></defs><path id="aimPath" fill="none" stroke="#ff7a62" stroke-width="5" stroke-linecap="round" stroke-dasharray="2 9" marker-end="url(#ah)"/></svg>
+<div id="aim" hidden>
+  <div class="aim-line"></div>
+  <div class="aim-tri"></div>
+</div>
 <div id="preview" hidden></div>
 <div id="reveal" hidden></div>
 <div id="banner"></div>
@@ -429,28 +467,28 @@ const PROFILES={
 ]},
 核弹:{faction:"凹槽帝国",style:"禁忌召唤 · Superman 单卡压制",hp:28,cards:[
   {id:"stealth",name:"隐秘行踪",cost:2,kind:"unit",art:"◇",atk:2,hp:5,text:"行踪隐秘迅速。",n:2},
-  {id:"barrier",name:"隐秘结界",cost:5,kind:"unit",art:"▥",atk:4,hp:9,text:"嘲讽。",taunt:true,n:1},
+  {id:"barrier",name:"隐秘结界",cost:5,kind:"unit",art:"▥",atk:4,hp:9,text:"嘲讽。",taunt:true,n:2},
   {id:"teaunit",name:"安静旁观",cost:3,kind:"unit",art:"○",atk:3,hp:4,text:"只是路过看看。",n:2},
-  {id:"teaboy",name:"红茶侍者",cost:2,kind:"unit",art:"◒",atk:2,hp:3,text:"部署：获得 2 点护甲。",effect:"armor2",n:2},
-  {id:"crownkeeper",name:"皇冠守护者",cost:4,kind:"unit",art:"♛",atk:4,hp:6,text:"嘲讽。部署：抽一张牌。",taunt:true,effect:"draw",n:1},
+  {id:"teaboy",name:"红茶侍者",cost:2,kind:"unit",art:"◒",atk:2,hp:3,text:"部署：获得 2 点护甲。",effect:"armor2",n:1},
+  {id:"crownkeeper",name:"皇冠守护者",cost:4,kind:"unit",art:"♛",atk:4,hp:6,text:"嘲讽。部署：抽一张牌。",taunt:true,effect:"draw",n:2},
   {id:"superman",name:"超人 SUPERMAN",cost:8,kind:"unit",art:"S",atk:10,hp:10,text:"冲锋。无视嘲讽。每回合可攻击两次。",strikes:2,charge:true,ignoreTaunt:true,n:1},
-  {id:"teamaid",name:"红茶女仆",cost:2,kind:"unit",art:"◒",atk:2,hp:4,text:"部署：恢复 2 点生命。",effect:"heal2",n:2},
-  {id:"refugee",name:"旧大陆难民",cost:1,kind:"unit",art:"◇",atk:1,hp:3,text:"嘲讽。",taunt:true,n:2},
+  {id:"refugee",name:"旧大陆难民",cost:1,kind:"unit",art:"◇",atk:1,hp:3,text:"嘲讽。",taunt:true,n:3},
   {id:"spy",name:"凹槽密探",cost:3,kind:"unit",art:"◇",atk:3,hp:5,text:"部署：抽一张牌。",effect:"draw",n:2},
-  {id:"crownguard",name:"皇冠卫队",cost:5,kind:"unit",art:"▦",atk:5,hp:8,text:"嘲讽。",taunt:true,n:2},
+  {id:"crownguard",name:"皇冠卫队",cost:5,kind:"unit",art:"▦",atk:5,hp:8,text:"嘲讽。",taunt:true,n:3},
   {id:"forbiddenscholar",name:"禁忌学者",cost:4,kind:"unit",art:"⌬",atk:4,hp:5,text:"部署：抽一张牌。",effect:"draw",n:2},
-  {id:"forbiddenlurker",name:"禁忌潜伏者",cost:3,kind:"unit",art:"◉",atk:3,hp:4,text:"无视嘲讽。",ignoreTaunt:true,n:1},
+  {id:"forbiddenlurker",name:"禁忌潜伏者",cost:3,kind:"unit",art:"◉",atk:3,hp:4,text:"无视嘲讽。",ignoreTaunt:true,n:2},
+  {id:"phasepiercer",name:"相位穿透者",cost:3,kind:"unit",art:"◈",atk:3,hp:4,text:"无视嘲讽。",ignoreTaunt:true,n:2},
+  {id:"chronoassassin",name:"时空刺客",cost:4,kind:"unit",art:"✧",atk:5,hp:4,text:"无视嘲讽。",ignoreTaunt:true,n:1},
+  {id:"ironwall",name:"凹槽铁壁",cost:3,kind:"unit",art:"▥",atk:2,hp:6,text:"嘲讽。",taunt:true,n:1},
   {id:"revenge",name:"例行复仇",cost:3,kind:"spell",art:"☄",text:"敌方英雄受 7 点伤害。",effect:"damage7",n:2},
-  {id:"tea",name:"红茶时间",cost:2,kind:"spell",art:"◒",text:"获得 3 点护甲并抽一张牌。",effect:"armor3draw",n:2},
-  {id:"retreat",name:"停止复仇",cost:1,kind:"spell",art:"Ⅱ",text:"恢复 4 点生命。",effect:"heal4",n:2},
-  {id:"escape",name:"逃亡路线",cost:2,kind:"spell",art:"↗",text:"抽两张牌并恢复 2 点生命。",effect:"draw2heal2",n:2},
+  {id:"tea",name:"红茶时间",cost:2,kind:"spell",art:"◒",text:"获得 3 点护甲并抽一张牌。",effect:"armor3draw",n:1},
+  {id:"escape",name:"逃亡路线",cost:2,kind:"spell",art:"↗",text:"抽两张牌并恢复 2 点生命。",effect:"draw2heal2",n:1},
   {id:"filter",name:"禁忌检索",cost:2,kind:"spell",art:"⌕",text:"抽一张牌。若抽到超人则费用 -2。",effect:"filterSuperman",n:2},
   {id:"resonance",name:"皇冠共鸣",cost:3,kind:"spell",art:"♛",text:"从牌库中检索超人。若无则抽两张牌。",effect:"tutorSuperman",n:2},
   {id:"gaze",name:"皇冠凝视",cost:2,kind:"spell",art:"♛",text:"查看牌库顶三张，选一张加入手牌。",effect:"scry",n:2},
   {id:"ritual",name:"皇冠仪式",cost:5,kind:"spell",art:"♛",text:"从牌库中召唤超人。",effect:"summonSuperman",n:1},
   {id:"forbiddenknowledge",name:"禁忌知识",cost:3,kind:"spell",art:"⌬",text:"抽三张牌。",effect:"draw3",n:2},
-  {id:"whisper",name:"皇冠低语",cost:1,kind:"spell",art:"♛",text:"抽一张牌并恢复 2 点生命。",effect:"draw1heal2",n:2},
-  {id:"resonance2",name:"禁忌共鸣",cost:4,kind:"spell",art:"⌬",text:"抽两张牌并获得 3 点护甲。",effect:"draw2armor3",n:1}
+  {id:"whisper",name:"皇冠低语",cost:1,kind:"spell",art:"♛",text:"抽一张牌并恢复 2 点生命。",effect:"draw1heal2",n:1}
 ]},
 猪瘟鱼:{faction:"凹槽帝国",style:"偷钱逃跑 · 特殊胜利",hp:30,cards:[
   {id:"assistant",name:"会计助理",cost:1,kind:"unit",art:"◇",atk:1,hp:3,text:"部署：抽一张牌。",effect:"draw",n:2},
@@ -596,8 +634,9 @@ function triggerDrawHeal(s,n=1){
 function draw(s,n=1){
   for(let i=0;i<n;i++){
     if(!s.deck.length){s.fatigue++;damage(s,s.fatigue,true);continue;}
-    if(s.hand.length>=MAX_HAND){s.deck.pop();continue;}
-    s.hand.push(s.deck.pop());
+    const card=s.deck.pop();
+    if(s.hand.length>=MAX_HAND){discardCard(s,card);continue;}
+    s.hand.push(card);
     triggerDrawHeal(s,1);
   }
 }
@@ -614,8 +653,28 @@ function beginTurn(s){
   const isFirstMoverSide=(s===G.player&&G.firstMover==="player")||(s===G.opponent&&G.firstMover==="enemy");
   if(!(isFirstMoverSide&&s.turnsStarted===1)) draw(s,1);
 }
-function damage(s,n,fatigue=false){const blocked=Math.min(s.armor,n);s.armor-=blocked;s.hp-=(n-blocked);if(blocked&&!fatigue)note(`护甲吸收 ${blocked} 点伤害`,s.name);checkEnd();}
-function heal(s,n){s.hp=Math.min(s.maxHp,s.hp+n);}
+function damage(s,n,fatigue=false){
+  const before=s.hp;
+  const blocked=Math.min(s.armor,n);
+  s.armor-=blocked;
+  s.hp-=(n-blocked);
+  if(blocked&&!fatigue)note(`护甲吸收 ${blocked} 点伤害`,s.name);
+
+  // LETHAL 触发条件：
+  // ① 受伤的是玩家自己
+  // ② 非疲劳伤害
+  // ③ 玩家还活着（没触发失败结算）
+  // ④ 玩家血量跌到 ≤10（濒死）
+  // ⑤ 是"从健康跌入濒死"的那一下，避免每次小伤害都刷屏
+  if(
+    s===G.player && !fatigue &&
+    s.hp>0 && s.hp<=10 &&
+    before>10
+  ) lethalFX();
+
+  checkEnd();
+}
+function heal(s,n){s.hp+=n;}
 function dead(s){s.board=s.board.filter(u=>u.health>0);}
 function steal(s,amount){s.money+=amount;note(`偷取 ${amount} 元（当前 ${s.money} / ${ESCAPE_TARGET}）`,s.name);}
 function fireCount(s){return s.board.filter(u=>GUNS.indexOf(u.id)>=0).length;}
@@ -623,7 +682,16 @@ function removeFrom(s,u){s.board=s.board.filter(x=>x!==u);}
 
 function showResult(win,title,text){
   if(G.resultShown)return;G.resultShown=true;const sess=G.session;
-  setTimeout(()=>{if(sess!==G.session)return;$("#resTitle").textContent=title;$("#resText").textContent=text;$("#result").hidden=false;sfx(win?"win":"lose");},900);
+  setTimeout(async ()=>{
+    if(sess!==G.session)return;
+    $("#resTitle").textContent=title;
+    $("#resText").textContent=text;
+    startBGM(win?"win":"lose");
+    endGameFX(win);
+    await sleep(1400);
+    if(sess!==G.session)return;
+    $("#result").hidden=false;
+  },900);
 }
 function specialWin(s,text){
   if(G.over)return;G.over=true;G.turn="none";note(text,s.name);
@@ -713,6 +781,7 @@ function startChoose(config){
     count:config.count||1,
     minCount:config.minCount||0,
     maxCount:config.maxCount||config.count||1,
+    side:config.side||"enemy",
     eligible:config.eligible||[],
     picked:[],
     resolve:config.resolve,
@@ -744,7 +813,8 @@ function toggleChooseUnit(uid){
 function confirmChoose(){
   if(!G.choose) return;
   if(G.choose.picked.length<G.choose.minCount){toast(`至少选 ${G.choose.minCount} 个`);return;}
-  const picked=G.choose.picked.map(uid=>find(G.opponent.board,uid)).filter(Boolean);
+  const pool=G.choose.side==="player"?G.player.board:G.opponent.board;
+  const picked=G.choose.picked.map(uid=>find(pool,uid)).filter(Boolean);
   const cb=G.choose.resolve;
   G.choose=null;
   renderChooseBar();
@@ -838,6 +908,38 @@ function saturationFX(){
   }
   setTimeout(()=>{layer.style.opacity="0";setTimeout(()=>layer.remove(),400);},1100);
 }
+async function supermanFX(){
+  const sess = G.session;
+  const layer = document.createElement("div");
+  layer.style.cssText = "position:absolute;inset:0;z-index:200;pointer-events:none;background:radial-gradient(circle at 50% 50%,rgba(138,107,196,.45),rgba(5,8,9,.88) 60%);opacity:0;transition:opacity .3s";
+  layer.innerHTML = `
+    <div style="position:absolute;left:50%;top:50%;width:520px;height:520px;margin:-260px 0 0 -260px;border-radius:50%;border:3px solid rgba(179,156,232,.65);box-shadow:0 0 80px #8a6bc4,inset 0 0 60px rgba(138,107,196,.7);animation:cometBurst 1.4s ease-out forwards"></div>
+    <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font:900 220px/1 var(--serif);color:#f0e8ff;text-shadow:0 0 40px #8a6bc4,0 0 100px #b39ce8,0 8px 24px #000;animation:cometDamage 1.5s ease-out forwards">S</div>`;
+  $("#fx").appendChild(layer);
+  await sleep(20);
+  layer.style.opacity = "1";
+  sfx("core");
+  shake();
+  await sleep(1500);
+  layer.style.opacity = "0";
+  setTimeout(()=>layer.remove(), 400);
+}
+async function peopleArmyFX(){
+  const sess = G.session;
+  const layer = document.createElement("div");
+  layer.style.cssText = "position:absolute;inset:0;z-index:200;pointer-events:none;display:grid;place-items:center;background:radial-gradient(circle at 50% 50%,rgba(217,99,77,.35),rgba(5,8,9,.85) 60%);opacity:0;transition:opacity .3s";
+  layer.innerHTML = `
+    <div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(217,99,77,.15) 0 2px,transparent 2px 14px);animation:armyScan 1.2s linear infinite;opacity:.7"></div>
+    <div style="position:relative;font:900 78px/1 var(--serif);color:#f0d18e;text-shadow:0 0 30px #e5533d,0 0 80px #d9634d,0 6px 20px #000;letter-spacing:.2em;animation:peopleArmyFX 1.6s ease-out forwards">人民军</div>`;
+  $("#fx").appendChild(layer);
+  await sleep(20);
+  layer.style.opacity = "1";
+  sfx("spell");
+  shake();
+  await sleep(1500);
+  layer.style.opacity = "0";
+  setTimeout(()=>layer.remove(), 400);
+}
 if(!document.getElementById("satKF")){
   const s=document.createElement("style");s.id="satKF";
   s.textContent="@keyframes satWave{0%{transform:scale(.2);opacity:1}100%{transform:scale(6);opacity:0}}";
@@ -883,7 +985,336 @@ if(!document.getElementById("cometKF")){
   s.textContent="@keyframes cometBurst{0%{transform:scale(1);opacity:1;border-width:4px}100%{transform:scale(18);opacity:0;border-width:1px}}@keyframes cometDamage{0%{transform:translate(-50%,-50%) scale(.3);opacity:0}15%{transform:translate(-50%,-50%) scale(1.5);opacity:1}35%{transform:translate(-50%,-50%) scale(1)}100%{transform:translate(-50%,-180%) scale(1);opacity:0}}";
   document.head.appendChild(s);
 }
+if(!document.getElementById("extraKF")){
+  const s=document.createElement("style");s.id="extraKF";
+  s.textContent="@keyframes armyScan{0%{transform:translateY(-20px)}100%{transform:translateY(20px)}}@keyframes peopleArmyFX{0%{opacity:0;transform:scale(.7)}30%{opacity:1;transform:scale(1.05)}80%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1.1)}}";
+  document.head.appendChild(s);
+}
+async function redDawnFX(){
+  const layer=document.createElement("div");
+  layer.style.cssText="position:absolute;inset:0;z-index:200;pointer-events:none;background:linear-gradient(0deg,rgba(217,99,77,.55),transparent 45%);opacity:0;transition:opacity .3s";
+  layer.innerHTML=`
+    <div style="position:absolute;left:0;right:0;bottom:0;height:70%;background:radial-gradient(ellipse at 50% 100%,rgba(255,180,120,.65),transparent 70%);animation:redRise 1.1s ease-out forwards"></div>
+    <div style="position:absolute;left:50%;bottom:10%;transform:translateX(-50%);font:900 64px/1 var(--serif);color:#ffd9a8;text-shadow:0 0 30px #d9634d,0 0 60px #a8402f;letter-spacing:.3em;opacity:0;animation:redRise 1.1s ease-out forwards">赤 色 黎 明</div>`;
+  $("#fx").appendChild(layer);
+  requestAnimationFrame(()=>layer.style.opacity="1");
+  sfx("satur");shake();
+  await sleep(1100);
+  layer.style.opacity="0";
+  setTimeout(()=>layer.remove(),400);
+}
+async function summonRedFX(n){
+  const layer=document.createElement("div");
+  layer.style.cssText="position:absolute;inset:0;z-index:200;pointer-events:none;background:radial-gradient(ellipse at 50% 100%,rgba(217,99,77,.45),transparent 55%);opacity:0;transition:opacity .3s";
+  layer.innerHTML=`
+    <div style="position:absolute;left:0;right:0;bottom:20%;height:4px;background:linear-gradient(90deg,transparent,#d9634d,#ffd9a8,#d9634d,transparent);box-shadow:0 0 30px #d9634d;animation:redSweep 1s ease-out forwards"></div>
+    <div style="position:absolute;left:50%;top:38%;transform:translate(-50%,-50%);font:900 44px/1 var(--serif);color:#f0d18e;text-shadow:0 0 30px #d9634d,0 0 60px #a8402f;letter-spacing:.2em;opacity:0;animation:redRise 1s ease-out forwards">${n>=2?"十 月 革 命":"红 色 动 员"}</div>`;
+  $("#fx").appendChild(layer);
+  requestAnimationFrame(()=>layer.style.opacity="1");
+  sfx("spell");
+  await sleep(950);
+  layer.style.opacity="0";
+  setTimeout(()=>layer.remove(),400);
+}
+async function aoe5FX(){
+  const layer=document.createElement("div");
+  layer.style.cssText="position:absolute;inset:0;z-index:200;pointer-events:none;background:rgba(5,8,9,.55);opacity:0;transition:opacity .25s";
+  $("#fx").appendChild(layer);
+  requestAnimationFrame(()=>layer.style.opacity="1");
+  for(let i=0;i<8;i++){
+    const t=200+Math.random()*(UI.w-400);
+    const d=document.createElement("div");
+    d.style.cssText=`position:absolute;left:${t}px;top:-40px;width:12px;height:60px;border-radius:6px;background:linear-gradient(180deg,#ffd9a8,#d9634d);box-shadow:0 0 20px #ff8a70;z-index:201;pointer-events:none;transition:top .35s cubic-bezier(.5,0,.9,.3),opacity .3s`;
+    $("#fx").appendChild(d);
+    setTimeout(()=>{d.style.top=(UI.h-120)+"px";},i*60);
+    setTimeout(()=>{
+      d.style.opacity="0";
+      const b=document.createElement("div");
+      b.style.cssText=`position:absolute;left:${t}px;top:${UI.h-120}px;width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;border:4px solid #ffd9a8;box-shadow:0 0 50px #d9634d;z-index:202;pointer-events:none;animation:cometBurst .8s ease-out forwards`;
+      $("#fx").appendChild(b);
+      sfx("hit");shake();
+      setTimeout(()=>b.remove(),900);
+    },i*60+340);
+    setTimeout(()=>d.remove(),1200);
+  }
+  await sleep(1200);
+  layer.style.opacity="0";
+  setTimeout(()=>layer.remove(),400);
+}
+async function fireShipFX(n){
+  const layer=document.createElement("div");
+  layer.style.cssText="position:absolute;inset:0;z-index:200;pointer-events:none;background:radial-gradient(circle at 50% 50%,rgba(255,140,60,.35),rgba(5,8,9,.7) 65%);opacity:0;transition:opacity .3s";
+  $("#fx").appendChild(layer);
+  requestAnimationFrame(()=>layer.style.opacity="1");
+  for(let i=0;i<n;i++){
+    const x=UI.w*0.3+Math.random()*UI.w*0.4;
+    const y=UI.h*0.5+Math.random()*UI.h*0.3;
+    const b=document.createElement("div");
+    b.style.cssText=`position:absolute;left:${x}px;top:${y}px;width:60px;height:60px;margin:-30px 0 0 -30px;border-radius:50%;background:radial-gradient(circle at 50% 50%,#ffd9a8,#d9634d 45%,transparent 75%);filter:blur(4px);box-shadow:0 0 60px #e5533d;z-index:202;pointer-events:none;opacity:0;transition:transform .8s ease-out,opacity .8s`;
+    $("#fx").appendChild(b);
+    requestAnimationFrame(()=>{
+      b.style.opacity=".9";
+      b.style.transform=`translate(${(Math.random()-.5)*260}px,${-(120+Math.random()*180)}px) scale(.6)`;
+    });
+    setTimeout(()=>{b.style.opacity="0";},400);
+    setTimeout(()=>b.remove(),1200);
+  }
+  sfx("satur");shake();
+  await sleep(1000);
+  layer.style.opacity="0";
+  setTimeout(()=>layer.remove(),400);
+}
+async function finishFX(dmg){
+  const layer=document.createElement("div");
+  layer.style.cssText="position:absolute;inset:0;z-index:200;pointer-events:none;background:radial-gradient(circle at 50% 50%,rgba(60,20,20,.65),rgba(5,8,9,.9) 70%);opacity:0;transition:opacity .3s";
+  layer.innerHTML=`
+    <div style="position:absolute;left:50%;top:38%;transform:translate(-50%,-50%) scale(.2);font:900 120px/1 var(--serif);color:#ffd9a8;text-shadow:0 0 40px #d9634d,0 0 80px #a8402f;opacity:0;animation:cometDamage 1.3s ease-out forwards">☠</div>
+    <div style="position:absolute;left:50%;top:60%;transform:translate(-50%,-50%);font:900 52px/1 var(--serif);color:#ffd9a8;text-shadow:0 0 30px #d9634d;opacity:0;animation:cometDamage 1.4s ease-out forwards">-${dmg}</div>`;
+  $("#fx").appendChild(layer);
+  requestAnimationFrame(()=>layer.style.opacity="1");
+  sfx("core");shake();
+  await sleep(1300);
+  layer.style.opacity="0";
+  setTimeout(()=>layer.remove(),500);
+}
+async function summonSupermanRitualFX(){
+  const layer=document.createElement("div");
+  layer.style.cssText="position:absolute;inset:0;z-index:199;pointer-events:none;background:radial-gradient(circle at 50% 50%,rgba(138,107,196,.35),rgba(5,8,9,.88) 60%);opacity:0;transition:opacity .4s";
+  layer.innerHTML=`
+    <div style="position:absolute;left:50%;top:50%;width:400px;height:400px;margin:-200px 0 0 -200px;border-radius:50%;border:2px dashed rgba(179,156,232,.75);box-shadow:0 0 60px #8a6bc4;animation:spin 2.2s linear infinite"></div>
+    <div style="position:absolute;left:50%;top:50%;width:300px;height:300px;margin:-150px 0 0 -150px;border-radius:50%;border:2px solid rgba(212,164,93,.6);box-shadow:inset 0 0 40px rgba(212,164,93,.5);animation:spin 1.6s linear infinite reverse"></div>`;
+  $("#fx").appendChild(layer);
+  requestAnimationFrame(()=>layer.style.opacity="1");
+  sfx("spell");
+  await sleep(950);
+  layer.style.opacity="0";
+  setTimeout(()=>layer.remove(),500);
+}
+async function rebelFX(unitEl){
+  if(!unitEl)return;
+  const p=logical(unitEl.getBoundingClientRect());
+  const layer=document.createElement("div");
+  layer.style.cssText=`position:absolute;left:${p.x}px;top:${p.y}px;width:20px;height:20px;margin:-10px 0 0 -10px;border-radius:50%;border:4px solid #b39ce8;box-shadow:0 0 40px #8a6bc4,inset 0 0 20px #fff;z-index:202;pointer-events:none;animation:cometBurst .8s ease-out forwards`;
+  $("#fx").appendChild(layer);
+  sfx("spell");
+  await sleep(800);
+  layer.remove();
+}
+async function gravityLockFX(){
+  const layer=document.createElement("div");
+  layer.style.cssText="position:absolute;inset:0;z-index:200;pointer-events:none;background:radial-gradient(ellipse at 50% 100%,rgba(138,107,196,.45),rgba(5,8,9,.8) 65%);opacity:0;transition:opacity .3s";
+  layer.innerHTML=`<div style="position:absolute;left:50%;top:50%;width:500px;height:500px;margin:-250px 0 0 -250px;border-radius:50%;border:3px solid rgba(179,156,232,.6);box-shadow:0 0 60px #8a6bc4,inset 0 0 60px rgba(138,107,196,.6);animation:gravPull 1.2s ease-out forwards"></div>`;
+  $("#fx").appendChild(layer);
+  requestAnimationFrame(()=>layer.style.opacity="1");
+  sfx("stun");shake();
+  await sleep(1100);
+  layer.style.opacity="0";
+  setTimeout(()=>layer.remove(),400);
+}
+async function costRaiseFX(){
+  const layer=document.createElement("div");
+  layer.style.cssText="position:absolute;inset:0;z-index:200;pointer-events:none;background:radial-gradient(ellipse at 50% 0%,rgba(168,80,112,.45),rgba(5,8,9,.75) 65%);opacity:0;transition:opacity .3s";
+  layer.innerHTML=`<div style="position:absolute;left:50%;top:35%;transform:translate(-50%,-50%);font:900 60px/1 var(--serif);color:#ffb0c8;text-shadow:0 0 30px #a85070,0 0 60px #5e1f3a;letter-spacing:.1em;opacity:0;animation:cometDamage 1.3s ease-out forwards">费用 +1</div>`;
+  $("#fx").appendChild(layer);
+  requestAnimationFrame(()=>layer.style.opacity="1");
+  sfx("error");
+  await sleep(1100);
+  layer.style.opacity="0";
+  setTimeout(()=>layer.remove(),400);
+}
+async function evasionFX(){
+  const el=$("#pAv");
+  if(!el)return;
+  const p=logical(el.getBoundingClientRect());
+  const layer=document.createElement("div");
+  layer.style.cssText=`position:absolute;left:${p.x}px;top:${p.y}px;width:20px;height:20px;margin:-10px 0 0 -10px;border-radius:50%;border:4px solid #63b9ac;box-shadow:0 0 50px #63b9ac,inset 0 0 30px #9be2d6;z-index:202;pointer-events:none;animation:evasion 1.4s ease-out forwards`;
+  $("#fx").appendChild(layer);
+  sfx("immune");
+  setTimeout(()=>layer.remove(),1600);
+}
+async function lethalFX(){
+  const layer=document.createElement("div");
+  layer.style.cssText="position:absolute;inset:0;z-index:210;pointer-events:none;opacity:0;transition:opacity .2s";
+  layer.innerHTML=`
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,transparent 45%,rgba(217,99,77,.65) 100%)"></div>
+    <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font:900 68px/1 var(--serif);color:#ffd9a8;text-shadow:0 0 40px #d9634d,0 0 80px #a8402f;letter-spacing:.25em">L E T H A L</div>`;
+  $("#fx").appendChild(layer);
+  requestAnimationFrame(()=>layer.style.opacity="1");
+  sfx("core");
+  await sleep(900);
+  layer.style.opacity="0";
+  setTimeout(()=>layer.remove(),500);
+}
+if(!document.getElementById("sceneKF")){
+  const s=document.createElement("style");s.id="sceneKF";
+  s.textContent=`
+    @keyframes redRise{0%{opacity:0;transform:translateY(40px)}30%{opacity:1}80%{opacity:1}100%{opacity:0;transform:translateY(0)}}
+    @keyframes redSweep{0%{transform:scaleX(0)}40%{transform:scaleX(1)}100%{transform:scaleX(1);opacity:0}}
+    @keyframes gravPull{0%{transform:scale(2);opacity:0}30%{transform:scale(1);opacity:1}100%{transform:scale(.6);opacity:0}}
+    @keyframes evasion{0%{transform:scale(.3);opacity:0}20%{transform:scale(1.2);opacity:1}80%{transform:scale(1);opacity:.8}100%{transform:scale(1.5);opacity:0}}
+    @keyframes spin{to{transform:rotate(360deg)}}
+  `;
+  document.head.appendChild(s);
+}
+/* 拖拽攻击高亮 */
+function aimHighlight(t){
+  const row=$("#eRow");
+  if(row){
+    row.querySelectorAll(".uslot").forEach(el=>{
+      el.classList.remove("hot","dim");
+      if(t&&t.kind==="unit"&&t.el===el)el.classList.add("hot");
+      else el.classList.add("dim");
+    });
+  }
+  const hero=$("#eHero");
+  if(hero){
+    hero.classList.remove("hot","dim");
+    if(t&&t.kind==="hero")hero.classList.add("hot");
+    else hero.classList.add("dim");
+  }
+}
 
+/* 弃牌视觉 */
+function discardCard(s,card){
+  if(s===G.player){
+    const hand=$("#hand");
+    if(hand){
+      const r=hand.getBoundingClientRect(),sr=$("#stage").getBoundingClientRect();
+      const x=(r.left+r.width/2-sr.left)/UI.scale;
+      const y=(r.top+r.height/2-sr.top)/UI.scale;
+      const d=document.createElement("div");
+      d.style.cssText=`position:absolute;left:${x}px;top:${y}px;width:96px;height:134px;margin:-67px 0 0 -48px;z-index:220;pointer-events:none;border-radius:.8em;border:.15em solid #6b3e35;background:linear-gradient(165deg,#2b3a3f,#182226);display:grid;place-items:center;font:700 32px var(--serif);color:#d4a45d;opacity:1;transition:transform .7s cubic-bezier(.4,0,.7,0),opacity .7s`;
+      d.textContent=card.art||"?";
+      $("#fx").appendChild(d);
+      requestAnimationFrame(()=>{
+        const dir=Math.random()<.5?-1:1;
+        d.style.transform=`translate(${dir*(180+Math.random()*120)}px,220px) rotate(${dir*40}deg) scale(.5)`;
+        d.style.opacity="0";
+      });
+      setTimeout(()=>d.remove(),800);
+    }
+  }
+  note(`弃牌：${card.name} 被扔掉`,s.name);
+}
+
+/* 单位碎裂爆裂 */
+function shatterFX(el){
+  if(!el||!el.getBoundingClientRect)return;
+  const r=el.getBoundingClientRect(),sr=$("#stage").getBoundingClientRect();
+  const x=(r.left+r.width/2-sr.left)/UI.scale;
+  const y=(r.top+r.height/2-sr.top)/UI.scale;
+  const isEnemy=el.dataset.owner==="enemy";
+  const c1=isEnemy?"#a2705f":"#4e8979";
+  const c2=isEnemy?"#3d2b27":"#172220";
+  const flash=document.createElement("div");
+  flash.style.cssText=`position:absolute;left:${x}px;top:${y}px;width:40px;height:40px;margin:-20px 0 0 -20px;border-radius:50%;background:radial-gradient(circle,#fff,${c1},transparent 70%);filter:blur(4px);z-index:202;pointer-events:none;animation:shatterFlash .35s ease-out forwards`;
+  $("#fx").appendChild(flash);
+  setTimeout(()=>flash.remove(),400);
+  for(let i=0;i<18;i++){
+    const p=document.createElement("div");
+    const ang=Math.random()*Math.PI*2;
+    const dist=80+Math.random()*160;
+    const size=6+Math.random()*10;
+    const rot=(Math.random()*2-1)*540;
+    p.style.cssText=`position:absolute;left:${x}px;top:${y}px;width:${size}px;height:${size*1.4}px;margin:${-size*.7}px 0 0 ${-size*.5}px;background:linear-gradient(160deg,${c1},${c2});border:1px solid rgba(255,255,255,.2);z-index:203;pointer-events:none;opacity:1;transform:translate(-50%,-50%) rotate(0);transition:transform .55s cubic-bezier(.1,.7,.5,1),opacity .55s ease-out`;
+    $("#fx").appendChild(p);
+    requestAnimationFrame(()=>{
+      p.style.transform=`translate(calc(-50% + ${Math.cos(ang)*dist}px),calc(-50% + ${Math.sin(ang)*dist}px)) rotate(${rot}deg) scale(.4)`;
+      p.style.opacity="0";
+    });
+    setTimeout(()=>p.remove(),650);
+  }
+}
+
+/* 战斗结束大场面 */
+async function endGameFX(win){
+  const layer=document.createElement("div");
+  layer.style.cssText="position:absolute;inset:0;z-index:220;pointer-events:none;opacity:0;transition:opacity .35s";
+  if(win){
+    layer.innerHTML=`
+      <div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 40%,rgba(255,220,140,.75),rgba(217,164,93,.5) 40%,rgba(5,8,9,.85) 85%)"></div>
+      <div style="position:absolute;left:50%;top:40%;font:900 220px/1 var(--serif);color:#ffe6b0;text-shadow:0 0 60px #f0d18e,0 0 120px #d4a45d,0 8px 30px #000;animation:crownFall 1.4s cubic-bezier(.5,0,.3,1) forwards">♛</div>`;
+  }else{
+    layer.innerHTML=`
+      <div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(160,40,40,.5),rgba(5,8,9,.95) 80%)"></div>
+      <div style="position:absolute;left:50%;top:50%;font:900 110px/1 var(--serif);color:#ffb0a0;text-shadow:0 0 50px #a8402f;letter-spacing:.3em;opacity:0;animation:fadeIn 1.2s .3s forwards">牌 桌 失 守</div>`;
+  }
+  $("#fx").appendChild(layer);
+  requestAnimationFrame(()=>layer.style.opacity="1");
+  if(win){
+    for(let i=0;i<40;i++){
+      const p=document.createElement("div");
+      const size=4+Math.random()*6;
+      const x=UI.w*.5+(Math.random()-.5)*UI.w*.8;
+      const y=UI.h*.7+Math.random()*80;
+      p.style.cssText=`position:absolute;left:${x}px;top:${y}px;width:${size}px;height:${size}px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffe6b0,#d4a45d);box-shadow:0 0 14px #f0d18e;z-index:221;pointer-events:none;opacity:1;transition:transform 1.6s ease-out,opacity 1.6s`;
+      $("#fx").appendChild(p);
+      requestAnimationFrame(()=>{
+        p.style.transform=`translate(${(Math.random()-.5)*260}px,${-(200+Math.random()*220)}px) scale(.4)`;
+        p.style.opacity="0";
+      });
+      setTimeout(()=>p.remove(),1800);
+    }
+  }
+  await sleep(1500);
+  layer.style.opacity="0";
+  setTimeout(()=>layer.remove(),500);
+}
+
+/* 背景音乐 */
+let BG={master:null,current:null,timers:[]};
+function stopBGM(){
+  BG.current=null;
+  BG.timers.forEach(t=>clearTimeout(t));
+  BG.timers=[];
+  if(BG.master){
+    const m=BG.master;
+    try{m.gain.cancelScheduledValues(AC.currentTime);}catch(e){}
+    try{m.gain.setValueAtTime(m.gain.value,AC.currentTime);m.gain.exponentialRampToValueAtTime(.0001,AC.currentTime+.4);}catch(e){}
+    setTimeout(()=>{try{m.disconnect();}catch(e){}},500);
+    BG.master=null;
+  }
+}
+function startBGM(theme){
+if(!_audioUnlocked)return; 
+  if(UI.muted)return;
+  if(!AC)initAudio();
+  if(!AC)return;
+  if(BG.current===theme)return;
+  stopBGM();
+  const master=AC.createGain();
+  master.gain.value=.02;
+  master.connect(AC.destination);
+  BG.master=master;
+  BG.current=theme;
+  const notes={
+    menu:[262,330,392,440,392,330,294,262],
+    duel:[220,262,294,262,220,196,220,262],
+    win:[523,659,784,1047,784,1047,1319],
+    lose:[220,196,175,147,131,110]
+  };
+  const seq=notes[theme]||notes.menu;
+  const bpm=theme==="duel"?92:theme==="menu"?66:110;
+  const beat=60/bpm;
+  let idx=0;
+  const tick=()=>{
+    if(BG.current!==theme)return;
+    const f=seq[idx%seq.length];
+    const t=AC.currentTime;
+    const o=AC.createOscillator();
+    const g=AC.createGain();
+    o.type=theme==="duel"?"square":theme==="lose"?"sawtooth":"triangle";
+    o.frequency.value=f;
+    g.gain.setValueAtTime(0,t);
+    g.gain.linearRampToValueAtTime(theme==="duel"?.7:1,t+.02);
+    g.gain.exponentialRampToValueAtTime(.001,t+beat*.95);
+    o.connect(g);g.connect(master);
+    o.start(t);o.stop(t+beat);
+    idx++;
+    BG.timers.push(setTimeout(tick,beat*1000));
+  };
+  tick();
+}
 /* ============ 部署效果 ============ */
 function unitDeploy(s,c,o){
   switch(c.effect){
@@ -923,10 +1354,26 @@ function unitDeploy(s,c,o){
         const red=profile(s.name).cards.find(x=>x.id==="red")||{id:"red",name:"俄布",cost:2,kind:"unit",art:"★",text:"冲锋。",charge:true,atk:2,hp:3};
         const u=clone(red);u.atkLeft=u.charge?u.strikes:0;u.sr=G.round;s.board.push(u);
       }break;}
-    case"huiliyiDeploy":{
-      const cands=s.board.filter(u=>u!==c);
-      if(cands.length){const t=cands.sort((a,b)=>b.attack-a.attack)[0];t.attack+=3;t.health+=3;t.maxHealth+=3;note(`绘梨衣：${t.name} +3/+3`,s.name);}
-      break;}
+case"huiliyiDeploy":{
+  const cands=s.board.filter(u=>u!==c);
+  if(!cands.length)break;
+  if(s===G.player){
+    startChoose({
+      count:1,maxCount:1,minCount:1,side:"player",
+      label:"绘梨衣 · 选择一个友方单位 +3/+3",
+      eligible:cands.map(u=>u.uid),
+      resolve:(picked)=>{
+        if(picked[0]){picked[0].attack+=3;picked[0].health+=3;picked[0].maxHealth+=3;note(`绘梨衣：${picked[0].name} +3/+3`,s.name);}
+      }
+    });
+    hint("点击高亮友方单位，然后点确定");
+    render();
+  }else{
+    const t=cands.sort((a,b)=>b.attack-a.attack)[0];
+    t.attack+=3;t.health+=3;t.maxHealth+=3;
+    note(`绘梨衣：${t.name} +3/+3`,s.name);
+  }
+  break;}
     case"baimaoDeploy":s.energy+=3;note("白猫：获得 3 点额外费用",s.name);break;
     case"xiashuiDeploy":damage(o,3);note("下水：敌方英雄受 3 点伤害",s.name);break;
     case"yuchunDeploy":if(o.hand.length){const idx=Math.floor(Math.random()*o.hand.length);const removed=o.hand.splice(idx,1)[0];note(`愚蠢：摧毁了敌方手牌【${removed.name}】`,s.name);}break;
@@ -953,8 +1400,8 @@ function unitDeploy(s,c,o){
 /* ============ 法术 ============ */
 function castSpell(s,c,o){
   switch(c.effect){
-    case"summonRed1":summon(s,"red",1);note("红色动员令，红军入场",s.name);break;
-    case"summonRed2":summon(s,"red",2);note("十月革命，两名红军入场",s.name);break;
+    case"summonRed1":summon(s,"red",1);note("红色动员令，红军入场",s.name);if(s===G.player)summonRedFX(1);break;
+    case"summonRed2":summon(s,"red",2);note("十月革命，两名红军入场",s.name);if(s===G.player)summonRedFX(2);break;
     case"armor3draw":s.armor+=3;draw(s,1);note("补充护甲与手牌",s.name);break;
     case"armor4draw":s.armor+=4;draw(s,1);break;
     case"armor6":s.armor+=6;break;
@@ -966,7 +1413,26 @@ function castSpell(s,c,o){
     case"buffAll1":s.board.forEach(u=>{u.attack+=1;u.health+=1;u.maxHealth+=1;});note("全军 +1/+1",s.name);break;
     case"buffAll1draw":s.board.forEach(u=>{u.attack+=1;u.health+=1;u.maxHealth+=1;});draw(s,1);break;
     case"buffAllCharge":s.board.forEach(u=>{u.attack+=1;u.health+=1;u.maxHealth+=1;u.atkLeft=Math.max(u.atkLeft,1);});note("全军 +1/+1 并获得冲锋",s.name);break;
-    case"buffOneDraw":if(s.board.length){const t=[...s.board].sort((a,b)=>b.attack-a.attack)[0];t.attack+=2;t.health+=2;t.maxHealth+=2;draw(s,1);}else{draw(s,1);}break;
+case"buffOneDraw":{
+  if(!s.board.length){draw(s,1);break;}
+  if(s===G.player){
+    startChoose({
+      count:1,maxCount:1,minCount:1,side:"player",
+      label:"选择一个友方单位 +2/+2 并抽一张牌",
+      eligible:s.board.map(u=>u.uid),
+      resolve:(picked)=>{
+        if(picked[0]){picked[0].attack+=2;picked[0].health+=2;picked[0].maxHealth+=2;note(`${picked[0].name} +2/+2`,s.name);}
+        draw(s,1);
+        render();
+      }
+    });
+    hint("点击高亮友方单位，然后点确定");
+    render();
+  }else{
+    const t=[...s.board].sort((a,b)=>b.attack-a.attack)[0];
+    t.attack+=2;t.health+=2;t.maxHealth+=2;draw(s,1);
+  }
+  break;}
     case"ramp":s.maxEnergy=Math.min(10,s.maxEnergy+1);s.energy+=1;draw(s,1);note("五年计划完成",s.name);break;
     case"starClimb":{
       s.maxEnergy=Math.min(10,s.maxEnergy+1);s.energy=Math.min(s.energy+1,s.maxEnergy);
@@ -995,7 +1461,7 @@ function castSpell(s,c,o){
     case"aoe2":o.board.forEach(u=>u.health-=2);dead(o);damage(o,2);break;
     case"aoe3":o.board.forEach(u=>u.health-=3);dead(o);damage(o,3);break;
     case"aoe4":o.board.forEach(u=>u.health-=4);dead(o);break;
-    case"aoe5":o.board.forEach(u=>u.health-=5);dead(o);damage(o,5);break;
+    case"aoe5":o.board.forEach(u=>u.health-=5);dead(o);damage(o,5);if(s===G.player)aoe5FX();break;
     case"heal4":heal(s,4);break;
     case"draw2heal2":draw(s,2);heal(s,2);break;
     case"steal":damage(o,3);draw(s,1);break;
@@ -1022,15 +1488,37 @@ function castSpell(s,c,o){
       note(`人民军：保留 ${originalCount} 张【${originalNames}】，追加 ${handAdded} 张俄布；战场补充 ${s.board.length-before} 个俄布`,s.name);
       if(s===G.player) peopleArmyFX();
       break;}
-    case"redDawn":{const redCount=s.board.filter(u=>u.id==="red").length,dmg=2+redCount;o.board.forEach(u=>u.health-=dmg);dead(o);note(`赤色黎明：${dmg} 点`,s.name);break;}
-    case"sacAoe3":{if(s.board.length>0){const t=[...s.board].sort((a,b)=>a.health-b.health)[0];removeFrom(s,t);o.board.forEach(u=>u.health-=3);dead(o);note(`献祭 ${t.name}，全场 3 伤`,s.name);}break;}
-    case"fireShip":{const n=s.board.length;if(n>0){s.board=[];o.board.forEach(u=>u.health-=n*2);dead(o);note(`火船：全场 ${n*2} 伤`,s.name);}break;}
+    case"redDawn":{const redCount=s.board.filter(u=>u.id==="red").length,dmg=2+redCount;o.board.forEach(u=>u.health-=dmg);dead(o);note(`赤色黎明：${dmg} 点`,s.name);if(s===G.player)redDawnFX();break;}
+case"sacAoe3":{
+  if(!s.board.length)break;
+  const doSac=(t)=>{
+    removeFrom(s,t);
+    o.board.forEach(u=>u.health-=3);
+    dead(o);
+    note(`献祭 ${t.name}，全场 3 伤`,s.name);
+    render();
+  };
+  if(s===G.player){
+    startChoose({
+      count:1,maxCount:1,minCount:1,side:"player",
+      label:"燃烧弹 · 选择要献祭的己方单位",
+      eligible:s.board.map(u=>u.uid),
+      resolve:(picked)=>{ if(picked[0])doSac(picked[0]); }
+    });
+    hint("点击要献祭的己方单位，然后点确定");
+    render();
+  }else{
+    const t=[...s.board].sort((a,b)=>a.health-b.health)[0];
+    doSac(t);
+  }
+  break;}
+    case"fireShip":{const n=s.board.length;if(n>0){s.board=[];o.board.forEach(u=>u.health-=n*2);dead(o);note(`火船：全场 ${n*2} 伤`,s.name);if(s===G.player)fireShipFX(n);}break;}
     case"unitDamageHero":{const n=s.board.length;if(n>0)damage(o,n);break;}
-    case"finish":{const n=s.board.length;if(n>0)damage(o,n*2);break;}
+    case"finish":{const n=s.board.length;if(n>0){const dmg=n*2;damage(o,dmg);if(s===G.player)finishFX(dmg);}break;}
     case"filterSuperman":{if(s.deck.length){const d=s.deck.pop();if(d.id==="superman"){d.cost=Math.max(0,d.cost-2);note("禁忌检索：超人费用 -2！",s.name);}if(!addCardToHand(s,d)) s.deck.unshift(d);}else{s.fatigue++;damage(s,s.fatigue,true);}break;}
     case"tutorSuperman":{const idx=s.deck.findIndex(x=>x.id==="superman");if(idx>=0){const card=s.deck.splice(idx,1)[0];if(addCardToHand(s,card)){note("皇冠共鸣：检索到超人！",s.name);}else s.deck.splice(idx,0,card);}else{draw(s,2);}break;}
     case"tutorCometImpact":{const idx=s.deck.findIndex(x=>x.id==="cometImpact");if(idx>=0){const card=s.deck.splice(idx,1)[0];if(addCardToHand(s,card)){note("彗星定位：检索到彗星冲击！",s.name);}else s.deck.splice(idx,0,card);}else{draw(s,2);note("彗星定位：未找到，改为抽两张",s.name);}break;}
-    case"summonSuperman":{const idx=s.deck.findIndex(x=>x.id==="superman");if(idx>=0&&s.board.length<MAX_BOARD){const card=s.deck.splice(idx,1)[0];card.atkLeft=card.charge?card.strikes:0;card.sr=G.round;s.board.push(card);note("皇冠仪式：超人降临！",s.name);if(s===G.player) supermanFX();}break;}
+    case"summonSuperman":{const idx=s.deck.findIndex(x=>x.id==="superman");if(idx>=0&&s.board.length<MAX_BOARD){const card=s.deck.splice(idx,1)[0];card.atkLeft=card.charge?card.strikes:0;card.sr=G.round;s.board.push(card);note("皇冠仪式：超人降临！",s.name);if(s===G.player){summonSupermanRitualFX();setTimeout(()=>supermanFX(),950);}}break;}
     case"steal3":steal(s,3);break;
     case"steal4":steal(s,4);break;
     case"steal4draw":steal(s,4);draw(s,1);break;
@@ -1045,11 +1533,18 @@ function castSpell(s,c,o){
       if(s.money>=ESCAPE_TARGET)specialWin(s,`猪瘟鱼偷够 ${s.money} 元，成功逃跑！`);
       else{s.armor+=3;damage(o,2);note(`逃跑：金钱不足（${s.money}/${ESCAPE_TARGET}）`,s.name);}
       break;
-    case"takeover":{if(o.board.length){const t=[...o.board].sort((a,b)=>b.attack-a.attack)[0];rebelTakeover(o,s,t,"战术接管");}break;}
-    case"rebelLowest":{if(!o.board.length)break;const t=[...o.board].sort((a,b)=>a.attack-b.attack)[0];rebelTakeover(o,s,t,"煽动哗变");break;}
-    case"rebelWeakest":{if(!o.board.length)break;const t=[...o.board].sort((a,b)=>a.health-b.health)[0];rebelTakeover(o,s,t,"内应接应");draw(s,1);break;}
+case"rebel":{
+  if(!o.board.length){note("策动叛乱：敌方场上没有单位",s.name);break;}
+  const t=[...o.board].sort((a,b)=>b.attack-a.attack)[0];
+  const el=slotEl(t.uid);
+  if(rebelTakeover(o,s,t,"策动叛乱")&&el)rebelFX(el);
+  break;
+}
+    case"takeover":{if(o.board.length){const t=[...o.board].sort((a,b)=>b.attack-a.attack)[0];const el=slotEl(t.uid);if(rebelTakeover(o,s,t,"战术接管")&&el)rebelFX(el);}break;}
+    case"rebelLowest":{if(!o.board.length)break;const t=[...o.board].sort((a,b)=>a.attack-b.attack)[0];const el=slotEl(t.uid);if(rebelTakeover(o,s,t,"煽动哗变")&&el)rebelFX(el);break;}
+    case"rebelWeakest":{if(!o.board.length)break;const t=[...o.board].sort((a,b)=>a.health-b.health)[0];const el=slotEl(t.uid);if(rebelTakeover(o,s,t,"内应接应")&&el)rebelFX(el);draw(s,1);break;}
     case"disruption":{o.board.forEach(u=>{u.atkLeft=0;u.sr=G.round;});damage(o,2);break;}
-    case"evasion":{s.heroImmune=true;break;}
+    case"evasion":{s.heroImmune=true;if(s===G.player)evasionFX();break;}
     case"cometImpact":{
       const total=s.hp+s.armor;
       if(total>=40){
@@ -1064,8 +1559,8 @@ function castSpell(s,c,o){
         sfx("error");
       }
       break;}
-    case"gravityLock":{o.board.forEach(u=>{u.stunTurns=Math.max(u.stunTurns||0,1);u.atkLeft=0;});sfx("stun");break;}
-    case"costRaise":{if(o.hand.length){o.hand.forEach(c=>{c.cost+=1;});note(`引力折叠：敌方 ${o.hand.length} 张手牌费用 +1`,s.name);}break;}
+    case"gravityLock":{o.board.forEach(u=>{u.stunTurns=Math.max(u.stunTurns||0,1);u.atkLeft=0;});if(s===G.player)gravityLockFX();sfx("stun");break;}
+    case"costRaise":{if(o.hand.length){o.hand.forEach(c=>{c.cost+=1;});note(`引力折叠：敌方 ${o.hand.length} 张手牌费用 +1`,s.name);if(s===G.player)costRaiseFX();}break;}
     case"summoncall":{const idx=s.deck.findIndex(x=>MEMBER_IDS.indexOf(x.id)>=0);if(idx>=0&&s.board.length<MAX_BOARD){const card=s.deck.splice(idx,1)[0];card.atkLeft=card.charge?card.strikes:0;card.sr=G.round;s.board.push(card);unitDeploy(s,card,o);}else{draw(s,2);}break;}
     case"namecardsummon":namecardsummonChoose(s,o);break;
     case"highcommand":s.board.forEach(u=>{u.attack+=2;u.health+=2;u.maxHealth+=2;});break;
@@ -1129,7 +1624,7 @@ function sync(box,items,mk,dieSfx){
   items.forEach((it,i)=>{
     const m=mk(it,i);let el=map.get(String(it.uid));
     if(el)map.delete(String(it.uid));
-    else{el=document.createElement("div");el.dataset.uid=it.uid;el._enter=true;created++;box.appendChild(el);setTimeout(()=>{el._enter=false;applyCls(el);},520);}
+else{el=document.createElement("div");el.dataset.uid=it.uid;el._enter=true;created++;box.appendChild(el);setTimeout(()=>{el._enter=false;applyCls(el);},520);if(it.kind==="unit"&&it.id==="superman"){el.classList.add("slam");setTimeout(()=>{el.classList.remove("slam");applyCls(el);},1000);setTimeout(()=>shake(),650);}}
     el._base=m.base;el._flags=m.flags||"";applyCls(el);
     if(el._sig!==m.html){el.innerHTML=m.html;el._sig=m.html;}
     if(m.vars)for(const k in m.vars)el.style.setProperty(k,m.vars[k]);
@@ -1143,7 +1638,7 @@ function sync(box,items,mk,dieSfx){
     }
     ordered.push(el);
   });
-  map.forEach(el=>{el._dying=true;applyCls(el);if(dieSfx)sfx("die");setTimeout(()=>el.remove(),430);});
+map.forEach(el=>{el._dying=true;applyCls(el);if(dieSfx)sfx("die");shatterFX(el);setTimeout(()=>el.remove(),280);});
   let cur=box.firstElementChild;
   for(const el of ordered){
     while(cur&&cur._dying)cur=cur.nextElementSibling;
@@ -1182,9 +1677,10 @@ function unitFlags(u,owner){
   }else if(su&&validTargets(su).units.includes(u.uid))f+=" tgt";
   if(owner==="enemy"&&G.rebelSpell&&G.turn==="player")f+=" rebel";
   // 选择模式高亮
-  if(owner==="enemy"&&G.choose&&G.turn==="player"&&G.choose.eligible.includes(u.uid)){
-    f+=G.choose.picked.includes(u.uid)?" picked":" choose";
-  }
+ if(G.choose&&G.turn==="player"&&G.choose.eligible.includes(u.uid)){
+  const sameSide=(G.choose.side==="player"&&owner==="player")||(G.choose.side!=="player"&&owner==="enemy");
+  if(sameSide) f+=G.choose.picked.includes(u.uid)?" picked":" choose";
+}
   return f;
 }
 function logical(r){const sr=$("#stage").getBoundingClientRect();return{x:(r.left+r.width/2-sr.left)/UI.scale,y:(r.top+r.height/2-sr.top)/UI.scale};}
@@ -1212,7 +1708,9 @@ function watch(key,el,val,kind){
 function crystals(en,max){let h="";for(let i=0;i<10;i++)h+=`<i class="${i<en?"":(i<max?"off":"dis")}"></i>`;return h;}
 function heroPanel(k,s,name,isEnemy){
   $(`#${k}AvT`).textContent=glyph(name);$(`#${k}Name`).textContent=name;
-  $(`#${k}Hp`).textContent=Math.max(0,s.hp);
+  const over=s.hp>s.maxHp;
+$(`#${k}Hp`).textContent=(over?"+":"")+Math.max(0,s.hp);
+$(`#${k}Hp`).style.color=over?"#f0d18e":"";
   const arm=$(`#${k}Arm`);arm.hidden=!s.armor;arm.textContent="护 "+s.armor;
   $(`#${k}Cry`).innerHTML=crystals(s.energy,s.maxEnergy);$(`#${k}En`).textContent=`${s.energy} / ${s.maxEnergy}`;
   const mo=$(`#${k}Money`);mo.hidden=name!=="猪瘟鱼";
@@ -1291,6 +1789,7 @@ function canAct(){return G.turn==="player"&&!G.busy&&!G.over&&!G.pendingChoice;}
 function clearSel(){
   UI.sel=null;UI.drag=null;G.rebelSpell=null;hidePreview();$("#aim").hidden=true;
   document.querySelectorAll(".hot").forEach(e=>e.classList.remove("hot"));
+  aimHighlight(null);
   $("#pBoard").classList.remove("ready","bad");$("#eBoard").classList.remove("rm");
   hint(defaultHint());render();
 }
@@ -1517,11 +2016,42 @@ async function enemyTurn(sess){
 
 /* ============ 输入 ============ */
 function targetAt(x,y){
-  const el=document.elementFromPoint(x,y);if(!el)return null;
-  const us=el.closest(".uslot");
-  if(us&&us.dataset.owner==="enemy")return{kind:"unit",uid:+us.dataset.uid,el:us};
-  if(el.closest("#eHero"))return{kind:"hero",el:$("#eHero")};
-  if(el.closest("#eBoard"))return{kind:"hero",el:null};
+  /* ① 英雄头像单独一块，不跟单位区重叠 */
+  const hero=$("#eHero");
+  if(hero){
+    const r=hero.getBoundingClientRect(),pad=24;
+    if(x>=r.left-pad&&x<=r.right+pad&&y>=r.top-pad&&y<=r.bottom+pad){
+      return{kind:"hero",el:hero};
+    }
+  }
+
+  /* ② 敌方战场：鼠标落在这一行里，按最近横向中心决定打谁 */
+  const row=$("#eRow"),board=$("#eBoard");
+  if(row&&board){
+    const br=board.getBoundingClientRect();
+    const rowR=row.getBoundingClientRect();
+    const inBoard=x>=br.left&&x<=br.right&&y>=br.top&&y<=br.bottom;
+    const inRowBand=y>=rowR.top-60&&y<=rowR.bottom+60;
+    if(inBoard&&inRowBand){
+      const slots=[...row.querySelectorAll(".uslot")].filter(el=>!el._dying&&!el.classList.contains("dying"));
+      if(slots.length){
+        let best=null,bestD=1e9;
+        for(const el of slots){
+          const r=el.getBoundingClientRect();
+          const cx=r.left+r.width/2;
+          const d=Math.abs(x-cx);
+          if(d<bestD){bestD=d;best={el,r};}
+        }
+        /* 放宽判定：横向中心 1.4 倍单位宽内，都算打到这个单位 */
+        const colW=(best.r.width||80);
+        if(bestD<=colW*1.4){
+          return{kind:"unit",uid:+best.el.dataset.uid,el:best.el};
+        }
+      }
+      /* 关键在这里：敌方战场上、但离所有单位都远 → 还是打英雄 */
+      return{kind:"hero",el:null};
+    }
+  }
   return null;
 }
 function targetValid(unit,t){
@@ -1529,15 +2059,34 @@ function targetValid(unit,t){
   return t.kind==="hero"?v.hero:v.units.includes(t.uid);
 }
 function aimTo(srcEl,x,y){
+  const aim=document.getElementById("aim");
+  if(!aim)return;
   const a=logical(srcEl.getBoundingClientRect()),sr=$("#stage").getBoundingClientRect();
   const px=(x-sr.left)/UI.scale,py=(y-sr.top)/UI.scale;
-  const cx=(a.x+px)/2,cy=Math.min(a.y,py)-38;
-  $("#aimPath").setAttribute("d",`M${a.x},${a.y} Q${cx},${cy} ${px},${py}`);
+  const line=aim.querySelector(".aim-line");
+  const tri=aim.querySelector(".aim-tri");
+  if(!line||!tri)return;
+  const dx=px-a.x,dy=py-a.y;
+  const len=Math.hypot(dx,dy);
+  const ang=Math.atan2(dy,dx)*180/Math.PI;
+  line.style.left=a.x+"px";
+  line.style.top=(a.y-3)+"px";
+  line.style.width=len+"px";
+  line.style.transformOrigin="0 50%";
+  line.style.transform=`rotate(${ang}deg)`;
+  tri.style.left=px+"px";
+  tri.style.top=py+"px";
+  tri.style.transform=`translate(-50%,-50%) rotate(${ang}deg)`;
 }
 function onDown(e){
   if(e.button>0||UI.press)return;
   if(G.pendingChoice)return;
-  if(G.choose)return;
+ if(G.choose){
+  const us=e.target.closest(".uslot");
+  if(!us)return;
+  const sameSide=(G.choose.side==="player"&&us.dataset.owner==="player")||(G.choose.side!=="player"&&us.dataset.owner==="enemy");
+  if(!sameSide)return;
+}
   const hs=e.target.closest(".hslot"),us=e.target.closest(".uslot");
   if(!hs&&!us)return;
   if(us&&us.classList.contains("dying"))return;
@@ -1577,9 +2126,10 @@ function onMove(e){
     $("#dropText").textContent=over?(bad?bad:"松手出牌"):"向上拖到这里出牌";
   }else{
     aimTo(pr.el,e.clientX,e.clientY);
-    const u=find(G.player.board,pr.uid),t=targetAt(e.clientX,e.clientY);
-    document.querySelectorAll(".hot").forEach(x=>x.classList.remove("hot"));
-    if(u&&t&&targetValid(u,t)){if(t.el)t.el.classList.add("hot");}
+  
+  const u=find(G.player.board,pr.uid),t=targetAt(e.clientX,e.clientY);
+if(u&&t&&targetValid(u,t))aimHighlight(t);
+else aimHighlight(null);
   }
 }
 function endPress(){
@@ -1627,9 +2177,10 @@ function tap(pr){
   const owner=pr.owner==="player"?G.player:G.opponent;
   const u=find(owner.board,pr.uid);if(!u)return;
   // 选择模式优先
-  if(G.choose&&pr.owner==="enemy"){
-    toggleChooseUnit(u.uid);return;
-  }
+  if(G.choose){
+  const sameSide=(G.choose.side==="player"&&pr.owner==="player")||(G.choose.side!=="player"&&pr.owner==="enemy");
+  if(sameSide){toggleChooseUnit(u.uid);return;}
+}
   if(pr.owner==="player"){
     if(!canAct()){showPreview(u,pr.el,1800);return;}
     if(UI.sel&&UI.sel.type==="unit"&&UI.sel.uid===u.uid){clearSel();return;}
@@ -1641,7 +2192,9 @@ function tap(pr){
     const spell=G.rebelSpell;
     if(spell.cost>G.player.energy){toast("费用不足");sfx("error");G.rebelSpell=null;clearSel();return;}
     G.player.energy-=spell.cost;G.player.hand=G.player.hand.filter(x=>x.uid!==spell.uid);
-    const ok=rebelTakeover(G.opponent,G.player,u,"策动叛乱");
+    const el=slotEl(u.uid);
+const ok=rebelTakeover(G.opponent,G.player,u,"策动叛乱");
+if(ok&&el)rebelFX(el);
     G.rebelSpell=null;UI.sel=null;$("#eBoard").classList.remove("rm");
     if(ok)sfx("spell");else sfx("error");
     render();return;
@@ -1679,13 +2232,13 @@ function fitStage(){
   const sc=Math.max(.3,Math.min(W/780,H/430));
   UI.scale=sc;UI.w=W/sc;UI.h=H/sc;
   const st=$("#stage");st.style.width=UI.w+"px";st.style.height=UI.h+"px";st.style.transform=`scale(${sc})`;
-  $("#aim").setAttribute("viewBox",`0 0 ${UI.w} ${UI.h}`);
+
   if(G.player)render();
 }
 function buildMenu(){
   const g=$("#heroGrid");
   g.innerHTML=Object.keys(PROFILES).map(n=>`<button class="htile" data-hero="${esc(n)}" style="--hc:${COLORS[n]||"#d4a45d"}"><span class="crest">${esc(glyph(n))}</span><strong>${esc(n)}</strong><small>${esc(profile(n).style)}</small><span class="hphp">♥ ${profile(n).hp}</span></button>`).join("");
-  pickHero(UI.menuHero);
+pickHero(UI.menuHero);
 }
 function pickHero(n){
   UI.menuHero=n;try{localStorage.setItem("duel.hero",n);}catch(e){}
@@ -1726,8 +2279,9 @@ function startGame(name){
   $("#menu").hidden=true;$("#game").hidden=false;$("#result").hidden=true;$("#pause").hidden=true;$("#rules").hidden=true;$("#choice").hidden=true;$("#oppPick").hidden=true;
   $("#reveal").hidden=true;$("#aim").hidden=true;hidePreview();
   note(`对局开始：${name} vs ${G.enemy} · ${playerFirst?"你先行":"对手先行"}`);
-  fitStage();render();sfx("turn");
-  hint(defaultHint());
+fitStage();render();sfx("turn");
+if(_audioUnlocked)startBGM("duel");
+hint(defaultHint());
   const sess=G.session;G.busy++;
   if(playerFirst){
     beginTurn(G.player);render();
@@ -1742,9 +2296,18 @@ function toMenu(){
   if(eh._immuneEl){eh._immuneEl.remove();eh._immuneEl=null;}
   if(ph._immuneEl){ph._immuneEl.remove();ph._immuneEl=null;}
   $("#game").hidden=true;$("#menu").hidden=false;$("#pause").hidden=true;$("#result").hidden=true;$("#logPanel").hidden=true;$("#reveal").hidden=true;$("#choice").hidden=true;$("#oppPick").hidden=true;hidePreview();
+if(_audioUnlocked)startBGM("menu");
+
 }
 function openPause(){if($("#game").hidden)return;clearSel();$("#pSound").textContent="音效："+(UI.muted?"关":"开");updateFullBtn();$("#pause").hidden=false;}
-function setMuted(m){UI.muted=m;try{localStorage.setItem("duel.muted",m?"1":"0");}catch(e){}$("#pSound").textContent="音效："+(m?"关":"开");}
+function setMuted(m){
+  UI.muted=m;
+  try{localStorage.setItem("duel.muted",m?"1":"0");}catch(e){}
+  $("#pSound").textContent="音效："+(m?"关":"开");
+  if(m)stopBGM();
+  else if(!$("#menu").hidden)startBGM("menu");
+  else if(!$("#game").hidden)startBGM("duel");
+}
 
 /* ============ 事件绑定 ============ */
 const stage=$("#stage");
@@ -1755,7 +2318,7 @@ $("#heroGrid").addEventListener("click",e=>{const b=e.target.closest(".htile");i
 $("#dVs").addEventListener("click",()=>{sfx("click");openOppPicker();});
 $("#oppClose").addEventListener("click",()=>{$("#oppPick").hidden=true;});
 $("#oppPick").addEventListener("click",e=>{if(e.target===$("#oppPick"))$("#oppPick").hidden=true;});
-$("#startBtn").addEventListener("click",async()=>{initAudio();sfx("click");await enterFullscreen();startGame(UI.menuHero);});
+$("#startBtn").addEventListener("click",async()=>{initAudio();sfx("click");startGame(UI.menuHero);});
 $("#menuRules").addEventListener("click",()=>{$("#rules").hidden=false;});
 $("#rulesClose").addEventListener("click",()=>{$("#rules").hidden=true;});
 $("#endBtn").addEventListener("click",endTurn);
@@ -1792,6 +2355,24 @@ addEventListener("resize",fitStage);addEventListener("orientationchange",()=>set
 document.addEventListener("fullscreenchange",()=>{fitStage();updateFullBtn();});
 document.addEventListener("webkitfullscreenchange",()=>{fitStage();updateFullBtn();});
 if(window.visualViewport)visualViewport.addEventListener("resize",fitStage);
+/* 首次用户手势后才启动 BGM（绕开浏览器自动播放限制） */
+let _audioUnlocked=false;
+function unlockAudio(){
+  if(_audioUnlocked)return;
+  _audioUnlocked=true;
+  initAudio();
+  if(UI.muted)return;
+  if(!$("#menu").hidden)startBGM("menu");
+  else if(!$("#game").hidden)startBGM("duel");
+  document.removeEventListener("pointerdown",unlockAudio,true);
+  document.removeEventListener("click",unlockAudio,true);
+  document.removeEventListener("touchstart",unlockAudio,true);
+  document.removeEventListener("keydown",unlockAudio,true);
+}
+document.addEventListener("pointerdown",unlockAudio,true);
+document.addEventListener("click",unlockAudio,true);
+document.addEventListener("touchstart",unlockAudio,true);
+document.addEventListener("keydown",unlockAudio,true);
 
 buildMenu();fitStage();
 window.__duel={G,UI,startGame,render,endTurn,play,playerPlay,playerAttack,canAct};
